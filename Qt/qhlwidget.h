@@ -8,6 +8,7 @@ class QLineEdit;
 class QLabel;
 class QPushButton;
 class QPlainTextEdit;
+class QTextBrowser;
 QT_END_NAMESPACE
 
 class QHlWidget : public QWidget
@@ -20,7 +21,7 @@ public:
 
 private:
     void initialize();
-    void search(QString search, QPlainTextEdit *edit);
+    void search(QString search, QTextBrowser *edit);
 
 private slots:
     void onHighlightToken();

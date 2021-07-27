@@ -5,9 +5,11 @@
 static MainWindow * gMainWindow = Q_NULLPTR;
 
 MainWindow::MainWindow()
-    : textEdit(new QPlainTextEdit)
 {
-    setCentralWidget(textEdit);
+    tabSrcWidget = new MyTabWidget(this);
+    setCentralWidget(tabSrcWidget);
+    tabSrcWidget->setContentsMargins(4, 4, 4, 4);
+    setAcceptDrops(true);
 
     getStyleList();
 
@@ -17,7 +19,9 @@ MainWindow::MainWindow()
 
     readSettings();
 
-    connect(textEdit->document(), &QTextDocument::contentsChanged, this, &MainWindow::documentWasModified);
+    connect(tabSrcWidget, &MyTabWidget::openFileRequest, this, &MainWindow::openFileAt);
+    connect(tabSrcWidget, &MyTabWidget::dragTabRequest,  this, &MainWindow::dragTab);
+
     connect(fileListWidget, &QListWidget::itemClicked, this, &MainWindow::fileListWidgetItemClicked);
 
 #ifndef QT_NO_SESSIONMANAGER
@@ -40,7 +44,6 @@ void MainWindow::closeEvent(QCloseEvent *event)
 void MainWindow::newFile()
 {
     if (maybeSave()) {
-        textEdit->clear();
         setCurrentFile(QString());
     }
 }
@@ -50,7 +53,7 @@ void MainWindow::open()
     if (maybeSave()) {
         QString fileName = QFileDialog::getOpenFileName(this);
         if (!fileName.isEmpty())
-            loadFile(fileName, true);
+            openFile(fileName);
     }
 }
 
@@ -76,11 +79,6 @@ bool MainWindow::saveAs()
 void MainWindow::about()
 {
    QMessageBox::about(this, tr("About"), tr("Application: <b>MyIDE Qt Application </b><br>Version: <b>1.0</b>"));
-}
-
-void MainWindow::documentWasModified()
-{
-    setWindowModified(textEdit->document()->isModified());
 }
 
 void MainWindow::createActions()
@@ -132,7 +130,7 @@ void MainWindow::createActions()
     QAction *cutAct = new QAction(cutIcon, tr("Cu&t"), this);
     cutAct->setShortcuts(QKeySequence::Cut);
     cutAct->setStatusTip(tr("Cut the current selection's contents to the clipboard"));
-    connect(cutAct, &QAction::triggered, textEdit, &QPlainTextEdit::cut);
+    connect(cutAct, &QAction::triggered, getTabTextEdit(), &QTextBrowser::cut);
     editMenu->addAction(cutAct);
     editToolBar->addAction(cutAct);
 
@@ -140,7 +138,7 @@ void MainWindow::createActions()
     QAction *copyAct = new QAction(copyIcon, tr("&Copy"), this);
     copyAct->setShortcuts(QKeySequence::Copy);
     copyAct->setStatusTip(tr("Copy the current selection's contents to the clipboard"));
-    connect(copyAct, &QAction::triggered, textEdit, &QPlainTextEdit::copy);
+    connect(copyAct, &QAction::triggered, getTabTextEdit(), &QTextBrowser::copy);
     editMenu->addAction(copyAct);
     editToolBar->addAction(copyAct);
 
@@ -148,7 +146,7 @@ void MainWindow::createActions()
     QAction *pasteAct = new QAction(pasteIcon, tr("&Paste"), this);
     pasteAct->setShortcuts(QKeySequence::Paste);
     pasteAct->setStatusTip(tr("Paste the clipboard's contents into the current selection"));
-    connect(pasteAct, &QAction::triggered, textEdit, &QPlainTextEdit::paste);
+    connect(pasteAct, &QAction::triggered, getTabTextEdit(), &QTextBrowser::paste);
     editMenu->addAction(pasteAct);
     editToolBar->addAction(pasteAct);
 
@@ -174,7 +172,7 @@ void MainWindow::createActions()
             themeAct->setCheckable(true);
             QString tip = QString("Apply %1 theme for application.").arg(stylename);
             themeAct->setStatusTip(tip);
-            if (stylename == "OTHERSTYLE1")
+            if (stylename == "UBUNTU")
             {
                 themeAct->setChecked(true);
                 defaultTheme = i;
@@ -194,8 +192,8 @@ void MainWindow::createActions()
 #ifndef QT_NO_CLIPBOARD
     cutAct->setEnabled(false);
     copyAct->setEnabled(false);
-    connect(textEdit, &QPlainTextEdit::copyAvailable, cutAct, &QAction::setEnabled);
-    connect(textEdit, &QPlainTextEdit::copyAvailable, copyAct, &QAction::setEnabled);
+    connect(getTabTextEdit(), &QTextBrowser::copyAvailable, cutAct, &QAction::setEnabled);
+    connect(getTabTextEdit(), &QTextBrowser::copyAvailable, copyAct, &QAction::setEnabled);
 #endif // !QT_NO_CLIPBOARD
 }
 
@@ -229,7 +227,7 @@ void MainWindow::writeSettings()
 
 bool MainWindow::maybeSave()
 {
-    if (!textEdit->document()->isModified())
+    if (!getTabTextEdit()->document()->isModified())
         return true;
     const QMessageBox::StandardButton ret
         = QMessageBox::warning(this, tr("Application"),
@@ -247,38 +245,6 @@ bool MainWindow::maybeSave()
     return true;
 }
 
-void MainWindow::loadFile(const QString &fileName, bool bAddItem)
-{
-    QFile file(fileName);
-    if (!file.open(QFile::ReadOnly | QFile::Text)) {
-        QMessageBox::warning(this, tr("Application"),
-                             tr("Cannot read file %1:\n%2.")
-                             .arg(QDir::toNativeSeparators(fileName), file.errorString()));
-        return;
-    }
-
-    QTextStream in(&file);
-#ifndef QT_NO_CURSOR
-    QGuiApplication::setOverrideCursor(Qt::WaitCursor);
-#endif
-    textEdit->setPlainText(in.readAll());
-#ifndef QT_NO_CURSOR
-    QGuiApplication::restoreOverrideCursor();
-#endif
-
-    setCurrentFile(fileName);
-
-    if (bAddItem)
-    {
-        const QIcon openIcon = QIcon::fromTheme("document-open", QIcon(":/Resource/open.png"));
-        QListWidgetItem * pItem = new QListWidgetItem(openIcon, strippedName(fileName), fileListWidget);
-        pItem->setData(Qt::UserRole, fileName);
-        fileListWidget->addItem(pItem);
-    }
-
-    statusBar()->showMessage(tr("File loaded"), 2000);
-}
-
 bool MainWindow::saveFile(const QString &fileName)
 {
     QString errorMessage;
@@ -287,7 +253,7 @@ bool MainWindow::saveFile(const QString &fileName)
     QSaveFile file(fileName);
     if (file.open(QFile::WriteOnly | QFile::Text)) {
         QTextStream out(&file);
-        out << textEdit->toPlainText();
+        out << getTabTextEdit()->toPlainText();
         if (!file.commit()) {
             errorMessage = tr("Cannot write file %1:\n%2.")
                            .arg(QDir::toNativeSeparators(fileName), file.errorString());
@@ -311,13 +277,8 @@ bool MainWindow::saveFile(const QString &fileName)
 void MainWindow::setCurrentFile(const QString &fileName)
 {
     curFile = fileName;
-    textEdit->document()->setModified(false);
+    getTabTextEdit()->document()->setModified(false);
     setWindowModified(false);
-
-    //QString shownName = curFile;
-    //if (curFile.isEmpty())
-    //    shownName = "untitled.txt";
-    //setWindowFilePath(shownName);
 
     setWindowTitle("MyIDE 1.0");
 }
@@ -335,7 +296,7 @@ void MainWindow::commitData(QSessionManager &manager)
             manager.cancel();
     } else {
         // Non-interactive: save without asking
-        if (textEdit->document()->isModified())
+        if (getTabTextEdit()->document()->isModified())
             save();
     }
 }
@@ -406,7 +367,14 @@ void MainWindow::fileListWidgetItemClicked(QListWidgetItem * item)
     if (filepath == "")
         return;
 
-    loadFile(filepath, false);
+    QString fileName = item->text();
+
+
+    int selTab = getTabIndex(fileName);
+    if (selTab != -1)
+        tabSrcWidget->setCurrentIndex(selTab);
+    else
+        showOnlyTabPanel(filepath);
 }
 
 MainWindow * MainWindow::instance()
@@ -414,3 +382,170 @@ MainWindow * MainWindow::instance()
     return gMainWindow;
 }
 
+void MainWindow::dragEnterEvent(QDragEnterEvent *event)
+{
+    if(event->mimeData()->hasUrls())
+        event->acceptProposedAction();
+    else event->ignore();
+}
+
+void MainWindow::dropEvent(QDropEvent *event)
+{
+    const QMimeData * mimeData = event->mimeData();
+    if(mimeData->hasUrls()) {
+        for (const QUrl& url : mimeData->urls()) {
+            openFile(url.toLocalFile());
+        }
+        event->acceptProposedAction();
+    }
+    else {
+        event->ignore();
+    }
+}
+
+void MainWindow::openFile(QString fileName)
+{
+    return openFileAt(fileName, -1);
+}
+
+void MainWindow::openFileAt(QString fileName, int tabIndex)
+{
+    QFile file(fileName);
+    if(! file.open(QFile::ReadOnly | QFile::Text))
+    {
+        QMessageBox::warning(this,tr("Error"), tr("Cannot open file %1:\n%2").arg(fileName).arg(file.errorString()));
+        return ;
+    }
+
+    QTextStream in(&file);
+    in.setAutoDetectUnicode(true);
+
+    auto browser = new QTextBrowser(this);
+    auto tabWidget = qobject_cast<MyTabWidget*>(centralWidget());
+    Q_ASSERT(tabWidget);
+    auto index = tabWidget->insertTab(tabIndex,browser,QFileInfo(fileName).fileName());
+    tabWidget->setCurrentIndex(index);
+
+    auto highlighter = new Highlighter(browser->document());
+
+    browser->setAcceptDrops(false);
+    QGuiApplication::setOverrideCursor(Qt::WaitCursor);
+    browser->setSource(QUrl::fromLocalFile(fileName));
+    browser->setPlainText(in.readAll());
+    QGuiApplication::restoreOverrideCursor();
+
+    const QIcon openIcon = QIcon::fromTheme("document-open", QIcon(":/Resource/open.png"));
+    QListWidgetItem * pItem = new QListWidgetItem(openIcon, strippedName(fileName), fileListWidget);
+    pItem->setData(Qt::UserRole, fileName);
+    fileListWidget->addItem(pItem);
+
+    statusBar()->showMessage(tr("File loaded"), 2000);
+
+    file.close();
+}
+
+void MainWindow::showOnlyTabPanel(QString fileName)
+{
+    QFile file(fileName);
+    if(! file.open(QFile::ReadOnly | QFile::Text))
+    {
+        QMessageBox::warning(this,tr("Error"), tr("Cannot open file %1:\n%2").arg(fileName).arg(file.errorString()));
+        return ;
+    }
+
+    QTextStream in(&file);
+    in.setAutoDetectUnicode(true);
+
+    auto browser = new QTextBrowser(this);
+    auto tabWidget = qobject_cast<MyTabWidget*>(centralWidget());
+    Q_ASSERT(tabWidget);
+    auto index = tabWidget->addTab(browser,QFileInfo(fileName).fileName());
+    tabWidget->setCurrentIndex(index);
+
+    auto highlighter = new Highlighter(browser->document());
+
+    browser->setAcceptDrops(false);
+    QGuiApplication::setOverrideCursor(Qt::WaitCursor);
+    browser->setSource(QUrl::fromLocalFile(fileName));
+    browser->setPlainText(in.readAll());
+    QGuiApplication::restoreOverrideCursor();
+
+    statusBar()->showMessage(tr("File loaded"), 2000);
+
+    file.close();
+}
+
+
+void MainWindow::dragTab(int tabIndex)
+{
+    //if(!isTabMovable(tabIndex)) return;
+    auto tabWidget = qobject_cast<MyTabWidget*>(centralWidget());
+    Q_ASSERT(tabWidget);
+    auto browser = qobject_cast<QTextBrowser*>(tabWidget->widget(tabIndex));
+    Q_ASSERT(browser);
+
+    auto drag = new QDrag(this);
+    auto mimeData = new QMimeData;
+    QPixmap thumbnail = windowHandle()->screen()->grabWindow(browser->winId());
+    mimeData->setUrls({browser->source()});
+    drag->setMimeData(mimeData);
+    drag->setPixmap(thumbnail.scaled(200,200));
+
+    auto dragAction = drag->exec(Qt::LinkAction);
+    int currentIndex = tabWidget->indexOf(browser);
+    qDebug() << "removed tab source" << tabIndex;
+    qDebug() << "removed tab current" << currentIndex;
+    if (dragAction==Qt::LinkAction) {
+        tabWidget->removeTabActually(currentIndex);
+    } else if (dragAction==Qt::IgnoreAction) {
+        if(QProcess::startDetached(qApp->applicationFilePath(),
+                                   {"-x",QString::number(QCursor::pos().x()),
+                                    "-y",QString::number(QCursor::pos().y()),
+                                   browser->source().toLocalFile()})) {
+            tabWidget->removeTabActually(currentIndex);
+        }
+    } else {
+        return;
+    }
+    if(tabWidget->count()==0) {
+        qApp->closeAllWindows();
+    }
+}
+
+QTextBrowser * MainWindow::getTabTextEdit()
+{
+    MyTabWidget * tabWidget = qobject_cast<MyTabWidget*>(centralWidget());
+
+    static QTextBrowser *  srcEditor;
+
+    int tabIndex = tabWidget->currentIndex();
+    if (tabIndex == -1)
+    {
+        srcEditor = new QTextBrowser(this);
+        srcEditor->hide();
+        return srcEditor;
+    }
+
+    srcEditor = qobject_cast<QTextBrowser*>(tabWidget->widget(tabIndex));
+    srcEditor->show();
+    return srcEditor;
+}
+
+int MainWindow::getTabIndex(QString name)
+{
+    int index = -1;
+
+    int count = tabSrcWidget->count();
+    for (int i = 0; i < count; i ++)
+    {
+        QString tabname = tabSrcWidget->tabText(i);
+        if (tabname == name)
+        {
+            index = i;
+            break;
+        }
+    }
+
+
+    return index;
+}

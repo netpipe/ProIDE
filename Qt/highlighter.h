@@ -48,90 +48,44 @@
 **
 ****************************************************************************/
 
-#ifndef MAINWINDOW_H
-#define MAINWINDOW_H
+#ifndef HIGHLIGHTER_H
+#define HIGHLIGHTER_H
 
-#include <QMainWindow>
-#include "qhlwidget.h"
-#include "CustomCtrl/mytabwidget.h"
-#include "highlighter.h"
+#include <QSyntaxHighlighter>
+#include <QTextCharFormat>
+#include <QRegularExpression>
 
 QT_BEGIN_NAMESPACE
-class QAction;
-class QActionGroup;
-class QListWidget;
-class QListWidgetItem;
-class QMenu;
-class QPlainTextEdit;
-class QSessionManager;
-class QTextBrowser;
+class QTextDocument;
 QT_END_NAMESPACE
 
-class MainWindow : public QMainWindow
+class Highlighter : public QSyntaxHighlighter
 {
     Q_OBJECT
 
 public:
-    MainWindow();
-
-    static MainWindow * instance();
-
-    void openFile(QString fileName);
-    void openFileAt(QString fileName, int tabIndex);
-    void dragTab(int tabIndex);
-    void showOnlyTabPanel(QString fileName);
-
-    QTextBrowser * getTabTextEdit();
+    Highlighter(QTextDocument *parent = 0);
 
 protected:
-    void closeEvent(QCloseEvent *event)         override;
-    void dragEnterEvent(QDragEnterEvent *event) override;
-    void dropEvent(QDropEvent *event)           override;
-
-private slots:
-    void newFile();
-    void open();
-    bool save();
-    bool saveAs();
-    void about();
-    void applyTheme(int index);
-    void fileListWidgetItemClicked(QListWidgetItem * item);
-
-#ifndef QT_NO_SESSIONMANAGER
-    void commitData(QSessionManager &);
-#endif
+    void highlightBlock(const QString &text) override;
 
 private:
-    void createActions();
-    void createDockWindows();
-    void createStatusBar();
-    void getStyleList();
-    void readSettings();
-    void writeSettings();
-    void loadStyleSheet( QString sheet_name);
-    void setCurrentFile(const QString &fileName);
+    struct HighlightingRule
+    {
+        QRegularExpression pattern;
+        QTextCharFormat format;
+    };
+    QVector<HighlightingRule> highlightingRules;
 
-    bool maybeSave();
-    bool saveFile(const QString &fileName);
+    QRegularExpression commentStartExpression;
+    QRegularExpression commentEndExpression;
 
-    QString strippedName(const QString &fullFileName);
-
-    int  getTabIndex(QString name);
-
-public:
-    MyTabWidget *   tabSrcWidget;
-
-private:
-    QActionGroup *  themeGroup;
-    QListWidget *   fileListWidget;
-    QHlWidget *     hlWidget;
-
-    //Highlighter *   highlighter;
-
-    QString         curFile;
-    QStringList     stylePathList;
-    QStringList     styleNameList;
+    QTextCharFormat keywordFormat;
+    QTextCharFormat classFormat;
+    QTextCharFormat singleLineCommentFormat;
+    QTextCharFormat multiLineCommentFormat;
+    QTextCharFormat quotationFormat;
+    QTextCharFormat functionFormat;
 };
 
-
-#endif
+#endif // HIGHLIGHTER_H

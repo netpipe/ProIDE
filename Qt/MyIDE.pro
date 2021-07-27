@@ -16,12 +16,18 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    CustomCtrl/mytabbar.cpp \
+    CustomCtrl/mytabwidget.cpp \
+    highlighter.cpp \
     main.cpp \
     mainwindow.cpp \
     qappinfo.cpp \
     qhlwidget.cpp
 
 HEADERS += \
+    CustomCtrl/mytabbar.h \
+    CustomCtrl/mytabwidget.h \
+    highlighter.h \
     mainwindow.h \
     qappinfo.h \
     qhlwidget.h

@@ -76,7 +76,7 @@ QPushButton {
 }
 QPushButton:hover {
     background-color: blue;
-     color: #FFFFF;
+     color: #FFFFFF;
     padding-top: 3px;
 }
 QPushButton:pressed {
@@ -166,7 +166,7 @@ QAbstractScrollArea QScrollBar:horizontal {
     border-top-width: 1px;
     border-top-color: #4580fa;
     border-top-style: solid;
-    background: #white;
+    background: white;
     height: 16px;
     margin: 0px 14px 0px 14px;
 }
@@ -227,7 +227,7 @@ QAbstractScrollArea QScrollBar::add-page:horizontal, QAbstractScrollArea QScroll
     background: white;
 }
 QLabel {
-   color: #black;
+   color: black;
    font-size: 11pt;
 }
 QTableWidget {
@@ -435,7 +435,7 @@ QPushButton {
 }
 QPushButton:hover {
     background-color: blue;
-     color: #FFFFF;
+     color: #FFFFFF;
     padding-top: 3px;
 }
 QPushButton:pressed {
@@ -525,7 +525,7 @@ QAbstractScrollArea QScrollBar:horizontal {
     border-top-width: 1px;
     border-top-color: #4580fa;
     border-top-style: solid;
-    background: #white;
+    background: white;
     height: 16px;
     margin: 0px 14px 0px 14px;
 }
