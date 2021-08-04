@@ -42,7 +42,7 @@ MainWindow::MainWindow()
 
     gMainWindow = this;
 
-    CBP2MAKE("./test.cbp");
+  //  CBP2MAKE("./test.cbp");
 }
 
 MainWindow * MainWindow::instance()

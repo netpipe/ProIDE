@@ -28,6 +28,7 @@ SOURCES += \
     qhlwidget.cpp
 
 HEADERS += \
+    CBP2MAKEFILE.h \
     CustomCtrl/mytabbar.h \
     CustomCtrl/mytabwidget.h \
     highlighter.h \
