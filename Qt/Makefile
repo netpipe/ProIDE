@@ -348,6 +348,7 @@ DIST          = /usr/lib64/qt5/mkspecs/features/spec_pre.prf \
 		MyIDE.pro CBP2MAKEFILE.h \
 		CustomCtrl/mytabbar.h \
 		CustomCtrl/mytabwidget.h \
+		database.h \
 		highlighter.h \
 		mainwindow.h \
 		mdichild.h \
@@ -920,7 +921,7 @@ distdir: FORCE
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents MyIDE.qrc $(DISTDIR)/
 	$(COPY_FILE) --parents /usr/lib64/qt5/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents CBP2MAKEFILE.h CustomCtrl/mytabbar.h CustomCtrl/mytabwidget.h highlighter.h mainwindow.h mdichild.h qappinfo.h qhlwidget.h $(DISTDIR)/
+	$(COPY_FILE) --parents CBP2MAKEFILE.h CustomCtrl/mytabbar.h CustomCtrl/mytabwidget.h database.h highlighter.h mainwindow.h mdichild.h qappinfo.h qhlwidget.h $(DISTDIR)/
 	$(COPY_FILE) --parents CustomCtrl/mytabbar.cpp CustomCtrl/mytabwidget.cpp highlighter.cpp main.cpp mainwindow.cpp mdichild.cpp qappinfo.cpp qhlwidget.cpp $(DISTDIR)/
 
 

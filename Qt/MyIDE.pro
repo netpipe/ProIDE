@@ -31,6 +31,7 @@ HEADERS += \
     CBP2MAKEFILE.h \
     CustomCtrl/mytabbar.h \
     CustomCtrl/mytabwidget.h \
+    database.h \
     highlighter.h \
     mainwindow.h \
     mdichild.h \
