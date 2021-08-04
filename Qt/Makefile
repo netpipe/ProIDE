@@ -17,7 +17,7 @@ CXX           = g++
 DEFINES       = -DQT_DEPRECATED_WARNINGS -DQT_QML_DEBUG -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB
 CFLAGS        = -pipe -g -Wall -W -D_REENTRANT -fPIC $(DEFINES)
 CXXFLAGS      = -pipe -g -std=gnu++11 -Wall -W -D_REENTRANT -fPIC $(DEFINES)
-INCPATH       = -I. -isystem /usr/include/qt5 -isystem /usr/include/qt5/QtWidgets -isystem /usr/include/qt5/QtGui -isystem /usr/include/qt5/QtCore -I. -I/usr/lib64/qt5/mkspecs/linux-g++
+INCPATH       = -I. -isystem /usr/include/qt5 -isystem /usr/include/qt5/QtWidgets -isystem /usr/include/qt5/QtGui -isystem /usr/include/qt5/QtCore -I. -I. -I/usr/lib64/qt5/mkspecs/linux-g++
 QMAKE         = /usr/bin/qmake-qt5
 DEL_FILE      = rm -f
 CHK_DIR_EXISTS= test -d
@@ -369,7 +369,7 @@ TARGET        = MyIDE
 first: all
 ####### Build rules
 
-MyIDE:  $(OBJECTS)  
+MyIDE: ui_mainwindow.h $(OBJECTS)  
 	$(LINK) $(LFLAGS) -o $(TARGET) $(OBJECTS) $(OBJCOMP) $(LIBS)
 
 Makefile: MyIDE.pro /usr/lib64/qt5/mkspecs/linux-g++/qmake.conf /usr/lib64/qt5/mkspecs/features/spec_pre.prf \
@@ -923,6 +923,7 @@ distdir: FORCE
 	$(COPY_FILE) --parents /usr/lib64/qt5/mkspecs/features/data/dummy.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents CBP2MAKEFILE.h CustomCtrl/mytabbar.h CustomCtrl/mytabwidget.h database.h highlighter.h mainwindow.h mdichild.h qappinfo.h qhlwidget.h $(DISTDIR)/
 	$(COPY_FILE) --parents CustomCtrl/mytabbar.cpp CustomCtrl/mytabwidget.cpp highlighter.cpp main.cpp mainwindow.cpp mdichild.cpp qappinfo.cpp qhlwidget.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents mainwindow.ui $(DISTDIR)/
 
 
 clean: compiler_clean 
@@ -1007,15 +1008,20 @@ compiler_moc_objc_header_make_all:
 compiler_moc_objc_header_clean:
 compiler_moc_source_make_all:
 compiler_moc_source_clean:
-compiler_uic_make_all:
+compiler_uic_make_all: ui_mainwindow.h
 compiler_uic_clean:
+	-$(DEL_FILE) ui_mainwindow.h
+ui_mainwindow.h: mainwindow.ui \
+		/usr/lib64/qt5/bin/uic
+	/usr/lib64/qt5/bin/uic mainwindow.ui -o ui_mainwindow.h
+
 compiler_yacc_decl_make_all:
 compiler_yacc_decl_clean:
 compiler_yacc_impl_make_all:
 compiler_yacc_impl_clean:
 compiler_lex_make_all:
 compiler_lex_clean:
-compiler_clean: compiler_rcc_clean compiler_moc_predefs_clean compiler_moc_header_clean 
+compiler_clean: compiler_rcc_clean compiler_moc_predefs_clean compiler_moc_header_clean compiler_uic_clean 
 
 ####### Compile
 
@@ -1040,7 +1046,8 @@ mainwindow.o: mainwindow.cpp mainwindow.h \
 		qhlwidget.h \
 		highlighter.h \
 		qappinfo.h \
-		CBP2MAKEFILE.h
+		CBP2MAKEFILE.h \
+		ui_mainwindow.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mainwindow.o mainwindow.cpp
 
 mdichild.o: mdichild.cpp mdichild.h

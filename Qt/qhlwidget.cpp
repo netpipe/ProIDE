@@ -104,17 +104,17 @@ void QHlWidget::search(QString search, QTextEdit *edit)
 
 void QHlWidget::onHighlightToken()
 {
-    if (MainWindow::instance() == NULL)
-        return;
+    //if (MainWindow::instance() == NULL)
+   //     return;
 
-    isFirstTime = false;
+  //  isFirstTime = false;
 
-    QTextEdit *plaineditptr = MainWindow::instance()->getActiveTextEdit();
-    if (plaineditptr == Q_NULLPTR)
-        return;
+  //  QTextEdit *plaineditptr = MainWindow::instance()->getActiveTextEdit();
+  //  if (plaineditptr == Q_NULLPTR)
+  //      return;
 
-    undobuffer = plaineditptr->toPlainText();
-    search(lineFind->text().toLatin1(), plaineditptr);
+ //   undobuffer = plaineditptr->toPlainText();
+ //   search(lineFind->text().toLatin1(), plaineditptr);
 }
 
 void QHlWidget::onReplace()

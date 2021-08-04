@@ -2,14 +2,20 @@
 #include "mainwindow.h"
 #include "qappinfo.h"
 #include "CBP2MAKEFILE.h"
+#include "ui_mainwindow.h"
 
 static MainWindow * gMainWindow = Q_NULLPTR;
 
-MainWindow::MainWindow()
-    : mdiArea(new QMdiArea)
+MainWindow::MainWindow(QWidget *parent) :
+    QMainWindow(parent),
+    ui(new Ui::MainWindow)
 {
+    ui->setupUi(this);
+
+  //  ui->stackedWidget=stackedWidget2;
     splitterValue = 0;
 
+    mdiArea=new QMdiArea;
     mdiArea->setHorizontalScrollBarPolicy(Qt::ScrollBarAsNeeded);
     mdiArea->setVerticalScrollBarPolicy(Qt::ScrollBarAsNeeded);
     mdiArea->setTabShape(QTabWidget::Rounded);
@@ -18,10 +24,10 @@ MainWindow::MainWindow()
 
     splitter = new QSplitter(mdiArea);
 
-    stackedWidget = new QStackedWidget(this);
-    stackedWidget->addWidget(mdiArea);
-    stackedWidget->addWidget(splitter);
-    setCentralWidget(stackedWidget);
+    ui->stackedWidget = new QStackedWidget(this);
+    ui->stackedWidget->addWidget(mdiArea);
+    ui->stackedWidget->addWidget(splitter);
+    setCentralWidget(ui->stackedWidget);
 
     getStyleList();
 
@@ -38,11 +44,18 @@ MainWindow::MainWindow()
     setWindowTitle(tr("ProIDE 1.0"));
     setUnifiedTitleAndToolBarOnMac(true);
 
-    stackedWidget->setCurrentWidget(mdiArea);
+    ui->stackedWidget->setCurrentWidget(mdiArea);
 
     gMainWindow = this;
 
+
+
   //  CBP2MAKE("./test.cbp");
+}
+
+MainWindow::~MainWindow()
+{
+    delete ui;
 }
 
 MainWindow * MainWindow::instance()
@@ -696,13 +709,13 @@ void MainWindow::switchSplitter(int type)
             splitter->setOrientation(Qt::Vertical);
         }
 
-        stackedWidget->setCurrentWidget(splitter);
+        ui->stackedWidget->setCurrentWidget(splitter);
     }
     else
     {
         foreach (QMdiSubWindow *window, subWindows)
             window->showMaximized();
 
-        stackedWidget->setCurrentWidget(mdiArea);
+        ui->stackedWidget->setCurrentWidget(mdiArea);
     }
 }

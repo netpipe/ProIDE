@@ -18,12 +18,17 @@ class QListWidget;
 class QListWidgetItem;
 QT_END_NAMESPACE
 
+namespace Ui {
+class MainWindow;
+}
+
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
 
 public:
-    MainWindow();
+    explicit MainWindow(QWidget *parent = nullptr);
+    ~MainWindow();
 
     bool        openFile(const QString &fileName);
 
@@ -78,7 +83,7 @@ private:
 
     QMdiArea *      mdiArea;
 
-    QStackedWidget *stackedWidget;
+   // QStackedWidget *stackedWidget;
 
     QSplitter *     splitter;
 
@@ -112,6 +117,8 @@ private:
     QStringList     styleNameList;
 
     int             splitterValue;
+private:
+    Ui::MainWindow *ui;
 };
 
 #endif
