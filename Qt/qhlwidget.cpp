@@ -5,7 +5,7 @@
 #include <QLineEdit>
 #include <QPushButton>
 #include <QPlainTextEdit>
-#include <QTextBrowser>
+#include <QPlainTextEdit>
 #include <QMessageBox>
 
 QHlWidget::QHlWidget(QWidget *parent) :
@@ -58,7 +58,7 @@ void QHlWidget::initialize()
     mainLayout->setContentsMargins(10, 10, 10, 10);
 }
 
-void QHlWidget::search(QString search, QTextBrowser *edit)
+void QHlWidget::search(QString search, QTextEdit *edit)
 {
     QString searchString = search.toLatin1();
     QTextDocument *document = edit->document();
@@ -109,16 +109,21 @@ void QHlWidget::onHighlightToken()
 
     isFirstTime = false;
 
-    QTextBrowser *test = MainWindow::instance()->getTabTextEdit();
-    undobuffer = test->toPlainText();
-    search(lineFind->text().toLatin1(), test);
+    QTextEdit *plaineditptr = MainWindow::instance()->getActiveTextEdit();
+    if (plaineditptr == Q_NULLPTR)
+        return;
+
+    undobuffer = plaineditptr->toPlainText();
+    search(lineFind->text().toLatin1(), plaineditptr);
 }
 
 void QHlWidget::onReplace()
 {
     isFirstTime = true;
 
-    QTextBrowser *plaineditptr = MainWindow::instance()->getTabTextEdit();
+    QTextEdit *plaineditptr = MainWindow::instance()->getActiveTextEdit();
+    if (plaineditptr == Q_NULLPTR)
+        return;
 
     undobuffer = plaineditptr->toPlainText();
     undobuffer2 = undobuffer;
@@ -147,7 +152,11 @@ void QHlWidget::onUndo()
             colorundo = false;
         }
 
-        MainWindow::instance()->getTabTextEdit()->setPlainText(undobuffer2);
+        QTextEdit *plaineditptr = MainWindow::instance()->getActiveTextEdit();
+        if (plaineditptr == Q_NULLPTR)
+            return;
+
+        plaineditptr->setPlainText(undobuffer2);
         replace=false;
     }
 

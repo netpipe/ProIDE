@@ -12,6 +12,7 @@ MyTabWidget::MyTabWidget(QWidget * parent)
     setTabShape(QTabWidget::Rounded);
     connect(mTabBar,&MyTabBar::openFileRequest,this,&MyTabWidget::openFileRequest);
     connect(mTabBar,&MyTabBar::dragTabRequest,this,&MyTabWidget::dragTabRequest);
+
 }
 
 

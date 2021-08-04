@@ -5,88 +5,309 @@
 static MainWindow * gMainWindow = Q_NULLPTR;
 
 MainWindow::MainWindow()
+    : mdiArea(new QMdiArea)
 {
-    tabSrcWidget = new MyTabWidget(this);
-    setCentralWidget(tabSrcWidget);
-    tabSrcWidget->setContentsMargins(4, 4, 4, 4);
-    setAcceptDrops(true);
+    splitterValue = 0;
+
+    mdiArea->setHorizontalScrollBarPolicy(Qt::ScrollBarAsNeeded);
+    mdiArea->setVerticalScrollBarPolicy(Qt::ScrollBarAsNeeded);
+    mdiArea->setTabShape(QTabWidget::Rounded);
+    mdiArea->setViewMode(QMdiArea::TabbedView);
+    mdiArea->setTabsClosable(true);
+
+    splitter = new QSplitter(mdiArea);
+
+    stackedWidget = new QStackedWidget(this);
+    stackedWidget->addWidget(mdiArea);
+    stackedWidget->addWidget(splitter);
+    setCentralWidget(stackedWidget);
 
     getStyleList();
 
     createActions();
-    createStatusBar();
     createDockWindows();
+    createStatusBar();
+    updateMenus();
+
+    connect(mdiArea, &QMdiArea::subWindowActivated, this, &MainWindow::updateMenus);
+    connect(fileListWidget, &QListWidget::itemClicked, this, &MainWindow::fileListWidgetItemClicked);
 
     readSettings();
 
-    connect(tabSrcWidget, &MyTabWidget::openFileRequest, this, &MainWindow::openFileAt);
-    connect(tabSrcWidget, &MyTabWidget::dragTabRequest,  this, &MainWindow::dragTab);
-
-    connect(fileListWidget, &QListWidget::itemClicked, this, &MainWindow::fileListWidgetItemClicked);
-
-#ifndef QT_NO_SESSIONMANAGER
-    QGuiApplication::setFallbackSessionManagementEnabled(false);
-    connect(qApp, &QGuiApplication::commitDataRequest, this, &MainWindow::commitData);
-#endif
-
-    setCurrentFile(QString());
+    setWindowTitle(tr("ProIDE 1.0"));
     setUnifiedTitleAndToolBarOnMac(true);
+
+    stackedWidget->setCurrentWidget(mdiArea);
 
     gMainWindow = this;
 }
 
+MainWindow * MainWindow::instance()
+{
+    return gMainWindow;
+}
+
 void MainWindow::closeEvent(QCloseEvent *event)
 {
-    writeSettings();
-    event->accept();
+    mdiArea->closeAllSubWindows();
+    if (mdiArea->currentSubWindow()) {
+        event->ignore();
+    } else {
+        writeSettings();
+        event->accept();
+    }
 }
 
 void MainWindow::newFile()
 {
-    if (maybeSave()) {
-        setCurrentFile(QString());
-    }
+    MdiChild *child = createMdiChild();
+    child->newFile();
+    child->show();
 }
 
 void MainWindow::open()
 {
-    if (maybeSave()) {
-        QString fileName = QFileDialog::getOpenFileName(this);
-        if (!fileName.isEmpty())
-            openFile(fileName);
+    const QString fileName = QFileDialog::getOpenFileName(this);
+    if (!fileName.isEmpty())
+        openFile(fileName);
+}
+
+bool MainWindow::openFile(const QString &fileName)
+{
+    if (QMdiSubWindow *existing = findMdiChild(fileName)) {
+        mdiArea->setActiveSubWindow(existing);
+        return true;
+    }
+
+    const bool succeeded = loadFile(fileName);
+    if (succeeded)
+        statusBar()->showMessage(tr("File loaded"), 2000);
+    return succeeded;
+}
+
+bool MainWindow::loadFile(const QString &fileName)
+{
+    MdiChild *child = createMdiChild();
+    const bool succeeded = child->loadFile(fileName);
+    if (succeeded)
+    {
+        if (!isExistListWidget(fileName))
+        {
+            const QIcon openIcon = QIcon::fromTheme("document-open", QIcon(":/Resource/open.png"));
+            QListWidgetItem * pItem = new QListWidgetItem(openIcon, child->strippedName(fileName), fileListWidget);
+            pItem->setData(Qt::UserRole, fileName);
+            fileListWidget->addItem(pItem);
+        }
+
+        auto highlighter = new Highlighter(child->document());
+
+        child->show();
+    }
+    else
+        child->close();
+    MainWindow::prependToRecentFiles(fileName);
+    return succeeded;
+}
+
+static inline QString recentFilesKey() { return QStringLiteral("recentFileList"); }
+static inline QString fileKey() { return QStringLiteral("file"); }
+
+static QStringList readRecentFiles(QSettings &settings)
+{
+    QStringList result;
+    const int count = settings.beginReadArray(recentFilesKey());
+    for (int i = 0; i < count; ++i) {
+        settings.setArrayIndex(i);
+        result.append(settings.value(fileKey()).toString());
+    }
+    settings.endArray();
+    return result;
+}
+
+static void writeRecentFiles(const QStringList &files, QSettings &settings)
+{
+    const int count = files.size();
+    settings.beginWriteArray(recentFilesKey());
+    for (int i = 0; i < count; ++i) {
+        settings.setArrayIndex(i);
+        settings.setValue(fileKey(), files.at(i));
+    }
+    settings.endArray();
+}
+
+bool MainWindow::hasRecentFiles()
+{
+    QSettings settings(QCoreApplication::organizationName(), QCoreApplication::applicationName());
+    const int count = settings.beginReadArray(recentFilesKey());
+    settings.endArray();
+    return count > 0;
+}
+
+void MainWindow::prependToRecentFiles(const QString &fileName)
+{
+    QSettings settings(QCoreApplication::organizationName(), QCoreApplication::applicationName());
+
+    const QStringList oldRecentFiles = readRecentFiles(settings);
+    QStringList recentFiles = oldRecentFiles;
+    recentFiles.removeAll(fileName);
+    recentFiles.prepend(fileName);
+    if (oldRecentFiles != recentFiles)
+        writeRecentFiles(recentFiles, settings);
+
+    setRecentFilesVisible(!recentFiles.isEmpty());
+}
+
+void MainWindow::setRecentFilesVisible(bool visible)
+{
+    recentFileSubMenuAct->setVisible(visible);
+    recentFileSeparator->setVisible(visible);
+}
+
+void MainWindow::updateRecentFileActions()
+{
+    QSettings settings(QCoreApplication::organizationName(), QCoreApplication::applicationName());
+
+    const QStringList recentFiles = readRecentFiles(settings);
+    const int count = qMin(int(MaxRecentFiles), recentFiles.size());
+    int i = 0;
+    for ( ; i < count; ++i) {
+        const QString fileName = QFileInfo(recentFiles.at(i)).fileName();
+        recentFileActs[i]->setText(tr("&%1 %2").arg(i + 1).arg(fileName));
+        recentFileActs[i]->setData(recentFiles.at(i));
+        recentFileActs[i]->setVisible(true);
+    }
+    for ( ; i < MaxRecentFiles; ++i)
+        recentFileActs[i]->setVisible(false);
+}
+
+void MainWindow::openRecentFile()
+{
+    if (const QAction *action = qobject_cast<const QAction *>(sender()))
+        openFile(action->data().toString());
+}
+
+void MainWindow::save()
+{
+    if (activeMdiChild() && activeMdiChild()->save())
+        statusBar()->showMessage(tr("File saved"), 2000);
+}
+
+void MainWindow::saveAs()
+{
+    MdiChild *child = activeMdiChild();
+    if (child && child->saveAs()) {
+        statusBar()->showMessage(tr("File saved"), 2000);
+        MainWindow::prependToRecentFiles(child->currentFile());
     }
 }
 
-bool MainWindow::save()
+#ifndef QT_NO_CLIPBOARD
+void MainWindow::cut()
 {
-    if (curFile.isEmpty()) {
-        return saveAs();
-    } else {
-        return saveFile(curFile);
-    }
+    if (activeMdiChild())
+        activeMdiChild()->cut();
 }
 
-bool MainWindow::saveAs()
+void MainWindow::copy()
 {
-    QFileDialog dialog(this);
-    dialog.setWindowModality(Qt::WindowModal);
-    dialog.setAcceptMode(QFileDialog::AcceptSave);
-    if (dialog.exec() != QDialog::Accepted)
-        return false;
-    return saveFile(dialog.selectedFiles().first());
+    if (activeMdiChild())
+        activeMdiChild()->copy();
 }
+
+void MainWindow::paste()
+{
+    if (activeMdiChild())
+        activeMdiChild()->paste();
+}
+#endif
 
 void MainWindow::about()
 {
-   QMessageBox::about(this, tr("About"), tr("Application: <b>MyIDE Qt Application </b><br>Version: <b>1.0</b>"));
+    QMessageBox::about(this, tr("About ProIDE"), tr("Application: <b>ProIDE</b> Qt Application <br>Version: <b>1.0</b>"));
+}
+
+void MainWindow::updateMenus()
+{
+    bool hasMdiChild = (activeMdiChild() != nullptr);
+    saveAct->setEnabled(hasMdiChild);
+    saveAsAct->setEnabled(hasMdiChild);
+#ifndef QT_NO_CLIPBOARD
+    pasteAct->setEnabled(hasMdiChild);
+#endif
+    closeAct->setEnabled(hasMdiChild);
+    closeAllAct->setEnabled(hasMdiChild);
+    tileAct->setEnabled(hasMdiChild);
+    cascadeAct->setEnabled(hasMdiChild);
+    nextAct->setEnabled(hasMdiChild);
+    previousAct->setEnabled(hasMdiChild);
+    windowMenuSeparatorAct->setVisible(hasMdiChild);
+
+#ifndef QT_NO_CLIPBOARD
+    bool hasSelection = (activeMdiChild() &&
+                         activeMdiChild()->textCursor().hasSelection());
+    cutAct->setEnabled(hasSelection);
+    copyAct->setEnabled(hasSelection);
+#endif
+}
+
+void MainWindow::updateWindowMenu()
+{
+    windowMenu->clear();
+    windowMenu->addAction(closeAct);
+    windowMenu->addAction(closeAllAct);
+    windowMenu->addSeparator();
+    windowMenu->addAction(tileAct);
+    windowMenu->addAction(cascadeAct);
+    windowMenu->addSeparator();
+    windowMenu->addAction(nextAct);
+    windowMenu->addAction(previousAct);
+    windowMenu->addAction(windowMenuSeparatorAct);
+
+    QList<QMdiSubWindow *> windows = mdiArea->subWindowList();
+    windowMenuSeparatorAct->setVisible(!windows.isEmpty());
+
+    for (int i = 0; i < windows.size(); ++i) {
+        QMdiSubWindow *mdiSubWindow = windows.at(i);
+        MdiChild *child = qobject_cast<MdiChild *>(mdiSubWindow->widget());
+
+        QString text;
+        if (i < 9) {
+            text = tr("&%1 %2").arg(i + 1)
+                               .arg(child->userFriendlyCurrentFile());
+        } else {
+            text = tr("%1 %2").arg(i + 1)
+                              .arg(child->userFriendlyCurrentFile());
+        }
+        QAction *action = windowMenu->addAction(text, mdiSubWindow, [this, mdiSubWindow]() {
+            mdiArea->setActiveSubWindow(mdiSubWindow);
+        });
+        action->setCheckable(true);
+        action ->setChecked(child == activeMdiChild());
+    }
+}
+
+MdiChild *MainWindow::createMdiChild()
+{
+    MdiChild *child = new MdiChild;
+    child->setWindowFlag(Qt::WindowCloseButtonHint);
+    child->setWindowIcon(QIcon(":/Resource/new.png"));
+    QMdiSubWindow * window = mdiArea->addSubWindow(child, Qt::WindowCloseButtonHint);
+
+#ifndef QT_NO_CLIPBOARD
+    connect(child, &QTextEdit::copyAvailable, cutAct, &QAction::setEnabled);
+    connect(child, &QTextEdit::copyAvailable, copyAct, &QAction::setEnabled);
+#endif
+
+    return child;
 }
 
 void MainWindow::createActions()
 {
     QMenu *fileMenu = menuBar()->addMenu(tr("&File"));
     QToolBar *fileToolBar = addToolBar(tr("File"));
+
     const QIcon newIcon = QIcon::fromTheme("document-new", QIcon(":/Resource/new.png"));
-    QAction *newAct = new QAction(newIcon, tr("&New"), this);
+    newAct = new QAction(newIcon, tr("&New"), this);
     newAct->setShortcuts(QKeySequence::New);
     newAct->setStatusTip(tr("Create a new file"));
     connect(newAct, &QAction::triggered, this, &MainWindow::newFile);
@@ -102,64 +323,80 @@ void MainWindow::createActions()
     fileToolBar->addAction(openAct);
 
     const QIcon saveIcon = QIcon::fromTheme("document-save", QIcon(":/Resource/save.png"));
-    QAction *saveAct = new QAction(saveIcon, tr("&Save"), this);
+    saveAct = new QAction(saveIcon, tr("&Save"), this);
     saveAct->setShortcuts(QKeySequence::Save);
     saveAct->setStatusTip(tr("Save the document to disk"));
     connect(saveAct, &QAction::triggered, this, &MainWindow::save);
-    fileMenu->addAction(saveAct);
     fileToolBar->addAction(saveAct);
 
     const QIcon saveAsIcon = QIcon::fromTheme("document-save-as");
-    QAction *saveAsAct = fileMenu->addAction(saveAsIcon, tr("Save &As..."), this, &MainWindow::saveAs);
+    saveAsAct = new QAction(saveAsIcon, tr("Save &As..."), this);
     saveAsAct->setShortcuts(QKeySequence::SaveAs);
     saveAsAct->setStatusTip(tr("Save the document under a new name"));
+    connect(saveAsAct, &QAction::triggered, this, &MainWindow::saveAs);
+    fileMenu->addAction(saveAsAct);
 
     fileMenu->addSeparator();
 
-    const QIcon exitIcon = QIcon::fromTheme("application-exit", QIcon(":/Resource/exit.png"));
-    QAction *exitAct = fileMenu->addAction(exitIcon, tr("E&xit"), this, &QWidget::close);
+    QMenu *recentMenu = fileMenu->addMenu(tr("Recent..."));
+    connect(recentMenu, &QMenu::aboutToShow, this, &MainWindow::updateRecentFileActions);
+    recentFileSubMenuAct = recentMenu->menuAction();
+
+    for (int i = 0; i < MaxRecentFiles; ++i) {
+        recentFileActs[i] = recentMenu->addAction(QString(), this, &MainWindow::openRecentFile);
+        recentFileActs[i]->setVisible(false);
+    }
+
+    recentFileSeparator = fileMenu->addSeparator();
+
+    setRecentFilesVisible(MainWindow::hasRecentFiles());
+
+    fileMenu->addSeparator();
+
+    const QIcon exitIcon = QIcon::fromTheme("application-exit");
+    QAction *exitAct = fileMenu->addAction(exitIcon, tr("E&xit"), qApp, &QApplication::closeAllWindows);
     exitAct->setShortcuts(QKeySequence::Quit);
-
     exitAct->setStatusTip(tr("Exit the application"));
+    fileMenu->addAction(exitAct);
 
+#ifndef QT_NO_CLIPBOARD
     QMenu *editMenu = menuBar()->addMenu(tr("&Edit"));
     QToolBar *editToolBar = addToolBar(tr("Edit"));
 
-#ifndef QT_NO_CLIPBOARD
     const QIcon cutIcon = QIcon::fromTheme("edit-cut", QIcon(":/Resource/cut.png"));
-    QAction *cutAct = new QAction(cutIcon, tr("Cu&t"), this);
+    cutAct = new QAction(cutIcon, tr("Cu&t"), this);
     cutAct->setShortcuts(QKeySequence::Cut);
-    cutAct->setStatusTip(tr("Cut the current selection's contents to the clipboard"));
-    connect(cutAct, &QAction::triggered, getTabTextEdit(), &QTextBrowser::cut);
+    cutAct->setStatusTip(tr("Cut the current selection's contents to the "
+                            "clipboard"));
+    connect(cutAct, &QAction::triggered, this, &MainWindow::cut);
     editMenu->addAction(cutAct);
     editToolBar->addAction(cutAct);
 
     const QIcon copyIcon = QIcon::fromTheme("edit-copy", QIcon(":/Resource/copy.png"));
-    QAction *copyAct = new QAction(copyIcon, tr("&Copy"), this);
+    copyAct = new QAction(copyIcon, tr("&Copy"), this);
     copyAct->setShortcuts(QKeySequence::Copy);
-    copyAct->setStatusTip(tr("Copy the current selection's contents to the clipboard"));
-    connect(copyAct, &QAction::triggered, getTabTextEdit(), &QTextBrowser::copy);
+    copyAct->setStatusTip(tr("Copy the current selection's contents to the "
+                             "clipboard"));
+    connect(copyAct, &QAction::triggered, this, &MainWindow::copy);
     editMenu->addAction(copyAct);
     editToolBar->addAction(copyAct);
 
     const QIcon pasteIcon = QIcon::fromTheme("edit-paste", QIcon(":/Resource/paste.png"));
-    QAction *pasteAct = new QAction(pasteIcon, tr("&Paste"), this);
+    pasteAct = new QAction(pasteIcon, tr("&Paste"), this);
     pasteAct->setShortcuts(QKeySequence::Paste);
-    pasteAct->setStatusTip(tr("Paste the clipboard's contents into the current selection"));
-    connect(pasteAct, &QAction::triggered, getTabTextEdit(), &QTextBrowser::paste);
+    pasteAct->setStatusTip(tr("Paste the clipboard's contents into the current "
+                              "selection"));
+    connect(pasteAct, &QAction::triggered, this, &MainWindow::paste);
     editMenu->addAction(pasteAct);
     editToolBar->addAction(pasteAct);
-
-    menuBar()->addSeparator();
-
-#endif // !QT_NO_CLIPBOARD
+#endif
 
     QMenu *viewMenu = menuBar()->addMenu(tr("&View"));
 
     int stylecount = styleNameList.count();
     if (stylecount > 0)
     {
-        QMenu *themeMenu = viewMenu->addMenu(tr("&Theme"));
+        QMenu *themeMenu = viewMenu->addMenu(tr("&Theme     "));
 
         int defaultTheme = 0;
         themeGroup = new QActionGroup(this);
@@ -167,8 +404,7 @@ void MainWindow::createActions()
         for (int i = 0; i < stylecount; i ++)
         {
             QString stylename = styleNameList.at(i);
-            const QIcon themeIcon = QIcon::fromTheme(stylename);
-            QAction * themeAct = themeMenu->addAction(themeIcon, stylename, this, &MainWindow::applyTheme);
+            QAction * themeAct = themeMenu->addAction(stylename, this, &MainWindow::applyTheme);
             themeAct->setCheckable(true);
             QString tip = QString("Apply %1 theme for application.").arg(stylename);
             themeAct->setStatusTip(tip);
@@ -184,17 +420,66 @@ void MainWindow::createActions()
         applyTheme(defaultTheme);
     }
 
-    QMenu *helpMenu = menuBar()->addMenu(tr("&Help"));
-    const QIcon aboutIcon = QIcon::fromTheme("help-about", QIcon(":/Resource/about.png"));
-    QAction *aboutAct = helpMenu->addAction(aboutIcon, tr("&About"), this, &MainWindow::about);
-    aboutAct->setStatusTip(tr("Show the application's About box"));
+    QMenu *splitMenu = viewMenu->addMenu(tr("&Split Windows     "));
+    {
+        QAction * splitVertAct = splitMenu->addAction(tr("Split Vertical "), this, &MainWindow::splitWindow);
+        splitVertAct->setCheckable(true);
 
-#ifndef QT_NO_CLIPBOARD
-    cutAct->setEnabled(false);
-    copyAct->setEnabled(false);
-    connect(getTabTextEdit(), &QTextBrowser::copyAvailable, cutAct, &QAction::setEnabled);
-    connect(getTabTextEdit(), &QTextBrowser::copyAvailable, copyAct, &QAction::setEnabled);
-#endif // !QT_NO_CLIPBOARD
+        QAction * splitHorzAct = splitMenu->addAction(tr("Split Horizental "), this, &MainWindow::splitWindow);
+        splitHorzAct->setCheckable(true);
+
+        QAction * splitDelAct = splitMenu->addAction(tr("Split None "), this, &MainWindow::splitWindow);
+        splitDelAct->setCheckable(true);
+        splitDelAct->setChecked(true);
+
+        splitGroup = new QActionGroup(this);
+        splitGroup->addAction(splitVertAct);
+        splitGroup->addAction(splitHorzAct);
+        splitGroup->addAction(splitDelAct);
+    }
+
+    windowMenu = menuBar()->addMenu(tr("&Window"));
+    connect(windowMenu, &QMenu::aboutToShow, this, &MainWindow::updateWindowMenu);
+
+    closeAct = new QAction(tr("Cl&ose"), this);
+    closeAct->setStatusTip(tr("Close the active window"));
+    connect(closeAct, &QAction::triggered,
+            mdiArea, &QMdiArea::closeActiveSubWindow);
+
+    closeAllAct = new QAction(tr("Close &All"), this);
+    closeAllAct->setStatusTip(tr("Close all the windows"));
+    connect(closeAllAct, &QAction::triggered, mdiArea, &QMdiArea::closeAllSubWindows);
+
+    tileAct = new QAction(tr("&Tile"), this);
+    tileAct->setStatusTip(tr("Tile the windows"));
+    connect(tileAct, &QAction::triggered, mdiArea, &QMdiArea::tileSubWindows);
+
+    cascadeAct = new QAction(tr("&Cascade"), this);
+    cascadeAct->setStatusTip(tr("Cascade the windows"));
+    connect(cascadeAct, &QAction::triggered, mdiArea, &QMdiArea::cascadeSubWindows);
+
+    nextAct = new QAction(tr("Ne&xt"), this);
+    nextAct->setShortcuts(QKeySequence::NextChild);
+    nextAct->setStatusTip(tr("Move the focus to the next window"));
+    connect(nextAct, &QAction::triggered, mdiArea, &QMdiArea::activateNextSubWindow);
+
+    previousAct = new QAction(tr("Pre&vious"), this);
+    previousAct->setShortcuts(QKeySequence::PreviousChild);
+    previousAct->setStatusTip(tr("Move the focus to the previous "
+                                 "window"));
+    connect(previousAct, &QAction::triggered, mdiArea, &QMdiArea::activatePreviousSubWindow);
+
+    windowMenuSeparatorAct = new QAction(this);
+    windowMenuSeparatorAct->setSeparator(true);
+
+    updateWindowMenu();
+
+    menuBar()->addSeparator();
+
+    QMenu *helpMenu = menuBar()->addMenu(tr("&Help"));
+
+    QAction *aboutAct = helpMenu->addAction(tr("&About"), this, &MainWindow::about);
+    aboutAct->setStatusTip(tr("Show the application's About box"));
 }
 
 void MainWindow::createStatusBar()
@@ -204,9 +489,6 @@ void MainWindow::createStatusBar()
 
 void MainWindow::readSettings()
 {
-    QString a = QCoreApplication::organizationName();
-    QString b = QCoreApplication::applicationName();
-
     QSettings settings(QCoreApplication::organizationName(), QCoreApplication::applicationName());
     const QByteArray geometry = settings.value("geometry", QByteArray()).toByteArray();
     if (geometry.isEmpty()) {
@@ -225,82 +507,39 @@ void MainWindow::writeSettings()
     settings.setValue("geometry", saveGeometry());
 }
 
-bool MainWindow::maybeSave()
+MdiChild *MainWindow::activeMdiChild() const
 {
-    if (!getTabTextEdit()->document()->isModified())
-        return true;
-    const QMessageBox::StandardButton ret
-        = QMessageBox::warning(this, tr("Application"),
-                               tr("The document has been modified.\n"
-                                  "Do you want to save your changes?"),
-                               QMessageBox::Save | QMessageBox::Discard | QMessageBox::Cancel);
-    switch (ret) {
-    case QMessageBox::Save:
-        return save();
-    case QMessageBox::Cancel:
-        return false;
-    default:
-        break;
+    if (QMdiSubWindow *activeSubWindow = mdiArea->activeSubWindow())
+        return qobject_cast<MdiChild *>(activeSubWindow->widget());
+    return nullptr;
+}
+
+QMdiSubWindow *MainWindow::findMdiChild(const QString &fileName) const
+{
+    QString canonicalFilePath = QFileInfo(fileName).canonicalFilePath();
+
+    const QList<QMdiSubWindow *> subWindows = mdiArea->subWindowList();
+    for (QMdiSubWindow *window : subWindows) {
+        MdiChild *mdiChild = qobject_cast<MdiChild *>(window->widget());
+        if (mdiChild->currentFile() == canonicalFilePath)
+            return window;
     }
-    return true;
+    return nullptr;
 }
 
-bool MainWindow::saveFile(const QString &fileName)
+void MainWindow::createDockWindows()
 {
-    QString errorMessage;
+    QDockWidget *dock = new QDockWidget(tr("Files"), this);
+    dock->setAllowedAreas(Qt::LeftDockWidgetArea | Qt::RightDockWidgetArea);
+    fileListWidget = new QListWidget(dock);
+    dock->setWidget(fileListWidget);
+    addDockWidget(Qt::LeftDockWidgetArea, dock);
 
-    QGuiApplication::setOverrideCursor(Qt::WaitCursor);
-    QSaveFile file(fileName);
-    if (file.open(QFile::WriteOnly | QFile::Text)) {
-        QTextStream out(&file);
-        out << getTabTextEdit()->toPlainText();
-        if (!file.commit()) {
-            errorMessage = tr("Cannot write file %1:\n%2.")
-                           .arg(QDir::toNativeSeparators(fileName), file.errorString());
-        }
-    } else {
-        errorMessage = tr("Cannot open file %1 for writing:\n%2.")
-                       .arg(QDir::toNativeSeparators(fileName), file.errorString());
-    }
-    QGuiApplication::restoreOverrideCursor();
-
-    if (!errorMessage.isEmpty()) {
-        QMessageBox::warning(this, tr("Application"), errorMessage);
-        return false;
-    }
-
-    setCurrentFile(fileName);
-    statusBar()->showMessage(tr("File saved"), 2000);
-    return true;
+    dock = new QDockWidget(tr("Highlight"), this);
+    hlWidget = new QHlWidget(dock);
+    dock->setWidget(hlWidget);
+    addDockWidget(Qt::LeftDockWidgetArea, dock);
 }
-
-void MainWindow::setCurrentFile(const QString &fileName)
-{
-    curFile = fileName;
-    getTabTextEdit()->document()->setModified(false);
-    setWindowModified(false);
-
-    setWindowTitle("MyIDE 1.0");
-}
-
-QString MainWindow::strippedName(const QString &fullFileName)
-{
-    return QFileInfo(fullFileName).fileName();
-}
-
-#ifndef QT_NO_SESSIONMANAGER
-void MainWindow::commitData(QSessionManager &manager)
-{
-    if (manager.allowsInteraction()) {
-        if (!maybeSave())
-            manager.cancel();
-    } else {
-        // Non-interactive: save without asking
-        if (getTabTextEdit()->document()->isModified())
-            save();
-    }
-}
-#endif
 
 void MainWindow::getStyleList()
 {
@@ -344,18 +583,25 @@ void MainWindow::applyTheme(int index)
     }
 }
 
-void MainWindow::createDockWindows()
+bool MainWindow::isExistListWidget(const QString& filename)
 {
-    QDockWidget *dock = new QDockWidget(tr("Files"), this);
-    dock->setAllowedAreas(Qt::LeftDockWidgetArea | Qt::RightDockWidgetArea);
-    fileListWidget = new QListWidget(dock);
-    dock->setWidget(fileListWidget);
-    addDockWidget(Qt::LeftDockWidgetArea, dock);
+    bool bOpened = false;
 
-    dock = new QDockWidget(tr("Highlight"), this);
-    hlWidget = new QHlWidget(dock);
-    dock->setWidget(hlWidget);
-    addDockWidget(Qt::LeftDockWidgetArea, dock);
+    QString name = QFileInfo(filename).fileName();
+
+    int count = fileListWidget->count();
+    for (int i = 0; i < count; i ++)
+    {
+        QString listItemName = fileListWidget->item(i)->text();
+        if (listItemName == name)
+        {
+            fileListWidget->setCurrentRow(i);
+            bOpened = true;
+            break;
+        }
+    }
+
+    return bOpened;
 }
 
 void MainWindow::fileListWidgetItemClicked(QListWidgetItem * item)
@@ -369,183 +615,91 @@ void MainWindow::fileListWidgetItemClicked(QListWidgetItem * item)
 
     QString fileName = item->text();
 
-
-    int selTab = getTabIndex(fileName);
-    if (selTab != -1)
-        tabSrcWidget->setCurrentIndex(selTab);
-    else
-        showOnlyTabPanel(filepath);
-}
-
-MainWindow * MainWindow::instance()
-{
-    return gMainWindow;
-}
-
-void MainWindow::dragEnterEvent(QDragEnterEvent *event)
-{
-    if(event->mimeData()->hasUrls())
-        event->acceptProposedAction();
-    else event->ignore();
-}
-
-void MainWindow::dropEvent(QDropEvent *event)
-{
-    const QMimeData * mimeData = event->mimeData();
-    if(mimeData->hasUrls()) {
-        for (const QUrl& url : mimeData->urls()) {
-            openFile(url.toLocalFile());
-        }
-        event->acceptProposedAction();
-    }
-    else {
-        event->ignore();
-    }
-}
-
-void MainWindow::openFile(QString fileName)
-{
-    return openFileAt(fileName, -1);
-}
-
-void MainWindow::openFileAt(QString fileName, int tabIndex)
-{
-    QFile file(fileName);
-    if(! file.open(QFile::ReadOnly | QFile::Text))
-    {
-        QMessageBox::warning(this,tr("Error"), tr("Cannot open file %1:\n%2").arg(fileName).arg(file.errorString()));
-        return ;
-    }
-
-    QTextStream in(&file);
-    in.setAutoDetectUnicode(true);
-
-    auto browser = new QTextBrowser(this);
-    auto tabWidget = qobject_cast<MyTabWidget*>(centralWidget());
-    Q_ASSERT(tabWidget);
-    auto index = tabWidget->insertTab(tabIndex,browser,QFileInfo(fileName).fileName());
-    tabWidget->setCurrentIndex(index);
-
-    auto highlighter = new Highlighter(browser->document());
-
-    browser->setAcceptDrops(false);
-    QGuiApplication::setOverrideCursor(Qt::WaitCursor);
-    browser->setSource(QUrl::fromLocalFile(fileName));
-    browser->setPlainText(in.readAll());
-    QGuiApplication::restoreOverrideCursor();
-
-    const QIcon openIcon = QIcon::fromTheme("document-open", QIcon(":/Resource/open.png"));
-    QListWidgetItem * pItem = new QListWidgetItem(openIcon, strippedName(fileName), fileListWidget);
-    pItem->setData(Qt::UserRole, fileName);
-    fileListWidget->addItem(pItem);
-
-    statusBar()->showMessage(tr("File loaded"), 2000);
-
-    file.close();
-}
-
-void MainWindow::showOnlyTabPanel(QString fileName)
-{
-    QFile file(fileName);
-    if(! file.open(QFile::ReadOnly | QFile::Text))
-    {
-        QMessageBox::warning(this,tr("Error"), tr("Cannot open file %1:\n%2").arg(fileName).arg(file.errorString()));
-        return ;
-    }
-
-    QTextStream in(&file);
-    in.setAutoDetectUnicode(true);
-
-    auto browser = new QTextBrowser(this);
-    auto tabWidget = qobject_cast<MyTabWidget*>(centralWidget());
-    Q_ASSERT(tabWidget);
-    auto index = tabWidget->addTab(browser,QFileInfo(fileName).fileName());
-    tabWidget->setCurrentIndex(index);
-
-    auto highlighter = new Highlighter(browser->document());
-
-    browser->setAcceptDrops(false);
-    QGuiApplication::setOverrideCursor(Qt::WaitCursor);
-    browser->setSource(QUrl::fromLocalFile(fileName));
-    browser->setPlainText(in.readAll());
-    QGuiApplication::restoreOverrideCursor();
-
-    statusBar()->showMessage(tr("File loaded"), 2000);
-
-    file.close();
-}
-
-
-void MainWindow::dragTab(int tabIndex)
-{
-    //if(!isTabMovable(tabIndex)) return;
-    auto tabWidget = qobject_cast<MyTabWidget*>(centralWidget());
-    Q_ASSERT(tabWidget);
-    auto browser = qobject_cast<QTextBrowser*>(tabWidget->widget(tabIndex));
-    Q_ASSERT(browser);
-
-    auto drag = new QDrag(this);
-    auto mimeData = new QMimeData;
-    QPixmap thumbnail = windowHandle()->screen()->grabWindow(browser->winId());
-    mimeData->setUrls({browser->source()});
-    drag->setMimeData(mimeData);
-    drag->setPixmap(thumbnail.scaled(200,200));
-
-    auto dragAction = drag->exec(Qt::LinkAction);
-    int currentIndex = tabWidget->indexOf(browser);
-    qDebug() << "removed tab source" << tabIndex;
-    qDebug() << "removed tab current" << currentIndex;
-    if (dragAction==Qt::LinkAction) {
-        tabWidget->removeTabActually(currentIndex);
-    } else if (dragAction==Qt::IgnoreAction) {
-        if(QProcess::startDetached(qApp->applicationFilePath(),
-                                   {"-x",QString::number(QCursor::pos().x()),
-                                    "-y",QString::number(QCursor::pos().y()),
-                                   browser->source().toLocalFile()})) {
-            tabWidget->removeTabActually(currentIndex);
-        }
-    } else {
+    if (QMdiSubWindow *existing = findMdiChild(fileName)) {
+        mdiArea->setActiveSubWindow(existing);
         return;
     }
-    if(tabWidget->count()==0) {
-        qApp->closeAllWindows();
-    }
+
+    openFile(filepath);
 }
 
-QTextBrowser * MainWindow::getTabTextEdit()
+QTextEdit * MainWindow::getActiveTextEdit()
 {
-    MyTabWidget * tabWidget = qobject_cast<MyTabWidget*>(centralWidget());
+    QMdiSubWindow *existing = mdiArea->currentSubWindow();
 
-    static QTextBrowser *  srcEditor;
+    static QTextEdit * srcEditor;
 
-    int tabIndex = tabWidget->currentIndex();
-    if (tabIndex == -1)
-    {
-        srcEditor = new QTextBrowser(this);
-        srcEditor->hide();
-        return srcEditor;
-    }
+    if (existing == Q_NULLPTR)
+        return Q_NULLPTR;
 
-    srcEditor = qobject_cast<QTextBrowser*>(tabWidget->widget(tabIndex));
+    srcEditor = qobject_cast<QTextEdit*>(existing->widget());
     srcEditor->show();
+
     return srcEditor;
 }
 
-int MainWindow::getTabIndex(QString name)
-{
-    int index = -1;
 
-    int count = tabSrcWidget->count();
-    for (int i = 0; i < count; i ++)
+void MainWindow::splitWindow(int index)
+{
+    splitterValue = 0;
+
+    if (splitGroup != Q_NULLPTR)
     {
-        QString tabname = tabSrcWidget->tabText(i);
-        if (tabname == name)
-        {
-            index = i;
-            break;
-        }
+        QString str = splitGroup->checkedAction()->text();
+
+        if (str.indexOf(tr("Vertical")) != -1)
+            splitterValue = 1;
+
+        if (str.indexOf(tr("Horizental")) != -1)
+            splitterValue = 2;
     }
 
+    switchSplitter(splitterValue);
+}
 
-    return index;
+void MainWindow::switchSplitter(int type)
+{
+    QList<QMdiSubWindow *> subWindows = mdiArea->subWindowList();
+    if (subWindows.isEmpty())
+    {
+        int count = splitter->count();
+        if (count == 0)
+            return;
+
+        for (int i = 0; i < count; i ++)
+        {
+             MdiChild *child = (MdiChild *)splitter->widget(i);
+             mdiArea->addSubWindow(child, Qt::WindowCloseButtonHint);
+        }
+
+        subWindows = mdiArea->subWindowList();
+    }
+
+    if (type > 0)
+    {
+        foreach (QMdiSubWindow *window, subWindows)
+        {
+            splitter->addWidget(window);
+        }
+
+        splitter->show();
+
+        if (type == 2)
+        {
+            splitter->setOrientation(Qt::Horizontal);
+        }
+        else
+        {
+            splitter->setOrientation(Qt::Vertical);
+        }
+
+        stackedWidget->setCurrentWidget(splitter);
+    }
+    else
+    {
+        foreach (QMdiSubWindow *window, subWindows)
+            window->showMaximized();
+
+        stackedWidget->setCurrentWidget(mdiArea);
+    }
 }

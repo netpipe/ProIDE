@@ -21,6 +21,7 @@ SOURCES += \
     highlighter.cpp \
     main.cpp \
     mainwindow.cpp \
+    mdichild.cpp \
     qappinfo.cpp \
     qhlwidget.cpp
 
@@ -29,6 +30,7 @@ HEADERS += \
     CustomCtrl/mytabwidget.h \
     highlighter.h \
     mainwindow.h \
+    mdichild.h \
     qappinfo.h \
     qhlwidget.h
 

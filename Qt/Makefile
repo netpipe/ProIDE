@@ -37,7 +37,7 @@ MOVE          = mv -f
 TAR           = tar -cf
 COMPRESS      = gzip -9f
 DISTNAME      = MyIDE1.0.0
-DISTDIR = /home/netpipe/Downloads/MyIDE/.tmp/MyIDE1.0.0
+DISTDIR = /home/netpipe/Desktop/MyIDE/.tmp/MyIDE1.0.0
 LINK          = g++
 LFLAGS        = 
 LIBS          = $(SUBLIBS) /usr/lib64/libQt5Widgets.so /usr/lib64/libQt5Gui.so /usr/lib64/libQt5Core.so /usr/lib64/libGL.so -lpthread   
@@ -57,18 +57,21 @@ SOURCES       = CustomCtrl/mytabbar.cpp \
 		highlighter.cpp \
 		main.cpp \
 		mainwindow.cpp \
+		mdichild.cpp \
 		qappinfo.cpp \
 		qhlwidget.cpp qrc_MyIDE.cpp \
 		moc_mytabbar.cpp \
 		moc_mytabwidget.cpp \
 		moc_highlighter.cpp \
 		moc_mainwindow.cpp \
+		moc_mdichild.cpp \
 		moc_qhlwidget.cpp
 OBJECTS       = mytabbar.o \
 		mytabwidget.o \
 		highlighter.o \
 		main.o \
 		mainwindow.o \
+		mdichild.o \
 		qappinfo.o \
 		qhlwidget.o \
 		qrc_MyIDE.o \
@@ -76,6 +79,7 @@ OBJECTS       = mytabbar.o \
 		moc_mytabwidget.o \
 		moc_highlighter.o \
 		moc_mainwindow.o \
+		moc_mdichild.o \
 		moc_qhlwidget.o
 DIST          = /usr/lib64/qt5/mkspecs/features/spec_pre.prf \
 		/usr/lib64/qt5/mkspecs/common/unix.conf \
@@ -344,12 +348,14 @@ DIST          = /usr/lib64/qt5/mkspecs/features/spec_pre.prf \
 		CustomCtrl/mytabwidget.h \
 		highlighter.h \
 		mainwindow.h \
+		mdichild.h \
 		qappinfo.h \
 		qhlwidget.h CustomCtrl/mytabbar.cpp \
 		CustomCtrl/mytabwidget.cpp \
 		highlighter.cpp \
 		main.cpp \
 		mainwindow.cpp \
+		mdichild.cpp \
 		qappinfo.cpp \
 		qhlwidget.cpp
 QMAKE_TARGET  = MyIDE
@@ -910,8 +916,8 @@ distdir: FORCE
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents MyIDE.qrc $(DISTDIR)/
 	$(COPY_FILE) --parents /usr/lib64/qt5/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents CustomCtrl/mytabbar.h CustomCtrl/mytabwidget.h highlighter.h mainwindow.h qappinfo.h qhlwidget.h $(DISTDIR)/
-	$(COPY_FILE) --parents CustomCtrl/mytabbar.cpp CustomCtrl/mytabwidget.cpp highlighter.cpp main.cpp mainwindow.cpp qappinfo.cpp qhlwidget.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents CustomCtrl/mytabbar.h CustomCtrl/mytabwidget.h highlighter.h mainwindow.h mdichild.h qappinfo.h qhlwidget.h $(DISTDIR)/
+	$(COPY_FILE) --parents CustomCtrl/mytabbar.cpp CustomCtrl/mytabwidget.cpp highlighter.cpp main.cpp mainwindow.cpp mdichild.cpp qappinfo.cpp qhlwidget.cpp $(DISTDIR)/
 
 
 clean: compiler_clean 
@@ -956,36 +962,41 @@ compiler_moc_predefs_clean:
 moc_predefs.h: /usr/lib64/qt5/mkspecs/features/data/dummy.cpp
 	g++ -pipe -g -std=gnu++11 -Wall -W -dM -E -o moc_predefs.h /usr/lib64/qt5/mkspecs/features/data/dummy.cpp
 
-compiler_moc_header_make_all: moc_mytabbar.cpp moc_mytabwidget.cpp moc_highlighter.cpp moc_mainwindow.cpp moc_qhlwidget.cpp
+compiler_moc_header_make_all: moc_mytabbar.cpp moc_mytabwidget.cpp moc_highlighter.cpp moc_mainwindow.cpp moc_mdichild.cpp moc_qhlwidget.cpp
 compiler_moc_header_clean:
-	-$(DEL_FILE) moc_mytabbar.cpp moc_mytabwidget.cpp moc_highlighter.cpp moc_mainwindow.cpp moc_qhlwidget.cpp
+	-$(DEL_FILE) moc_mytabbar.cpp moc_mytabwidget.cpp moc_highlighter.cpp moc_mainwindow.cpp moc_mdichild.cpp moc_qhlwidget.cpp
 moc_mytabbar.cpp: CustomCtrl/mytabbar.h \
 		moc_predefs.h \
 		/usr/lib64/qt5/bin/moc
-	/usr/lib64/qt5/bin/moc $(DEFINES) --include /home/netpipe/Downloads/MyIDE/moc_predefs.h -I/usr/lib64/qt5/mkspecs/linux-g++ -I/home/netpipe/Downloads/MyIDE -I/usr/include/qt5 -I/usr/include/qt5/QtWidgets -I/usr/include/qt5/QtGui -I/usr/include/qt5/QtCore -I/usr/include/c++/7 -I/usr/include/c++/7/x86_64-suse-linux -I/usr/include/c++/7/backward -I/usr/lib64/gcc/x86_64-suse-linux/7/include -I/usr/local/include -I/usr/lib64/gcc/x86_64-suse-linux/7/include-fixed -I/usr/x86_64-suse-linux/include -I/usr/include CustomCtrl/mytabbar.h -o moc_mytabbar.cpp
+	/usr/lib64/qt5/bin/moc $(DEFINES) --include /home/netpipe/Desktop/MyIDE/moc_predefs.h -I/usr/lib64/qt5/mkspecs/linux-g++ -I/home/netpipe/Desktop/MyIDE -I/usr/include/qt5 -I/usr/include/qt5/QtWidgets -I/usr/include/qt5/QtGui -I/usr/include/qt5/QtCore -I/usr/include/c++/7 -I/usr/include/c++/7/x86_64-suse-linux -I/usr/include/c++/7/backward -I/usr/lib64/gcc/x86_64-suse-linux/7/include -I/usr/local/include -I/usr/lib64/gcc/x86_64-suse-linux/7/include-fixed -I/usr/x86_64-suse-linux/include -I/usr/include CustomCtrl/mytabbar.h -o moc_mytabbar.cpp
 
 moc_mytabwidget.cpp: CustomCtrl/mytabwidget.h \
 		moc_predefs.h \
 		/usr/lib64/qt5/bin/moc
-	/usr/lib64/qt5/bin/moc $(DEFINES) --include /home/netpipe/Downloads/MyIDE/moc_predefs.h -I/usr/lib64/qt5/mkspecs/linux-g++ -I/home/netpipe/Downloads/MyIDE -I/usr/include/qt5 -I/usr/include/qt5/QtWidgets -I/usr/include/qt5/QtGui -I/usr/include/qt5/QtCore -I/usr/include/c++/7 -I/usr/include/c++/7/x86_64-suse-linux -I/usr/include/c++/7/backward -I/usr/lib64/gcc/x86_64-suse-linux/7/include -I/usr/local/include -I/usr/lib64/gcc/x86_64-suse-linux/7/include-fixed -I/usr/x86_64-suse-linux/include -I/usr/include CustomCtrl/mytabwidget.h -o moc_mytabwidget.cpp
+	/usr/lib64/qt5/bin/moc $(DEFINES) --include /home/netpipe/Desktop/MyIDE/moc_predefs.h -I/usr/lib64/qt5/mkspecs/linux-g++ -I/home/netpipe/Desktop/MyIDE -I/usr/include/qt5 -I/usr/include/qt5/QtWidgets -I/usr/include/qt5/QtGui -I/usr/include/qt5/QtCore -I/usr/include/c++/7 -I/usr/include/c++/7/x86_64-suse-linux -I/usr/include/c++/7/backward -I/usr/lib64/gcc/x86_64-suse-linux/7/include -I/usr/local/include -I/usr/lib64/gcc/x86_64-suse-linux/7/include-fixed -I/usr/x86_64-suse-linux/include -I/usr/include CustomCtrl/mytabwidget.h -o moc_mytabwidget.cpp
 
 moc_highlighter.cpp: highlighter.h \
 		moc_predefs.h \
 		/usr/lib64/qt5/bin/moc
-	/usr/lib64/qt5/bin/moc $(DEFINES) --include /home/netpipe/Downloads/MyIDE/moc_predefs.h -I/usr/lib64/qt5/mkspecs/linux-g++ -I/home/netpipe/Downloads/MyIDE -I/usr/include/qt5 -I/usr/include/qt5/QtWidgets -I/usr/include/qt5/QtGui -I/usr/include/qt5/QtCore -I/usr/include/c++/7 -I/usr/include/c++/7/x86_64-suse-linux -I/usr/include/c++/7/backward -I/usr/lib64/gcc/x86_64-suse-linux/7/include -I/usr/local/include -I/usr/lib64/gcc/x86_64-suse-linux/7/include-fixed -I/usr/x86_64-suse-linux/include -I/usr/include highlighter.h -o moc_highlighter.cpp
+	/usr/lib64/qt5/bin/moc $(DEFINES) --include /home/netpipe/Desktop/MyIDE/moc_predefs.h -I/usr/lib64/qt5/mkspecs/linux-g++ -I/home/netpipe/Desktop/MyIDE -I/usr/include/qt5 -I/usr/include/qt5/QtWidgets -I/usr/include/qt5/QtGui -I/usr/include/qt5/QtCore -I/usr/include/c++/7 -I/usr/include/c++/7/x86_64-suse-linux -I/usr/include/c++/7/backward -I/usr/lib64/gcc/x86_64-suse-linux/7/include -I/usr/local/include -I/usr/lib64/gcc/x86_64-suse-linux/7/include-fixed -I/usr/x86_64-suse-linux/include -I/usr/include highlighter.h -o moc_highlighter.cpp
 
 moc_mainwindow.cpp: mainwindow.h \
+		mdichild.h \
 		qhlwidget.h \
-		CustomCtrl/mytabwidget.h \
 		highlighter.h \
 		moc_predefs.h \
 		/usr/lib64/qt5/bin/moc
-	/usr/lib64/qt5/bin/moc $(DEFINES) --include /home/netpipe/Downloads/MyIDE/moc_predefs.h -I/usr/lib64/qt5/mkspecs/linux-g++ -I/home/netpipe/Downloads/MyIDE -I/usr/include/qt5 -I/usr/include/qt5/QtWidgets -I/usr/include/qt5/QtGui -I/usr/include/qt5/QtCore -I/usr/include/c++/7 -I/usr/include/c++/7/x86_64-suse-linux -I/usr/include/c++/7/backward -I/usr/lib64/gcc/x86_64-suse-linux/7/include -I/usr/local/include -I/usr/lib64/gcc/x86_64-suse-linux/7/include-fixed -I/usr/x86_64-suse-linux/include -I/usr/include mainwindow.h -o moc_mainwindow.cpp
+	/usr/lib64/qt5/bin/moc $(DEFINES) --include /home/netpipe/Desktop/MyIDE/moc_predefs.h -I/usr/lib64/qt5/mkspecs/linux-g++ -I/home/netpipe/Desktop/MyIDE -I/usr/include/qt5 -I/usr/include/qt5/QtWidgets -I/usr/include/qt5/QtGui -I/usr/include/qt5/QtCore -I/usr/include/c++/7 -I/usr/include/c++/7/x86_64-suse-linux -I/usr/include/c++/7/backward -I/usr/lib64/gcc/x86_64-suse-linux/7/include -I/usr/local/include -I/usr/lib64/gcc/x86_64-suse-linux/7/include-fixed -I/usr/x86_64-suse-linux/include -I/usr/include mainwindow.h -o moc_mainwindow.cpp
+
+moc_mdichild.cpp: mdichild.h \
+		moc_predefs.h \
+		/usr/lib64/qt5/bin/moc
+	/usr/lib64/qt5/bin/moc $(DEFINES) --include /home/netpipe/Desktop/MyIDE/moc_predefs.h -I/usr/lib64/qt5/mkspecs/linux-g++ -I/home/netpipe/Desktop/MyIDE -I/usr/include/qt5 -I/usr/include/qt5/QtWidgets -I/usr/include/qt5/QtGui -I/usr/include/qt5/QtCore -I/usr/include/c++/7 -I/usr/include/c++/7/x86_64-suse-linux -I/usr/include/c++/7/backward -I/usr/lib64/gcc/x86_64-suse-linux/7/include -I/usr/local/include -I/usr/lib64/gcc/x86_64-suse-linux/7/include-fixed -I/usr/x86_64-suse-linux/include -I/usr/include mdichild.h -o moc_mdichild.cpp
 
 moc_qhlwidget.cpp: qhlwidget.h \
 		moc_predefs.h \
 		/usr/lib64/qt5/bin/moc
-	/usr/lib64/qt5/bin/moc $(DEFINES) --include /home/netpipe/Downloads/MyIDE/moc_predefs.h -I/usr/lib64/qt5/mkspecs/linux-g++ -I/home/netpipe/Downloads/MyIDE -I/usr/include/qt5 -I/usr/include/qt5/QtWidgets -I/usr/include/qt5/QtGui -I/usr/include/qt5/QtCore -I/usr/include/c++/7 -I/usr/include/c++/7/x86_64-suse-linux -I/usr/include/c++/7/backward -I/usr/lib64/gcc/x86_64-suse-linux/7/include -I/usr/local/include -I/usr/lib64/gcc/x86_64-suse-linux/7/include-fixed -I/usr/x86_64-suse-linux/include -I/usr/include qhlwidget.h -o moc_qhlwidget.cpp
+	/usr/lib64/qt5/bin/moc $(DEFINES) --include /home/netpipe/Desktop/MyIDE/moc_predefs.h -I/usr/lib64/qt5/mkspecs/linux-g++ -I/home/netpipe/Desktop/MyIDE -I/usr/include/qt5 -I/usr/include/qt5/QtWidgets -I/usr/include/qt5/QtGui -I/usr/include/qt5/QtCore -I/usr/include/c++/7 -I/usr/include/c++/7/x86_64-suse-linux -I/usr/include/c++/7/backward -I/usr/lib64/gcc/x86_64-suse-linux/7/include -I/usr/local/include -I/usr/lib64/gcc/x86_64-suse-linux/7/include-fixed -I/usr/x86_64-suse-linux/include -I/usr/include qhlwidget.h -o moc_qhlwidget.cpp
 
 compiler_moc_objc_header_make_all:
 compiler_moc_objc_header_clean:
@@ -1014,24 +1025,27 @@ highlighter.o: highlighter.cpp highlighter.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o highlighter.o highlighter.cpp
 
 main.o: main.cpp mainwindow.h \
+		mdichild.h \
 		qhlwidget.h \
-		CustomCtrl/mytabwidget.h \
 		highlighter.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o main.cpp
 
 mainwindow.o: mainwindow.cpp mainwindow.h \
+		mdichild.h \
 		qhlwidget.h \
-		CustomCtrl/mytabwidget.h \
 		highlighter.h \
 		qappinfo.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mainwindow.o mainwindow.cpp
+
+mdichild.o: mdichild.cpp mdichild.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mdichild.o mdichild.cpp
 
 qappinfo.o: qappinfo.cpp qappinfo.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o qappinfo.o qappinfo.cpp
 
 qhlwidget.o: qhlwidget.cpp qhlwidget.h \
 		mainwindow.h \
-		CustomCtrl/mytabwidget.h \
+		mdichild.h \
 		highlighter.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o qhlwidget.o qhlwidget.cpp
 
@@ -1049,6 +1063,9 @@ moc_highlighter.o: moc_highlighter.cpp
 
 moc_mainwindow.o: moc_mainwindow.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_mainwindow.o moc_mainwindow.cpp
+
+moc_mdichild.o: moc_mdichild.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_mdichild.o moc_mdichild.cpp
 
 moc_qhlwidget.o: moc_qhlwidget.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_qhlwidget.o moc_qhlwidget.cpp

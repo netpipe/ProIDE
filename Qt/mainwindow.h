@@ -1,70 +1,21 @@
-/****************************************************************************
-**
-** Copyright (C) 2016 The Qt Company Ltd.
-** Contact: https://www.qt.io/licensing/
-**
-** This file is part of the examples of the Qt Toolkit.
-**
-** $QT_BEGIN_LICENSE:BSD$
-** Commercial License Usage
-** Licensees holding valid commercial Qt licenses may use this file in
-** accordance with the commercial license agreement provided with the
-** Software or, alternatively, in accordance with the terms contained in
-** a written agreement between you and The Qt Company. For licensing terms
-** and conditions see https://www.qt.io/terms-conditions. For further
-** information use the contact form at https://www.qt.io/contact-us.
-**
-** BSD License Usage
-** Alternatively, you may use this file under the terms of the BSD license
-** as follows:
-**
-** "Redistribution and use in source and binary forms, with or without
-** modification, are permitted provided that the following conditions are
-** met:
-**   * Redistributions of source code must retain the above copyright
-**     notice, this list of conditions and the following disclaimer.
-**   * Redistributions in binary form must reproduce the above copyright
-**     notice, this list of conditions and the following disclaimer in
-**     the documentation and/or other materials provided with the
-**     distribution.
-**   * Neither the name of The Qt Company Ltd nor the names of its
-**     contributors may be used to endorse or promote products derived
-**     from this software without specific prior written permission.
-**
-**
-** THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
-** "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
-** LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
-** A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
-** OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
-** SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
-** LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
-** DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
-** THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
-** (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
-** OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE."
-**
-** $QT_END_LICENSE$
-**
-****************************************************************************/
-
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QSplitter>
+#include <QStackedWidget>
+#include "mdichild.h"
 #include "qhlwidget.h"
-#include "CustomCtrl/mytabwidget.h"
 #include "highlighter.h"
 
 QT_BEGIN_NAMESPACE
 class QAction;
 class QActionGroup;
+class QMenu;
+class QMdiArea;
+class QMdiSubWindow;
 class QListWidget;
 class QListWidgetItem;
-class QMenu;
-class QPlainTextEdit;
-class QSessionManager;
-class QTextBrowser;
 QT_END_NAMESPACE
 
 class MainWindow : public QMainWindow
@@ -74,64 +25,93 @@ class MainWindow : public QMainWindow
 public:
     MainWindow();
 
+    bool        openFile(const QString &fileName);
+
+    QTextEdit * getActiveTextEdit();
+
     static MainWindow * instance();
 
-    void openFile(QString fileName);
-    void openFileAt(QString fileName, int tabIndex);
-    void dragTab(int tabIndex);
-    void showOnlyTabPanel(QString fileName);
-
-    QTextBrowser * getTabTextEdit();
-
 protected:
-    void closeEvent(QCloseEvent *event)         override;
-    void dragEnterEvent(QDragEnterEvent *event) override;
-    void dropEvent(QDropEvent *event)           override;
+    void        closeEvent(QCloseEvent *event) override;
 
 private slots:
-    void newFile();
-    void open();
-    bool save();
-    bool saveAs();
-    void about();
-    void applyTheme(int index);
-    void fileListWidgetItemClicked(QListWidgetItem * item);
-
-#ifndef QT_NO_SESSIONMANAGER
-    void commitData(QSessionManager &);
+    void        newFile();
+    void        open();
+    void        save();
+    void        saveAs();
+    void        updateRecentFileActions();
+    void        openRecentFile();
+#ifndef QT_NO_CLIPBOARD
+    void        cut();
+    void        copy();
+    void        paste();
 #endif
+    void        applyTheme(int index);
+    void        splitWindow(int index);
+    void        about();
+    void        updateMenus();
+    void        updateWindowMenu();
+    void        fileListWidgetItemClicked(QListWidgetItem * item);
+    MdiChild *  createMdiChild();
 
 private:
-    void createActions();
-    void createDockWindows();
-    void createStatusBar();
-    void getStyleList();
-    void readSettings();
-    void writeSettings();
-    void loadStyleSheet( QString sheet_name);
-    void setCurrentFile(const QString &fileName);
+    enum { MaxRecentFiles = 5 };
 
-    bool maybeSave();
-    bool saveFile(const QString &fileName);
+    void        createActions();
+    void        createDockWindows();
+    void        createStatusBar();
+    void        getStyleList();
+    void        loadStyleSheet( QString sheet_name);
+    void        prependToRecentFiles(const QString &fileName);
+    void        setRecentFilesVisible(bool visible);
+    void        switchSplitter(int type);
+    void        readSettings();
+    void        writeSettings();
 
-    QString strippedName(const QString &fullFileName);
+    bool        isExistListWidget(const QString& filename);
+    bool        loadFile(const QString &fileName);
 
-    int  getTabIndex(QString name);
+    static bool hasRecentFiles();
 
-public:
-    MyTabWidget *   tabSrcWidget;
+    MdiChild *      activeMdiChild() const;
+    QMdiSubWindow * findMdiChild(const QString &fileName) const;
 
-private:
+    QMdiArea *      mdiArea;
+
+    QStackedWidget *stackedWidget;
+
+    QSplitter *     splitter;
+
+    QMenu *         windowMenu;
+
+    QAction *       newAct;
+    QAction *       saveAct;
+    QAction *       saveAsAct;
+    QAction *       recentFileActs[MaxRecentFiles];
+    QAction *       recentFileSeparator;
+    QAction *       recentFileSubMenuAct;
+#ifndef QT_NO_CLIPBOARD
+    QAction *       cutAct;
+    QAction *       copyAct;
+    QAction *       pasteAct;
+#endif
+    QAction *       closeAct;
+    QAction *       closeAllAct;
+    QAction *       tileAct;
+    QAction *       cascadeAct;
+    QAction *       nextAct;
+    QAction *       previousAct;
+    QAction *       windowMenuSeparatorAct;
+
     QActionGroup *  themeGroup;
+    QActionGroup *  splitGroup;
     QListWidget *   fileListWidget;
     QHlWidget *     hlWidget;
 
-    //Highlighter *   highlighter;
-
-    QString         curFile;
     QStringList     stylePathList;
     QStringList     styleNameList;
-};
 
+    int             splitterValue;
+};
 
 #endif
