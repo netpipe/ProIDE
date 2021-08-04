@@ -1,6 +1,7 @@
 #include <QtWidgets>
 #include "mainwindow.h"
 #include "qappinfo.h"
+#include "CBP2MAKEFILE.h"
 
 static MainWindow * gMainWindow = Q_NULLPTR;
 
@@ -40,6 +41,8 @@ MainWindow::MainWindow()
     stackedWidget->setCurrentWidget(mdiArea);
 
     gMainWindow = this;
+
+    CBP2MAKE("./test.cbp");
 }
 
 MainWindow * MainWindow::instance()
