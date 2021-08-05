@@ -8,6 +8,11 @@
 #include "qhlwidget.h"
 #include "highlighter.h"
 
+
+//#define plugins
+#include "plugin/qonsole.h"
+#include "ui_qonsole.h"
+
 QT_BEGIN_NAMESPACE
 class QAction;
 class QActionGroup;

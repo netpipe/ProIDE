@@ -58,6 +58,7 @@ SOURCES       = CustomCtrl/mytabbar.cpp \
 		main.cpp \
 		mainwindow.cpp \
 		mdichild.cpp \
+		plugin/qonsole.cpp \
 		qappinfo.cpp \
 		qhlwidget.cpp qrc_MyIDE.cpp \
 		moc_mytabbar.cpp \
@@ -65,6 +66,7 @@ SOURCES       = CustomCtrl/mytabbar.cpp \
 		moc_highlighter.cpp \
 		moc_mainwindow.cpp \
 		moc_mdichild.cpp \
+		moc_qonsole.cpp \
 		moc_qhlwidget.cpp
 OBJECTS       = mytabbar.o \
 		mytabwidget.o \
@@ -72,6 +74,7 @@ OBJECTS       = mytabbar.o \
 		main.o \
 		mainwindow.o \
 		mdichild.o \
+		qonsole.o \
 		qappinfo.o \
 		qhlwidget.o \
 		qrc_MyIDE.o \
@@ -80,6 +83,7 @@ OBJECTS       = mytabbar.o \
 		moc_highlighter.o \
 		moc_mainwindow.o \
 		moc_mdichild.o \
+		moc_qonsole.o \
 		moc_qhlwidget.o
 DIST          = /usr/lib64/qt5/mkspecs/features/spec_pre.prf \
 		/usr/lib64/qt5/mkspecs/common/unix.conf \
@@ -352,6 +356,7 @@ DIST          = /usr/lib64/qt5/mkspecs/features/spec_pre.prf \
 		highlighter.h \
 		mainwindow.h \
 		mdichild.h \
+		plugin/qonsole.h \
 		qappinfo.h \
 		qhlwidget.h CustomCtrl/mytabbar.cpp \
 		CustomCtrl/mytabwidget.cpp \
@@ -359,6 +364,7 @@ DIST          = /usr/lib64/qt5/mkspecs/features/spec_pre.prf \
 		main.cpp \
 		mainwindow.cpp \
 		mdichild.cpp \
+		plugin/qonsole.cpp \
 		qappinfo.cpp \
 		qhlwidget.cpp
 QMAKE_TARGET  = MyIDE
@@ -369,7 +375,7 @@ TARGET        = MyIDE
 first: all
 ####### Build rules
 
-MyIDE: ui_mainwindow.h $(OBJECTS)  
+MyIDE: ui_mainwindow.h ui_qonsole.h $(OBJECTS)  
 	$(LINK) $(LFLAGS) -o $(TARGET) $(OBJECTS) $(OBJCOMP) $(LIBS)
 
 Makefile: MyIDE.pro /usr/lib64/qt5/mkspecs/linux-g++/qmake.conf /usr/lib64/qt5/mkspecs/features/spec_pre.prf \
@@ -921,9 +927,9 @@ distdir: FORCE
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents MyIDE.qrc $(DISTDIR)/
 	$(COPY_FILE) --parents /usr/lib64/qt5/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents CBP2MAKEFILE.h CustomCtrl/mytabbar.h CustomCtrl/mytabwidget.h database.h highlighter.h mainwindow.h mdichild.h qappinfo.h qhlwidget.h $(DISTDIR)/
-	$(COPY_FILE) --parents CustomCtrl/mytabbar.cpp CustomCtrl/mytabwidget.cpp highlighter.cpp main.cpp mainwindow.cpp mdichild.cpp qappinfo.cpp qhlwidget.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents mainwindow.ui $(DISTDIR)/
+	$(COPY_FILE) --parents CBP2MAKEFILE.h CustomCtrl/mytabbar.h CustomCtrl/mytabwidget.h database.h highlighter.h mainwindow.h mdichild.h plugin/qonsole.h qappinfo.h qhlwidget.h $(DISTDIR)/
+	$(COPY_FILE) --parents CustomCtrl/mytabbar.cpp CustomCtrl/mytabwidget.cpp highlighter.cpp main.cpp mainwindow.cpp mdichild.cpp plugin/qonsole.cpp qappinfo.cpp qhlwidget.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents mainwindow.ui plugin/qonsole.ui $(DISTDIR)/
 
 
 clean: compiler_clean 
@@ -968,9 +974,9 @@ compiler_moc_predefs_clean:
 moc_predefs.h: /usr/lib64/qt5/mkspecs/features/data/dummy.cpp
 	g++ -pipe -g -std=gnu++11 -Wall -W -dM -E -o moc_predefs.h /usr/lib64/qt5/mkspecs/features/data/dummy.cpp
 
-compiler_moc_header_make_all: moc_mytabbar.cpp moc_mytabwidget.cpp moc_highlighter.cpp moc_mainwindow.cpp moc_mdichild.cpp moc_qhlwidget.cpp
+compiler_moc_header_make_all: moc_mytabbar.cpp moc_mytabwidget.cpp moc_highlighter.cpp moc_mainwindow.cpp moc_mdichild.cpp moc_qonsole.cpp moc_qhlwidget.cpp
 compiler_moc_header_clean:
-	-$(DEL_FILE) moc_mytabbar.cpp moc_mytabwidget.cpp moc_highlighter.cpp moc_mainwindow.cpp moc_mdichild.cpp moc_qhlwidget.cpp
+	-$(DEL_FILE) moc_mytabbar.cpp moc_mytabwidget.cpp moc_highlighter.cpp moc_mainwindow.cpp moc_mdichild.cpp moc_qonsole.cpp moc_qhlwidget.cpp
 moc_mytabbar.cpp: CustomCtrl/mytabbar.h \
 		moc_predefs.h \
 		/usr/lib64/qt5/bin/moc
@@ -990,6 +996,8 @@ moc_mainwindow.cpp: mainwindow.h \
 		mdichild.h \
 		qhlwidget.h \
 		highlighter.h \
+		plugin/qonsole.h \
+		ui_qonsole.h \
 		moc_predefs.h \
 		/usr/lib64/qt5/bin/moc
 	/usr/lib64/qt5/bin/moc $(DEFINES) --include /home/netpipe/Desktop/ProIDE/Qt/moc_predefs.h -I/usr/lib64/qt5/mkspecs/linux-g++ -I/home/netpipe/Desktop/ProIDE/Qt -I/usr/include/qt5 -I/usr/include/qt5/QtWidgets -I/usr/include/qt5/QtGui -I/usr/include/qt5/QtCore -I/usr/include/c++/7 -I/usr/include/c++/7/x86_64-suse-linux -I/usr/include/c++/7/backward -I/usr/lib64/gcc/x86_64-suse-linux/7/include -I/usr/local/include -I/usr/lib64/gcc/x86_64-suse-linux/7/include-fixed -I/usr/x86_64-suse-linux/include -I/usr/include mainwindow.h -o moc_mainwindow.cpp
@@ -998,6 +1006,11 @@ moc_mdichild.cpp: mdichild.h \
 		moc_predefs.h \
 		/usr/lib64/qt5/bin/moc
 	/usr/lib64/qt5/bin/moc $(DEFINES) --include /home/netpipe/Desktop/ProIDE/Qt/moc_predefs.h -I/usr/lib64/qt5/mkspecs/linux-g++ -I/home/netpipe/Desktop/ProIDE/Qt -I/usr/include/qt5 -I/usr/include/qt5/QtWidgets -I/usr/include/qt5/QtGui -I/usr/include/qt5/QtCore -I/usr/include/c++/7 -I/usr/include/c++/7/x86_64-suse-linux -I/usr/include/c++/7/backward -I/usr/lib64/gcc/x86_64-suse-linux/7/include -I/usr/local/include -I/usr/lib64/gcc/x86_64-suse-linux/7/include-fixed -I/usr/x86_64-suse-linux/include -I/usr/include mdichild.h -o moc_mdichild.cpp
+
+moc_qonsole.cpp: plugin/qonsole.h \
+		moc_predefs.h \
+		/usr/lib64/qt5/bin/moc
+	/usr/lib64/qt5/bin/moc $(DEFINES) --include /home/netpipe/Desktop/ProIDE/Qt/moc_predefs.h -I/usr/lib64/qt5/mkspecs/linux-g++ -I/home/netpipe/Desktop/ProIDE/Qt -I/usr/include/qt5 -I/usr/include/qt5/QtWidgets -I/usr/include/qt5/QtGui -I/usr/include/qt5/QtCore -I/usr/include/c++/7 -I/usr/include/c++/7/x86_64-suse-linux -I/usr/include/c++/7/backward -I/usr/lib64/gcc/x86_64-suse-linux/7/include -I/usr/local/include -I/usr/lib64/gcc/x86_64-suse-linux/7/include-fixed -I/usr/x86_64-suse-linux/include -I/usr/include plugin/qonsole.h -o moc_qonsole.cpp
 
 moc_qhlwidget.cpp: qhlwidget.h \
 		moc_predefs.h \
@@ -1008,12 +1021,16 @@ compiler_moc_objc_header_make_all:
 compiler_moc_objc_header_clean:
 compiler_moc_source_make_all:
 compiler_moc_source_clean:
-compiler_uic_make_all: ui_mainwindow.h
+compiler_uic_make_all: ui_mainwindow.h ui_qonsole.h
 compiler_uic_clean:
-	-$(DEL_FILE) ui_mainwindow.h
+	-$(DEL_FILE) ui_mainwindow.h ui_qonsole.h
 ui_mainwindow.h: mainwindow.ui \
 		/usr/lib64/qt5/bin/uic
 	/usr/lib64/qt5/bin/uic mainwindow.ui -o ui_mainwindow.h
+
+ui_qonsole.h: plugin/qonsole.ui \
+		/usr/lib64/qt5/bin/uic
+	/usr/lib64/qt5/bin/uic plugin/qonsole.ui -o ui_qonsole.h
 
 compiler_yacc_decl_make_all:
 compiler_yacc_decl_clean:
@@ -1038,13 +1055,17 @@ highlighter.o: highlighter.cpp highlighter.h
 main.o: main.cpp mainwindow.h \
 		mdichild.h \
 		qhlwidget.h \
-		highlighter.h
+		highlighter.h \
+		plugin/qonsole.h \
+		ui_qonsole.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o main.cpp
 
 mainwindow.o: mainwindow.cpp mainwindow.h \
 		mdichild.h \
 		qhlwidget.h \
 		highlighter.h \
+		plugin/qonsole.h \
+		ui_qonsole.h \
 		qappinfo.h \
 		CBP2MAKEFILE.h \
 		ui_mainwindow.h
@@ -1053,13 +1074,19 @@ mainwindow.o: mainwindow.cpp mainwindow.h \
 mdichild.o: mdichild.cpp mdichild.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mdichild.o mdichild.cpp
 
+qonsole.o: plugin/qonsole.cpp plugin/qonsole.h \
+		ui_qonsole.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o qonsole.o plugin/qonsole.cpp
+
 qappinfo.o: qappinfo.cpp qappinfo.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o qappinfo.o qappinfo.cpp
 
 qhlwidget.o: qhlwidget.cpp qhlwidget.h \
 		mainwindow.h \
 		mdichild.h \
-		highlighter.h
+		highlighter.h \
+		plugin/qonsole.h \
+		ui_qonsole.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o qhlwidget.o qhlwidget.cpp
 
 qrc_MyIDE.o: qrc_MyIDE.cpp 
@@ -1079,6 +1106,9 @@ moc_mainwindow.o: moc_mainwindow.cpp
 
 moc_mdichild.o: moc_mdichild.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_mdichild.o moc_mdichild.cpp
+
+moc_qonsole.o: moc_qonsole.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_qonsole.o moc_qonsole.cpp
 
 moc_qhlwidget.o: moc_qhlwidget.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_qhlwidget.o moc_qhlwidget.cpp

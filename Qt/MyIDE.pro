@@ -24,6 +24,7 @@ SOURCES += \
     main.cpp \
     mainwindow.cpp \
     mdichild.cpp \
+    plugin/qonsole.cpp \
     qappinfo.cpp \
     qhlwidget.cpp
 
@@ -35,11 +36,13 @@ HEADERS += \
     highlighter.h \
     mainwindow.h \
     mdichild.h \
+    plugin/qonsole.h \
     qappinfo.h \
     qhlwidget.h
 
 FORMS += \
-    mainwindow.ui
+    mainwindow.ui \
+    plugin/qonsole.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

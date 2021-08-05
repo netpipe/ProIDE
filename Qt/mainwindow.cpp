@@ -12,6 +12,9 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
+//    Qonsole e;
+//    e.show();
+
     splitterValue = 0;
 
     mdiArea=new QMdiArea;
@@ -50,7 +53,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     gMainWindow = this;
 
-    mdiArea->viewport()->installEventFilter(this);
+  //  mdiArea->viewport()->installEventFilter(this);
 
 
   //  CBP2MAKE("./test.cbp");
