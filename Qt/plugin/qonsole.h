@@ -1,4 +1,4 @@
-//#ifdef plugins
+#ifdef plugins
 #ifndef QONSOLE_H
 #define QONSOLE_H
 
@@ -33,4 +33,4 @@ private:
 };
 
 #endif // QONSOLE_H
-//#endif // plugins
+#endif // plugins
