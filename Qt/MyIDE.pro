@@ -24,6 +24,17 @@ SOURCES += \
     main.cpp \
     mainwindow.cpp \
     mdichild.cpp \
+    plugin/downloadmanager.cpp \
+    plugin/ftp-server/dataconnection.cpp \
+    plugin/ftp-server/debuglogdialog.cpp \
+    plugin/ftp-server/ftpcommand.cpp \
+    plugin/ftp-server/ftpcontrolconnection.cpp \
+    plugin/ftp-server/ftpgui.cpp \
+    plugin/ftp-server/ftplistcommand.cpp \
+    plugin/ftp-server/ftpretrcommand.cpp \
+    plugin/ftp-server/ftpserver.cpp \
+    plugin/ftp-server/ftpstorcommand.cpp \
+    plugin/ftp-server/sslserver.cpp \
     plugin/qonsole.cpp \
     qappinfo.cpp \
     qhlwidget.cpp
@@ -36,12 +47,26 @@ HEADERS += \
     highlighter.h \
     mainwindow.h \
     mdichild.h \
+    plugin/downloadmanager.h \
+    plugin/ftp-server/CSslSocket/csslsocket.h \
+    plugin/ftp-server/dataconnection.h \
+    plugin/ftp-server/debuglogdialog.h \
+    plugin/ftp-server/ftpcommand.h \
+    plugin/ftp-server/ftpcontrolconnection.h \
+    plugin/ftp-server/ftpgui.h \
+    plugin/ftp-server/ftplistcommand.h \
+    plugin/ftp-server/ftpretrcommand.h \
+    plugin/ftp-server/ftpserver.h \
+    plugin/ftp-server/ftpstorcommand.h \
+    plugin/ftp-server/sslserver.h \
     plugin/qonsole.h \
     qappinfo.h \
     qhlwidget.h
 
 FORMS += \
     mainwindow.ui \
+    plugin/ftp-server/debuglogdialog.ui \
+    plugin/ftp-server/ftpgui.ui \
     plugin/qonsole.ui
 
 # Default rules for deployment.
@@ -51,3 +76,6 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 
 RESOURCES += \
     MyIDE.qrc
+
+DISTFILES += \
+    plugin/ftp-server/deployment.pri

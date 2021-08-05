@@ -32,8 +32,22 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+#ifdef FTP
+    CSslSocket* ssl_socket = new CSslSocket();
+    if(ssl_socket)
+    {
+        delete ssl_socket;
+    }
 
+#ifdef FTP
+    if (adminftp==0){
+    ftpgui = new FTPGUI;
+    adminftp=1;
+    }
+    if (adminftp) { ftpgui->show();}
+#endif
 
+#endif
 
     splitterValue = 0;
 
