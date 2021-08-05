@@ -1,0 +1,14 @@
+For compiling binary data, e.g., images, into a C program.
+
+Reads in a binary and creates C code on standard output that has
+a character array that holds the binary data.  
+
+I wrote this program because I found similar programs that had
+arbitrary limits on the size of data.
+
+Using the -n flag, you can change the name of the bin2c-generated
+character array.
+
+This program is free software -- think of it as a Valentine's Day
+gift.  ;)
+
