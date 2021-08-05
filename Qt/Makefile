@@ -14,10 +14,10 @@ EQ            = =
 
 CC            = gcc
 CXX           = g++
-DEFINES       = -DQT_DEPRECATED_WARNINGS -DQT_QML_DEBUG -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB
+DEFINES       = -DQT_DEPRECATED_WARNINGS -DQT_QML_DEBUG -DQT_MULTIMEDIA_LIB -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB
 CFLAGS        = -pipe -g -Wall -W -D_REENTRANT -fPIC $(DEFINES)
 CXXFLAGS      = -pipe -g -std=gnu++11 -Wall -W -D_REENTRANT -fPIC $(DEFINES)
-INCPATH       = -I. -isystem /usr/include/qt5 -isystem /usr/include/qt5/QtWidgets -isystem /usr/include/qt5/QtGui -isystem /usr/include/qt5/QtCore -I. -I. -I/usr/lib64/qt5/mkspecs/linux-g++
+INCPATH       = -I. -isystem /usr/include/qt5 -isystem /usr/include/qt5/QtMultimedia -isystem /usr/include/qt5/QtWidgets -isystem /usr/include/qt5/QtGui -isystem /usr/include/qt5/QtNetwork -isystem /usr/include/qt5/QtCore -I. -I. -I/usr/lib64/qt5/mkspecs/linux-g++
 QMAKE         = /usr/bin/qmake-qt5
 DEL_FILE      = rm -f
 CHK_DIR_EXISTS= test -d
@@ -40,7 +40,7 @@ DISTNAME      = MyIDE1.0.0
 DISTDIR = /home/netpipe/Desktop/ProIDE/Qt/.tmp/MyIDE1.0.0
 LINK          = g++
 LFLAGS        = 
-LIBS          = $(SUBLIBS) -lxml2 /usr/lib64/libQt5Widgets.so /usr/lib64/libQt5Gui.so /usr/lib64/libQt5Core.so /usr/lib64/libGL.so -lpthread   
+LIBS          = $(SUBLIBS) -lxml2 /usr/lib64/libQt5Multimedia.so /usr/lib64/libQt5Widgets.so /usr/lib64/libQt5Gui.so /usr/lib64/libQt5Network.so /usr/lib64/libQt5Core.so /usr/lib64/libGL.so -lpthread   
 AR            = ar cqs
 RANLIB        = 
 SED           = sed
@@ -980,17 +980,17 @@ compiler_moc_header_clean:
 moc_mytabbar.cpp: CustomCtrl/mytabbar.h \
 		moc_predefs.h \
 		/usr/lib64/qt5/bin/moc
-	/usr/lib64/qt5/bin/moc $(DEFINES) --include /home/netpipe/Desktop/ProIDE/Qt/moc_predefs.h -I/usr/lib64/qt5/mkspecs/linux-g++ -I/home/netpipe/Desktop/ProIDE/Qt -I/usr/include/qt5 -I/usr/include/qt5/QtWidgets -I/usr/include/qt5/QtGui -I/usr/include/qt5/QtCore -I/usr/include/c++/7 -I/usr/include/c++/7/x86_64-suse-linux -I/usr/include/c++/7/backward -I/usr/lib64/gcc/x86_64-suse-linux/7/include -I/usr/local/include -I/usr/lib64/gcc/x86_64-suse-linux/7/include-fixed -I/usr/x86_64-suse-linux/include -I/usr/include CustomCtrl/mytabbar.h -o moc_mytabbar.cpp
+	/usr/lib64/qt5/bin/moc $(DEFINES) --include /home/netpipe/Desktop/ProIDE/Qt/moc_predefs.h -I/usr/lib64/qt5/mkspecs/linux-g++ -I/home/netpipe/Desktop/ProIDE/Qt -I/usr/include/qt5 -I/usr/include/qt5/QtMultimedia -I/usr/include/qt5/QtWidgets -I/usr/include/qt5/QtGui -I/usr/include/qt5/QtNetwork -I/usr/include/qt5/QtCore -I/usr/include/c++/7 -I/usr/include/c++/7/x86_64-suse-linux -I/usr/include/c++/7/backward -I/usr/lib64/gcc/x86_64-suse-linux/7/include -I/usr/local/include -I/usr/lib64/gcc/x86_64-suse-linux/7/include-fixed -I/usr/x86_64-suse-linux/include -I/usr/include CustomCtrl/mytabbar.h -o moc_mytabbar.cpp
 
 moc_mytabwidget.cpp: CustomCtrl/mytabwidget.h \
 		moc_predefs.h \
 		/usr/lib64/qt5/bin/moc
-	/usr/lib64/qt5/bin/moc $(DEFINES) --include /home/netpipe/Desktop/ProIDE/Qt/moc_predefs.h -I/usr/lib64/qt5/mkspecs/linux-g++ -I/home/netpipe/Desktop/ProIDE/Qt -I/usr/include/qt5 -I/usr/include/qt5/QtWidgets -I/usr/include/qt5/QtGui -I/usr/include/qt5/QtCore -I/usr/include/c++/7 -I/usr/include/c++/7/x86_64-suse-linux -I/usr/include/c++/7/backward -I/usr/lib64/gcc/x86_64-suse-linux/7/include -I/usr/local/include -I/usr/lib64/gcc/x86_64-suse-linux/7/include-fixed -I/usr/x86_64-suse-linux/include -I/usr/include CustomCtrl/mytabwidget.h -o moc_mytabwidget.cpp
+	/usr/lib64/qt5/bin/moc $(DEFINES) --include /home/netpipe/Desktop/ProIDE/Qt/moc_predefs.h -I/usr/lib64/qt5/mkspecs/linux-g++ -I/home/netpipe/Desktop/ProIDE/Qt -I/usr/include/qt5 -I/usr/include/qt5/QtMultimedia -I/usr/include/qt5/QtWidgets -I/usr/include/qt5/QtGui -I/usr/include/qt5/QtNetwork -I/usr/include/qt5/QtCore -I/usr/include/c++/7 -I/usr/include/c++/7/x86_64-suse-linux -I/usr/include/c++/7/backward -I/usr/lib64/gcc/x86_64-suse-linux/7/include -I/usr/local/include -I/usr/lib64/gcc/x86_64-suse-linux/7/include-fixed -I/usr/x86_64-suse-linux/include -I/usr/include CustomCtrl/mytabwidget.h -o moc_mytabwidget.cpp
 
 moc_highlighter.cpp: highlighter.h \
 		moc_predefs.h \
 		/usr/lib64/qt5/bin/moc
-	/usr/lib64/qt5/bin/moc $(DEFINES) --include /home/netpipe/Desktop/ProIDE/Qt/moc_predefs.h -I/usr/lib64/qt5/mkspecs/linux-g++ -I/home/netpipe/Desktop/ProIDE/Qt -I/usr/include/qt5 -I/usr/include/qt5/QtWidgets -I/usr/include/qt5/QtGui -I/usr/include/qt5/QtCore -I/usr/include/c++/7 -I/usr/include/c++/7/x86_64-suse-linux -I/usr/include/c++/7/backward -I/usr/lib64/gcc/x86_64-suse-linux/7/include -I/usr/local/include -I/usr/lib64/gcc/x86_64-suse-linux/7/include-fixed -I/usr/x86_64-suse-linux/include -I/usr/include highlighter.h -o moc_highlighter.cpp
+	/usr/lib64/qt5/bin/moc $(DEFINES) --include /home/netpipe/Desktop/ProIDE/Qt/moc_predefs.h -I/usr/lib64/qt5/mkspecs/linux-g++ -I/home/netpipe/Desktop/ProIDE/Qt -I/usr/include/qt5 -I/usr/include/qt5/QtMultimedia -I/usr/include/qt5/QtWidgets -I/usr/include/qt5/QtGui -I/usr/include/qt5/QtNetwork -I/usr/include/qt5/QtCore -I/usr/include/c++/7 -I/usr/include/c++/7/x86_64-suse-linux -I/usr/include/c++/7/backward -I/usr/lib64/gcc/x86_64-suse-linux/7/include -I/usr/local/include -I/usr/lib64/gcc/x86_64-suse-linux/7/include-fixed -I/usr/x86_64-suse-linux/include -I/usr/include highlighter.h -o moc_highlighter.cpp
 
 moc_mainwindow.cpp: mainwindow.h \
 		mdichild.h \
@@ -1000,22 +1000,22 @@ moc_mainwindow.cpp: mainwindow.h \
 		ui_qonsole.h \
 		moc_predefs.h \
 		/usr/lib64/qt5/bin/moc
-	/usr/lib64/qt5/bin/moc $(DEFINES) --include /home/netpipe/Desktop/ProIDE/Qt/moc_predefs.h -I/usr/lib64/qt5/mkspecs/linux-g++ -I/home/netpipe/Desktop/ProIDE/Qt -I/usr/include/qt5 -I/usr/include/qt5/QtWidgets -I/usr/include/qt5/QtGui -I/usr/include/qt5/QtCore -I/usr/include/c++/7 -I/usr/include/c++/7/x86_64-suse-linux -I/usr/include/c++/7/backward -I/usr/lib64/gcc/x86_64-suse-linux/7/include -I/usr/local/include -I/usr/lib64/gcc/x86_64-suse-linux/7/include-fixed -I/usr/x86_64-suse-linux/include -I/usr/include mainwindow.h -o moc_mainwindow.cpp
+	/usr/lib64/qt5/bin/moc $(DEFINES) --include /home/netpipe/Desktop/ProIDE/Qt/moc_predefs.h -I/usr/lib64/qt5/mkspecs/linux-g++ -I/home/netpipe/Desktop/ProIDE/Qt -I/usr/include/qt5 -I/usr/include/qt5/QtMultimedia -I/usr/include/qt5/QtWidgets -I/usr/include/qt5/QtGui -I/usr/include/qt5/QtNetwork -I/usr/include/qt5/QtCore -I/usr/include/c++/7 -I/usr/include/c++/7/x86_64-suse-linux -I/usr/include/c++/7/backward -I/usr/lib64/gcc/x86_64-suse-linux/7/include -I/usr/local/include -I/usr/lib64/gcc/x86_64-suse-linux/7/include-fixed -I/usr/x86_64-suse-linux/include -I/usr/include mainwindow.h -o moc_mainwindow.cpp
 
 moc_mdichild.cpp: mdichild.h \
 		moc_predefs.h \
 		/usr/lib64/qt5/bin/moc
-	/usr/lib64/qt5/bin/moc $(DEFINES) --include /home/netpipe/Desktop/ProIDE/Qt/moc_predefs.h -I/usr/lib64/qt5/mkspecs/linux-g++ -I/home/netpipe/Desktop/ProIDE/Qt -I/usr/include/qt5 -I/usr/include/qt5/QtWidgets -I/usr/include/qt5/QtGui -I/usr/include/qt5/QtCore -I/usr/include/c++/7 -I/usr/include/c++/7/x86_64-suse-linux -I/usr/include/c++/7/backward -I/usr/lib64/gcc/x86_64-suse-linux/7/include -I/usr/local/include -I/usr/lib64/gcc/x86_64-suse-linux/7/include-fixed -I/usr/x86_64-suse-linux/include -I/usr/include mdichild.h -o moc_mdichild.cpp
+	/usr/lib64/qt5/bin/moc $(DEFINES) --include /home/netpipe/Desktop/ProIDE/Qt/moc_predefs.h -I/usr/lib64/qt5/mkspecs/linux-g++ -I/home/netpipe/Desktop/ProIDE/Qt -I/usr/include/qt5 -I/usr/include/qt5/QtMultimedia -I/usr/include/qt5/QtWidgets -I/usr/include/qt5/QtGui -I/usr/include/qt5/QtNetwork -I/usr/include/qt5/QtCore -I/usr/include/c++/7 -I/usr/include/c++/7/x86_64-suse-linux -I/usr/include/c++/7/backward -I/usr/lib64/gcc/x86_64-suse-linux/7/include -I/usr/local/include -I/usr/lib64/gcc/x86_64-suse-linux/7/include-fixed -I/usr/x86_64-suse-linux/include -I/usr/include mdichild.h -o moc_mdichild.cpp
 
 moc_qonsole.cpp: plugin/qonsole.h \
 		moc_predefs.h \
 		/usr/lib64/qt5/bin/moc
-	/usr/lib64/qt5/bin/moc $(DEFINES) --include /home/netpipe/Desktop/ProIDE/Qt/moc_predefs.h -I/usr/lib64/qt5/mkspecs/linux-g++ -I/home/netpipe/Desktop/ProIDE/Qt -I/usr/include/qt5 -I/usr/include/qt5/QtWidgets -I/usr/include/qt5/QtGui -I/usr/include/qt5/QtCore -I/usr/include/c++/7 -I/usr/include/c++/7/x86_64-suse-linux -I/usr/include/c++/7/backward -I/usr/lib64/gcc/x86_64-suse-linux/7/include -I/usr/local/include -I/usr/lib64/gcc/x86_64-suse-linux/7/include-fixed -I/usr/x86_64-suse-linux/include -I/usr/include plugin/qonsole.h -o moc_qonsole.cpp
+	/usr/lib64/qt5/bin/moc $(DEFINES) --include /home/netpipe/Desktop/ProIDE/Qt/moc_predefs.h -I/usr/lib64/qt5/mkspecs/linux-g++ -I/home/netpipe/Desktop/ProIDE/Qt -I/usr/include/qt5 -I/usr/include/qt5/QtMultimedia -I/usr/include/qt5/QtWidgets -I/usr/include/qt5/QtGui -I/usr/include/qt5/QtNetwork -I/usr/include/qt5/QtCore -I/usr/include/c++/7 -I/usr/include/c++/7/x86_64-suse-linux -I/usr/include/c++/7/backward -I/usr/lib64/gcc/x86_64-suse-linux/7/include -I/usr/local/include -I/usr/lib64/gcc/x86_64-suse-linux/7/include-fixed -I/usr/x86_64-suse-linux/include -I/usr/include plugin/qonsole.h -o moc_qonsole.cpp
 
 moc_qhlwidget.cpp: qhlwidget.h \
 		moc_predefs.h \
 		/usr/lib64/qt5/bin/moc
-	/usr/lib64/qt5/bin/moc $(DEFINES) --include /home/netpipe/Desktop/ProIDE/Qt/moc_predefs.h -I/usr/lib64/qt5/mkspecs/linux-g++ -I/home/netpipe/Desktop/ProIDE/Qt -I/usr/include/qt5 -I/usr/include/qt5/QtWidgets -I/usr/include/qt5/QtGui -I/usr/include/qt5/QtCore -I/usr/include/c++/7 -I/usr/include/c++/7/x86_64-suse-linux -I/usr/include/c++/7/backward -I/usr/lib64/gcc/x86_64-suse-linux/7/include -I/usr/local/include -I/usr/lib64/gcc/x86_64-suse-linux/7/include-fixed -I/usr/x86_64-suse-linux/include -I/usr/include qhlwidget.h -o moc_qhlwidget.cpp
+	/usr/lib64/qt5/bin/moc $(DEFINES) --include /home/netpipe/Desktop/ProIDE/Qt/moc_predefs.h -I/usr/lib64/qt5/mkspecs/linux-g++ -I/home/netpipe/Desktop/ProIDE/Qt -I/usr/include/qt5 -I/usr/include/qt5/QtMultimedia -I/usr/include/qt5/QtWidgets -I/usr/include/qt5/QtGui -I/usr/include/qt5/QtNetwork -I/usr/include/qt5/QtCore -I/usr/include/c++/7 -I/usr/include/c++/7/x86_64-suse-linux -I/usr/include/c++/7/backward -I/usr/lib64/gcc/x86_64-suse-linux/7/include -I/usr/local/include -I/usr/lib64/gcc/x86_64-suse-linux/7/include-fixed -I/usr/x86_64-suse-linux/include -I/usr/include qhlwidget.h -o moc_qhlwidget.cpp
 
 compiler_moc_objc_header_make_all:
 compiler_moc_objc_header_clean:

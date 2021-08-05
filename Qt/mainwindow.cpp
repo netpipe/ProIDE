@@ -4,6 +4,16 @@
 #include "CBP2MAKEFILE.h"
 #include "ui_mainwindow.h"
 
+#include <QMessageBox>
+#include <QFile>
+#include <QTextStream>
+#include <QTimer>
+#include <QMenu>
+#include <QSystemTrayIcon>
+#include <QSound>
+
+QString mediadir = "./Resource/";
+
 static MainWindow * gMainWindow = Q_NULLPTR;
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -54,7 +64,28 @@ MainWindow::MainWindow(QWidget *parent) :
     gMainWindow = this;
 
   //  mdiArea->viewport()->installEventFilter(this);
+    QPixmap oPixmap(32,32);
+    oPixmap.load ( mediadir + "smoking.png");
 
+    QIcon oIcon( oPixmap );
+
+    trayIcon = new QSystemTrayIcon(oIcon);
+
+    QAction *quit_action = new QAction( "Exit", trayIcon );
+    connect( quit_action, SIGNAL(triggered()), this, SLOT(on_exit()) );
+
+    trayIconMenu = new QMenu(this);
+    trayIconMenu->addAction( quit_action );
+
+    trayIcon->setContextMenu( trayIconMenu);
+    trayIcon->setVisible(true);
+    //trayIcon->showMessage("Test Message", "Text", QSystemTrayIcon::Information, 1000);
+    //trayIcon->show();
+
+
+    connect(trayIcon, SIGNAL(activated(QSystemTrayIcon::ActivationReason)), this, SLOT(iconActivated(QSystemTrayIcon::ActivationReason)));
+
+ QSound::play( mediadir + "phone.wav");
 
   //  CBP2MAKE("./test.cbp");
 }
@@ -62,6 +93,17 @@ MainWindow::MainWindow(QWidget *parent) :
 MainWindow::~MainWindow()
 {
     delete ui;
+}
+
+void MainWindow::showMessage()
+{
+    QSystemTrayIcon::MessageIcon icon = QSystemTrayIcon::MessageIcon();
+    trayIcon->showMessage(tr("QSatisfy"), tr("Will you smoke now..."), icon, 100);
+}
+void MainWindow::on_exit()
+{
+    this->close();
+    QApplication::quit();
 }
 
 MainWindow * MainWindow::instance()

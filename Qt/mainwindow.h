@@ -7,7 +7,8 @@
 #include "mdichild.h"
 #include "qhlwidget.h"
 #include "highlighter.h"
-
+#include <QMenu>
+#include <QSystemTrayIcon>
 
 //#define plugins
 #include "plugin/qonsole.h"
@@ -42,6 +43,8 @@ public:
     static MainWindow * instance();
     bool eventFilter(QObject *obj, QEvent *event);
 
+    void on_exit();
+    void showMessage();
 
 protected:
     void        closeEvent(QCloseEvent *event) override;
@@ -128,6 +131,8 @@ private:
     int             splitterValue;
 private:
     Ui::MainWindow *ui;
+    QSystemTrayIcon *trayIcon;
+    QMenu *trayIconMenu;
 };
 
 #endif
