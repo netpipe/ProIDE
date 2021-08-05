@@ -12,6 +12,17 @@
 #include <QSystemTrayIcon>
 #include <QSound>
 
+#include "plugin/ftp-server/ftpgui.h"
+#include <QFile>
+#include <QPixmap>
+#include "plugin/ftp-server/CSslSocket/csslsocket.h"
+
+#ifdef FTP
+    FTPGUI *ftpgui;
+#endif
+
+
+
 QString mediadir = "./Resource/";
 
 static MainWindow * gMainWindow = Q_NULLPTR;
