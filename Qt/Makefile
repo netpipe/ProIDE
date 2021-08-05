@@ -58,6 +58,7 @@ SOURCES       = CustomCtrl/mytabbar.cpp \
 		main.cpp \
 		mainwindow.cpp \
 		mdichild.cpp \
+		plugin/QRCode/QrCode.cpp \
 		plugin/downloadmanager.cpp \
 		plugin/ftp-server/dataconnection.cpp \
 		plugin/ftp-server/debuglogdialog.cpp \
@@ -69,7 +70,36 @@ SOURCES       = CustomCtrl/mytabbar.cpp \
 		plugin/ftp-server/ftpserver.cpp \
 		plugin/ftp-server/ftpstorcommand.cpp \
 		plugin/ftp-server/sslserver.cpp \
+		plugin/gl/oglwidget.cpp \
 		plugin/qonsole.cpp \
+		plugin/quazip/JlCompress.cpp \
+		plugin/quazip/qioapi.cpp \
+		plugin/quazip/quaadler32.cpp \
+		plugin/quazip/quacrc32.cpp \
+		plugin/quazip/quagzipfile.cpp \
+		plugin/quazip/quaziodevice.cpp \
+		plugin/quazip/quazip.cpp \
+		plugin/quazip/quazipdir.cpp \
+		plugin/quazip/quazipfile.cpp \
+		plugin/quazip/quazipfileinfo.cpp \
+		plugin/quazip/quazipnewinfo.cpp \
+		plugin/quazip/unzip.c \
+		plugin/quazip/zip.c \
+		plugin/zlib/adler32.c \
+		plugin/zlib/compress.c \
+		plugin/zlib/crc32.c \
+		plugin/zlib/deflate.c \
+		plugin/zlib/gzclose.c \
+		plugin/zlib/gzlib.c \
+		plugin/zlib/gzread.c \
+		plugin/zlib/gzwrite.c \
+		plugin/zlib/infback.c \
+		plugin/zlib/inffast.c \
+		plugin/zlib/inflate.c \
+		plugin/zlib/inftrees.c \
+		plugin/zlib/trees.c \
+		plugin/zlib/uncompr.c \
+		plugin/zlib/zutil.c \
 		qappinfo.cpp \
 		qhlwidget.cpp qrc_MyIDE.cpp \
 		moc_mytabbar.cpp \
@@ -77,6 +107,7 @@ SOURCES       = CustomCtrl/mytabbar.cpp \
 		moc_highlighter.cpp \
 		moc_mainwindow.cpp \
 		moc_mdichild.cpp \
+		moc_dbushandler.cpp \
 		moc_downloadmanager.cpp \
 		moc_csslsocket.cpp \
 		moc_dataconnection.cpp \
@@ -90,6 +121,9 @@ SOURCES       = CustomCtrl/mytabbar.cpp \
 		moc_ftpstorcommand.cpp \
 		moc_sslserver.cpp \
 		moc_qonsole.cpp \
+		moc_quagzipfile.cpp \
+		moc_quaziodevice.cpp \
+		moc_quazipfile.cpp \
 		moc_qhlwidget.cpp
 OBJECTS       = mytabbar.o \
 		mytabwidget.o \
@@ -97,6 +131,7 @@ OBJECTS       = mytabbar.o \
 		main.o \
 		mainwindow.o \
 		mdichild.o \
+		QrCode.o \
 		downloadmanager.o \
 		dataconnection.o \
 		debuglogdialog.o \
@@ -108,7 +143,36 @@ OBJECTS       = mytabbar.o \
 		ftpserver.o \
 		ftpstorcommand.o \
 		sslserver.o \
+		oglwidget.o \
 		qonsole.o \
+		JlCompress.o \
+		qioapi.o \
+		quaadler32.o \
+		quacrc32.o \
+		quagzipfile.o \
+		quaziodevice.o \
+		quazip.o \
+		quazipdir.o \
+		quazipfile.o \
+		quazipfileinfo.o \
+		quazipnewinfo.o \
+		unzip.o \
+		zip.o \
+		adler32.o \
+		compress.o \
+		crc32.o \
+		deflate.o \
+		gzclose.o \
+		gzlib.o \
+		gzread.o \
+		gzwrite.o \
+		infback.o \
+		inffast.o \
+		inflate.o \
+		inftrees.o \
+		trees.o \
+		uncompr.o \
+		zutil.o \
 		qappinfo.o \
 		qhlwidget.o \
 		qrc_MyIDE.o \
@@ -117,6 +181,7 @@ OBJECTS       = mytabbar.o \
 		moc_highlighter.o \
 		moc_mainwindow.o \
 		moc_mdichild.o \
+		moc_dbushandler.o \
 		moc_downloadmanager.o \
 		moc_csslsocket.o \
 		moc_dataconnection.o \
@@ -130,6 +195,9 @@ OBJECTS       = mytabbar.o \
 		moc_ftpstorcommand.o \
 		moc_sslserver.o \
 		moc_qonsole.o \
+		moc_quagzipfile.o \
+		moc_quaziodevice.o \
+		moc_quazipfile.o \
 		moc_qhlwidget.o
 DIST          = plugin/ftp-server/deployment.pri \
 		/usr/lib64/qt5/mkspecs/features/spec_pre.prf \
@@ -403,7 +471,10 @@ DIST          = plugin/ftp-server/deployment.pri \
 		highlighter.h \
 		mainwindow.h \
 		mdichild.h \
+		plugin/QRCode/QrCode.hpp \
+		plugin/dbus/dbushandler.h \
 		plugin/downloadmanager.h \
+		plugin/email.h \
 		plugin/ftp-server/CSslSocket/csslsocket.h \
 		plugin/ftp-server/dataconnection.h \
 		plugin/ftp-server/debuglogdialog.h \
@@ -415,7 +486,37 @@ DIST          = plugin/ftp-server/deployment.pri \
 		plugin/ftp-server/ftpserver.h \
 		plugin/ftp-server/ftpstorcommand.h \
 		plugin/ftp-server/sslserver.h \
+		plugin/gl/oglwidget.h \
+		plugin/python/qtpython.h \
 		plugin/qonsole.h \
+		plugin/quazip/JlCompress.h \
+		plugin/quazip/crypt.h \
+		plugin/quazip/ioapi.h \
+		plugin/quazip/quaadler32.h \
+		plugin/quazip/quachecksum32.h \
+		plugin/quazip/quacrc32.h \
+		plugin/quazip/quagzipfile.h \
+		plugin/quazip/quaziodevice.h \
+		plugin/quazip/quazip.h \
+		plugin/quazip/quazip_global.h \
+		plugin/quazip/quazipdir.h \
+		plugin/quazip/quazipfile.h \
+		plugin/quazip/quazipfileinfo.h \
+		plugin/quazip/quazipnewinfo.h \
+		plugin/quazip/unzip.h \
+		plugin/quazip/zip.h \
+		plugin/smtp.h \
+		plugin/zlib/crc32.h \
+		plugin/zlib/deflate.h \
+		plugin/zlib/gzguts.h \
+		plugin/zlib/inffast.h \
+		plugin/zlib/inffixed.h \
+		plugin/zlib/inflate.h \
+		plugin/zlib/inftrees.h \
+		plugin/zlib/trees.h \
+		plugin/zlib/zconf.h \
+		plugin/zlib/zlib.h \
+		plugin/zlib/zutil.h \
 		qappinfo.h \
 		qhlwidget.h CustomCtrl/mytabbar.cpp \
 		CustomCtrl/mytabwidget.cpp \
@@ -423,6 +524,7 @@ DIST          = plugin/ftp-server/deployment.pri \
 		main.cpp \
 		mainwindow.cpp \
 		mdichild.cpp \
+		plugin/QRCode/QrCode.cpp \
 		plugin/downloadmanager.cpp \
 		plugin/ftp-server/dataconnection.cpp \
 		plugin/ftp-server/debuglogdialog.cpp \
@@ -434,7 +536,36 @@ DIST          = plugin/ftp-server/deployment.pri \
 		plugin/ftp-server/ftpserver.cpp \
 		plugin/ftp-server/ftpstorcommand.cpp \
 		plugin/ftp-server/sslserver.cpp \
+		plugin/gl/oglwidget.cpp \
 		plugin/qonsole.cpp \
+		plugin/quazip/JlCompress.cpp \
+		plugin/quazip/qioapi.cpp \
+		plugin/quazip/quaadler32.cpp \
+		plugin/quazip/quacrc32.cpp \
+		plugin/quazip/quagzipfile.cpp \
+		plugin/quazip/quaziodevice.cpp \
+		plugin/quazip/quazip.cpp \
+		plugin/quazip/quazipdir.cpp \
+		plugin/quazip/quazipfile.cpp \
+		plugin/quazip/quazipfileinfo.cpp \
+		plugin/quazip/quazipnewinfo.cpp \
+		plugin/quazip/unzip.c \
+		plugin/quazip/zip.c \
+		plugin/zlib/adler32.c \
+		plugin/zlib/compress.c \
+		plugin/zlib/crc32.c \
+		plugin/zlib/deflate.c \
+		plugin/zlib/gzclose.c \
+		plugin/zlib/gzlib.c \
+		plugin/zlib/gzread.c \
+		plugin/zlib/gzwrite.c \
+		plugin/zlib/infback.c \
+		plugin/zlib/inffast.c \
+		plugin/zlib/inflate.c \
+		plugin/zlib/inftrees.c \
+		plugin/zlib/trees.c \
+		plugin/zlib/uncompr.c \
+		plugin/zlib/zutil.c \
 		qappinfo.cpp \
 		qhlwidget.cpp
 QMAKE_TARGET  = MyIDE
@@ -997,9 +1128,9 @@ distdir: FORCE
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents MyIDE.qrc $(DISTDIR)/
 	$(COPY_FILE) --parents /usr/lib64/qt5/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents CBP2MAKEFILE.h CustomCtrl/mytabbar.h CustomCtrl/mytabwidget.h database.h highlighter.h mainwindow.h mdichild.h plugin/downloadmanager.h plugin/ftp-server/CSslSocket/csslsocket.h plugin/ftp-server/dataconnection.h plugin/ftp-server/debuglogdialog.h plugin/ftp-server/ftpcommand.h plugin/ftp-server/ftpcontrolconnection.h plugin/ftp-server/ftpgui.h plugin/ftp-server/ftplistcommand.h plugin/ftp-server/ftpretrcommand.h plugin/ftp-server/ftpserver.h plugin/ftp-server/ftpstorcommand.h plugin/ftp-server/sslserver.h plugin/qonsole.h qappinfo.h qhlwidget.h $(DISTDIR)/
-	$(COPY_FILE) --parents CustomCtrl/mytabbar.cpp CustomCtrl/mytabwidget.cpp highlighter.cpp main.cpp mainwindow.cpp mdichild.cpp plugin/downloadmanager.cpp plugin/ftp-server/dataconnection.cpp plugin/ftp-server/debuglogdialog.cpp plugin/ftp-server/ftpcommand.cpp plugin/ftp-server/ftpcontrolconnection.cpp plugin/ftp-server/ftpgui.cpp plugin/ftp-server/ftplistcommand.cpp plugin/ftp-server/ftpretrcommand.cpp plugin/ftp-server/ftpserver.cpp plugin/ftp-server/ftpstorcommand.cpp plugin/ftp-server/sslserver.cpp plugin/qonsole.cpp qappinfo.cpp qhlwidget.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents mainwindow.ui plugin/ftp-server/debuglogdialog.ui plugin/ftp-server/ftpgui.ui plugin/qonsole.ui $(DISTDIR)/
+	$(COPY_FILE) --parents CBP2MAKEFILE.h CustomCtrl/mytabbar.h CustomCtrl/mytabwidget.h database.h highlighter.h mainwindow.h mdichild.h plugin/QRCode/QrCode.hpp plugin/dbus/dbushandler.h plugin/downloadmanager.h plugin/email.h plugin/ftp-server/CSslSocket/csslsocket.h plugin/ftp-server/dataconnection.h plugin/ftp-server/debuglogdialog.h plugin/ftp-server/ftpcommand.h plugin/ftp-server/ftpcontrolconnection.h plugin/ftp-server/ftpgui.h plugin/ftp-server/ftplistcommand.h plugin/ftp-server/ftpretrcommand.h plugin/ftp-server/ftpserver.h plugin/ftp-server/ftpstorcommand.h plugin/ftp-server/sslserver.h plugin/gl/oglwidget.h plugin/python/qtpython.h plugin/qonsole.h plugin/quazip/JlCompress.h plugin/quazip/crypt.h plugin/quazip/ioapi.h plugin/quazip/quaadler32.h plugin/quazip/quachecksum32.h plugin/quazip/quacrc32.h plugin/quazip/quagzipfile.h plugin/quazip/quaziodevice.h plugin/quazip/quazip.h plugin/quazip/quazip_global.h plugin/quazip/quazipdir.h plugin/quazip/quazipfile.h plugin/quazip/quazipfileinfo.h plugin/quazip/quazipnewinfo.h plugin/quazip/unzip.h plugin/quazip/zip.h plugin/smtp.h plugin/zlib/crc32.h plugin/zlib/deflate.h plugin/zlib/gzguts.h plugin/zlib/inffast.h plugin/zlib/inffixed.h plugin/zlib/inflate.h plugin/zlib/inftrees.h plugin/zlib/trees.h plugin/zlib/zconf.h plugin/zlib/zlib.h plugin/zlib/zutil.h qappinfo.h qhlwidget.h $(DISTDIR)/
+	$(COPY_FILE) --parents CustomCtrl/mytabbar.cpp CustomCtrl/mytabwidget.cpp highlighter.cpp main.cpp mainwindow.cpp mdichild.cpp plugin/QRCode/QrCode.cpp plugin/downloadmanager.cpp plugin/ftp-server/dataconnection.cpp plugin/ftp-server/debuglogdialog.cpp plugin/ftp-server/ftpcommand.cpp plugin/ftp-server/ftpcontrolconnection.cpp plugin/ftp-server/ftpgui.cpp plugin/ftp-server/ftplistcommand.cpp plugin/ftp-server/ftpretrcommand.cpp plugin/ftp-server/ftpserver.cpp plugin/ftp-server/ftpstorcommand.cpp plugin/ftp-server/sslserver.cpp plugin/gl/oglwidget.cpp plugin/qonsole.cpp plugin/quazip/JlCompress.cpp plugin/quazip/qioapi.cpp plugin/quazip/quaadler32.cpp plugin/quazip/quacrc32.cpp plugin/quazip/quagzipfile.cpp plugin/quazip/quaziodevice.cpp plugin/quazip/quazip.cpp plugin/quazip/quazipdir.cpp plugin/quazip/quazipfile.cpp plugin/quazip/quazipfileinfo.cpp plugin/quazip/quazipnewinfo.cpp plugin/quazip/unzip.c plugin/quazip/zip.c plugin/zlib/adler32.c plugin/zlib/compress.c plugin/zlib/crc32.c plugin/zlib/deflate.c plugin/zlib/gzclose.c plugin/zlib/gzlib.c plugin/zlib/gzread.c plugin/zlib/gzwrite.c plugin/zlib/infback.c plugin/zlib/inffast.c plugin/zlib/inflate.c plugin/zlib/inftrees.c plugin/zlib/trees.c plugin/zlib/uncompr.c plugin/zlib/zutil.c qappinfo.cpp qhlwidget.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents mainwindow.ui plugin/ftp-server/debuglogdialog.ui plugin/ftp-server/ftpgui.ui plugin/python/mainwindow.ui plugin/qonsole.ui $(DISTDIR)/
 
 
 clean: compiler_clean 
@@ -1044,9 +1175,9 @@ compiler_moc_predefs_clean:
 moc_predefs.h: /usr/lib64/qt5/mkspecs/features/data/dummy.cpp
 	g++ -pipe -g -std=gnu++11 -Wall -W -dM -E -o moc_predefs.h /usr/lib64/qt5/mkspecs/features/data/dummy.cpp
 
-compiler_moc_header_make_all: moc_mytabbar.cpp moc_mytabwidget.cpp moc_highlighter.cpp moc_mainwindow.cpp moc_mdichild.cpp moc_downloadmanager.cpp moc_csslsocket.cpp moc_dataconnection.cpp moc_debuglogdialog.cpp moc_ftpcommand.cpp moc_ftpcontrolconnection.cpp moc_ftpgui.cpp moc_ftplistcommand.cpp moc_ftpretrcommand.cpp moc_ftpserver.cpp moc_ftpstorcommand.cpp moc_sslserver.cpp moc_qonsole.cpp moc_qhlwidget.cpp
+compiler_moc_header_make_all: moc_mytabbar.cpp moc_mytabwidget.cpp moc_highlighter.cpp moc_mainwindow.cpp moc_mdichild.cpp moc_dbushandler.cpp moc_downloadmanager.cpp moc_csslsocket.cpp moc_dataconnection.cpp moc_debuglogdialog.cpp moc_ftpcommand.cpp moc_ftpcontrolconnection.cpp moc_ftpgui.cpp moc_ftplistcommand.cpp moc_ftpretrcommand.cpp moc_ftpserver.cpp moc_ftpstorcommand.cpp moc_sslserver.cpp moc_qonsole.cpp moc_quagzipfile.cpp moc_quaziodevice.cpp moc_quazipfile.cpp moc_qhlwidget.cpp
 compiler_moc_header_clean:
-	-$(DEL_FILE) moc_mytabbar.cpp moc_mytabwidget.cpp moc_highlighter.cpp moc_mainwindow.cpp moc_mdichild.cpp moc_downloadmanager.cpp moc_csslsocket.cpp moc_dataconnection.cpp moc_debuglogdialog.cpp moc_ftpcommand.cpp moc_ftpcontrolconnection.cpp moc_ftpgui.cpp moc_ftplistcommand.cpp moc_ftpretrcommand.cpp moc_ftpserver.cpp moc_ftpstorcommand.cpp moc_sslserver.cpp moc_qonsole.cpp moc_qhlwidget.cpp
+	-$(DEL_FILE) moc_mytabbar.cpp moc_mytabwidget.cpp moc_highlighter.cpp moc_mainwindow.cpp moc_mdichild.cpp moc_dbushandler.cpp moc_downloadmanager.cpp moc_csslsocket.cpp moc_dataconnection.cpp moc_debuglogdialog.cpp moc_ftpcommand.cpp moc_ftpcontrolconnection.cpp moc_ftpgui.cpp moc_ftplistcommand.cpp moc_ftpretrcommand.cpp moc_ftpserver.cpp moc_ftpstorcommand.cpp moc_sslserver.cpp moc_qonsole.cpp moc_quagzipfile.cpp moc_quaziodevice.cpp moc_quazipfile.cpp moc_qhlwidget.cpp
 moc_mytabbar.cpp: CustomCtrl/mytabbar.h \
 		moc_predefs.h \
 		/usr/lib64/qt5/bin/moc
@@ -1078,6 +1209,11 @@ moc_mdichild.cpp: mdichild.h \
 		moc_predefs.h \
 		/usr/lib64/qt5/bin/moc
 	/usr/lib64/qt5/bin/moc $(DEFINES) --include /home/netpipe/Desktop/ProIDE/Qt/moc_predefs.h -I/usr/lib64/qt5/mkspecs/linux-g++ -I/home/netpipe/Desktop/ProIDE/Qt -I/usr/include/qt5 -I/usr/include/qt5/QtMultimedia -I/usr/include/qt5/QtWidgets -I/usr/include/qt5/QtGui -I/usr/include/qt5/QtNetwork -I/usr/include/qt5/QtCore -I/usr/include/c++/7 -I/usr/include/c++/7/x86_64-suse-linux -I/usr/include/c++/7/backward -I/usr/lib64/gcc/x86_64-suse-linux/7/include -I/usr/local/include -I/usr/lib64/gcc/x86_64-suse-linux/7/include-fixed -I/usr/x86_64-suse-linux/include -I/usr/include mdichild.h -o moc_mdichild.cpp
+
+moc_dbushandler.cpp: plugin/dbus/dbushandler.h \
+		moc_predefs.h \
+		/usr/lib64/qt5/bin/moc
+	/usr/lib64/qt5/bin/moc $(DEFINES) --include /home/netpipe/Desktop/ProIDE/Qt/moc_predefs.h -I/usr/lib64/qt5/mkspecs/linux-g++ -I/home/netpipe/Desktop/ProIDE/Qt -I/usr/include/qt5 -I/usr/include/qt5/QtMultimedia -I/usr/include/qt5/QtWidgets -I/usr/include/qt5/QtGui -I/usr/include/qt5/QtNetwork -I/usr/include/qt5/QtCore -I/usr/include/c++/7 -I/usr/include/c++/7/x86_64-suse-linux -I/usr/include/c++/7/backward -I/usr/lib64/gcc/x86_64-suse-linux/7/include -I/usr/local/include -I/usr/lib64/gcc/x86_64-suse-linux/7/include-fixed -I/usr/x86_64-suse-linux/include -I/usr/include plugin/dbus/dbushandler.h -o moc_dbushandler.cpp
 
 moc_downloadmanager.cpp: plugin/downloadmanager.h \
 		moc_predefs.h \
@@ -1147,6 +1283,30 @@ moc_qonsole.cpp: plugin/qonsole.h \
 		/usr/lib64/qt5/bin/moc
 	/usr/lib64/qt5/bin/moc $(DEFINES) --include /home/netpipe/Desktop/ProIDE/Qt/moc_predefs.h -I/usr/lib64/qt5/mkspecs/linux-g++ -I/home/netpipe/Desktop/ProIDE/Qt -I/usr/include/qt5 -I/usr/include/qt5/QtMultimedia -I/usr/include/qt5/QtWidgets -I/usr/include/qt5/QtGui -I/usr/include/qt5/QtNetwork -I/usr/include/qt5/QtCore -I/usr/include/c++/7 -I/usr/include/c++/7/x86_64-suse-linux -I/usr/include/c++/7/backward -I/usr/lib64/gcc/x86_64-suse-linux/7/include -I/usr/local/include -I/usr/lib64/gcc/x86_64-suse-linux/7/include-fixed -I/usr/x86_64-suse-linux/include -I/usr/include plugin/qonsole.h -o moc_qonsole.cpp
 
+moc_quagzipfile.cpp: plugin/quazip/quagzipfile.h \
+		plugin/quazip/quazip_global.h \
+		moc_predefs.h \
+		/usr/lib64/qt5/bin/moc
+	/usr/lib64/qt5/bin/moc $(DEFINES) --include /home/netpipe/Desktop/ProIDE/Qt/moc_predefs.h -I/usr/lib64/qt5/mkspecs/linux-g++ -I/home/netpipe/Desktop/ProIDE/Qt -I/usr/include/qt5 -I/usr/include/qt5/QtMultimedia -I/usr/include/qt5/QtWidgets -I/usr/include/qt5/QtGui -I/usr/include/qt5/QtNetwork -I/usr/include/qt5/QtCore -I/usr/include/c++/7 -I/usr/include/c++/7/x86_64-suse-linux -I/usr/include/c++/7/backward -I/usr/lib64/gcc/x86_64-suse-linux/7/include -I/usr/local/include -I/usr/lib64/gcc/x86_64-suse-linux/7/include-fixed -I/usr/x86_64-suse-linux/include -I/usr/include plugin/quazip/quagzipfile.h -o moc_quagzipfile.cpp
+
+moc_quaziodevice.cpp: plugin/quazip/quaziodevice.h \
+		plugin/quazip/quazip_global.h \
+		moc_predefs.h \
+		/usr/lib64/qt5/bin/moc
+	/usr/lib64/qt5/bin/moc $(DEFINES) --include /home/netpipe/Desktop/ProIDE/Qt/moc_predefs.h -I/usr/lib64/qt5/mkspecs/linux-g++ -I/home/netpipe/Desktop/ProIDE/Qt -I/usr/include/qt5 -I/usr/include/qt5/QtMultimedia -I/usr/include/qt5/QtWidgets -I/usr/include/qt5/QtGui -I/usr/include/qt5/QtNetwork -I/usr/include/qt5/QtCore -I/usr/include/c++/7 -I/usr/include/c++/7/x86_64-suse-linux -I/usr/include/c++/7/backward -I/usr/lib64/gcc/x86_64-suse-linux/7/include -I/usr/local/include -I/usr/lib64/gcc/x86_64-suse-linux/7/include-fixed -I/usr/x86_64-suse-linux/include -I/usr/include plugin/quazip/quaziodevice.h -o moc_quaziodevice.cpp
+
+moc_quazipfile.cpp: plugin/quazip/quazipfile.h \
+		plugin/quazip/quazip_global.h \
+		plugin/quazip/quazip.h \
+		plugin/quazip/zip.h \
+		plugin/quazip/ioapi.h \
+		plugin/quazip/unzip.h \
+		plugin/quazip/quazipfileinfo.h \
+		plugin/quazip/quazipnewinfo.h \
+		moc_predefs.h \
+		/usr/lib64/qt5/bin/moc
+	/usr/lib64/qt5/bin/moc $(DEFINES) --include /home/netpipe/Desktop/ProIDE/Qt/moc_predefs.h -I/usr/lib64/qt5/mkspecs/linux-g++ -I/home/netpipe/Desktop/ProIDE/Qt -I/usr/include/qt5 -I/usr/include/qt5/QtMultimedia -I/usr/include/qt5/QtWidgets -I/usr/include/qt5/QtGui -I/usr/include/qt5/QtNetwork -I/usr/include/qt5/QtCore -I/usr/include/c++/7 -I/usr/include/c++/7/x86_64-suse-linux -I/usr/include/c++/7/backward -I/usr/lib64/gcc/x86_64-suse-linux/7/include -I/usr/local/include -I/usr/lib64/gcc/x86_64-suse-linux/7/include-fixed -I/usr/x86_64-suse-linux/include -I/usr/include plugin/quazip/quazipfile.h -o moc_quazipfile.cpp
+
 moc_qhlwidget.cpp: qhlwidget.h \
 		moc_predefs.h \
 		/usr/lib64/qt5/bin/moc
@@ -1156,9 +1316,9 @@ compiler_moc_objc_header_make_all:
 compiler_moc_objc_header_clean:
 compiler_moc_source_make_all:
 compiler_moc_source_clean:
-compiler_uic_make_all: ui_mainwindow.h ui_debuglogdialog.h ui_ftpgui.h ui_qonsole.h
+compiler_uic_make_all: ui_mainwindow.h ui_debuglogdialog.h ui_ftpgui.h ui_mainwindow.h ui_qonsole.h
 compiler_uic_clean:
-	-$(DEL_FILE) ui_mainwindow.h ui_debuglogdialog.h ui_ftpgui.h ui_qonsole.h
+	-$(DEL_FILE) ui_mainwindow.h ui_debuglogdialog.h ui_ftpgui.h ui_mainwindow.h ui_qonsole.h
 ui_mainwindow.h: mainwindow.ui \
 		/usr/lib64/qt5/bin/uic
 	/usr/lib64/qt5/bin/uic mainwindow.ui -o ui_mainwindow.h
@@ -1170,6 +1330,10 @@ ui_debuglogdialog.h: plugin/ftp-server/debuglogdialog.ui \
 ui_ftpgui.h: plugin/ftp-server/ftpgui.ui \
 		/usr/lib64/qt5/bin/uic
 	/usr/lib64/qt5/bin/uic plugin/ftp-server/ftpgui.ui -o ui_ftpgui.h
+
+ui_mainwindow.h: plugin/python/mainwindow.ui \
+		/usr/lib64/qt5/bin/uic
+	/usr/lib64/qt5/bin/uic plugin/python/mainwindow.ui -o ui_mainwindow.h
 
 ui_qonsole.h: plugin/qonsole.ui \
 		/usr/lib64/qt5/bin/uic
@@ -1232,6 +1396,9 @@ mainwindow.o: mainwindow.cpp mainwindow.h \
 mdichild.o: mdichild.cpp mdichild.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mdichild.o mdichild.cpp
 
+QrCode.o: plugin/QRCode/QrCode.cpp plugin/QRCode/QrCode.hpp
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o QrCode.o plugin/QRCode/QrCode.cpp
+
 downloadmanager.o: plugin/downloadmanager.cpp plugin/downloadmanager.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o downloadmanager.o plugin/downloadmanager.cpp
 
@@ -1282,9 +1449,183 @@ ftpstorcommand.o: plugin/ftp-server/ftpstorcommand.cpp plugin/ftp-server/ftpstor
 sslserver.o: plugin/ftp-server/sslserver.cpp plugin/ftp-server/sslserver.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o sslserver.o plugin/ftp-server/sslserver.cpp
 
+oglwidget.o: plugin/gl/oglwidget.cpp plugin/gl/oglwidget.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o oglwidget.o plugin/gl/oglwidget.cpp
+
 qonsole.o: plugin/qonsole.cpp plugin/qonsole.h \
 		ui_qonsole.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o qonsole.o plugin/qonsole.cpp
+
+JlCompress.o: plugin/quazip/JlCompress.cpp plugin/quazip/JlCompress.h \
+		plugin/quazip/quazip.h \
+		plugin/quazip/zip.h \
+		plugin/quazip/ioapi.h \
+		plugin/quazip/unzip.h \
+		plugin/quazip/quazip_global.h \
+		plugin/quazip/quazipfileinfo.h \
+		plugin/quazip/quazipfile.h \
+		plugin/quazip/quazipnewinfo.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o JlCompress.o plugin/quazip/JlCompress.cpp
+
+qioapi.o: plugin/quazip/qioapi.cpp plugin/quazip/ioapi.h \
+		plugin/quazip/quazip_global.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o qioapi.o plugin/quazip/qioapi.cpp
+
+quaadler32.o: plugin/quazip/quaadler32.cpp plugin/quazip/quaadler32.h \
+		plugin/quazip/quachecksum32.h \
+		plugin/quazip/quazip_global.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o quaadler32.o plugin/quazip/quaadler32.cpp
+
+quacrc32.o: plugin/quazip/quacrc32.cpp plugin/quazip/quacrc32.h \
+		plugin/quazip/quachecksum32.h \
+		plugin/quazip/quazip_global.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o quacrc32.o plugin/quazip/quacrc32.cpp
+
+quagzipfile.o: plugin/quazip/quagzipfile.cpp plugin/quazip/quagzipfile.h \
+		plugin/quazip/quazip_global.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o quagzipfile.o plugin/quazip/quagzipfile.cpp
+
+quaziodevice.o: plugin/quazip/quaziodevice.cpp plugin/quazip/quaziodevice.h \
+		plugin/quazip/quazip_global.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o quaziodevice.o plugin/quazip/quaziodevice.cpp
+
+quazip.o: plugin/quazip/quazip.cpp plugin/quazip/quazip.h \
+		plugin/quazip/zip.h \
+		plugin/quazip/ioapi.h \
+		plugin/quazip/unzip.h \
+		plugin/quazip/quazip_global.h \
+		plugin/quazip/quazipfileinfo.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o quazip.o plugin/quazip/quazip.cpp
+
+quazipdir.o: plugin/quazip/quazipdir.cpp plugin/quazip/quazipdir.h \
+		plugin/quazip/quazip.h \
+		plugin/quazip/zip.h \
+		plugin/quazip/ioapi.h \
+		plugin/quazip/unzip.h \
+		plugin/quazip/quazip_global.h \
+		plugin/quazip/quazipfileinfo.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o quazipdir.o plugin/quazip/quazipdir.cpp
+
+quazipfile.o: plugin/quazip/quazipfile.cpp plugin/quazip/quazipfile.h \
+		plugin/quazip/quazip_global.h \
+		plugin/quazip/quazip.h \
+		plugin/quazip/zip.h \
+		plugin/quazip/ioapi.h \
+		plugin/quazip/unzip.h \
+		plugin/quazip/quazipfileinfo.h \
+		plugin/quazip/quazipnewinfo.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o quazipfile.o plugin/quazip/quazipfile.cpp
+
+quazipfileinfo.o: plugin/quazip/quazipfileinfo.cpp plugin/quazip/quazipfileinfo.h \
+		plugin/quazip/quazip_global.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o quazipfileinfo.o plugin/quazip/quazipfileinfo.cpp
+
+quazipnewinfo.o: plugin/quazip/quazipnewinfo.cpp plugin/quazip/quazipnewinfo.h \
+		plugin/quazip/quazip_global.h \
+		plugin/quazip/quazipfileinfo.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o quazipnewinfo.o plugin/quazip/quazipnewinfo.cpp
+
+unzip.o: plugin/quazip/unzip.c plugin/quazip/unzip.h \
+		plugin/quazip/ioapi.h \
+		plugin/quazip/crypt.h \
+		plugin/quazip/quazip_global.h
+	$(CC) -c $(CFLAGS) $(INCPATH) -o unzip.o plugin/quazip/unzip.c
+
+zip.o: plugin/quazip/zip.c plugin/quazip/zip.h \
+		plugin/quazip/ioapi.h \
+		plugin/quazip/crypt.h \
+		plugin/quazip/quazip_global.h
+	$(CC) -c $(CFLAGS) $(INCPATH) -o zip.o plugin/quazip/zip.c
+
+adler32.o: plugin/zlib/adler32.c plugin/zlib/zutil.h \
+		plugin/zlib/zlib.h \
+		plugin/zlib/zconf.h
+	$(CC) -c $(CFLAGS) $(INCPATH) -o adler32.o plugin/zlib/adler32.c
+
+compress.o: plugin/zlib/compress.c plugin/zlib/zlib.h \
+		plugin/zlib/zconf.h
+	$(CC) -c $(CFLAGS) $(INCPATH) -o compress.o plugin/zlib/compress.c
+
+crc32.o: plugin/zlib/crc32.c plugin/zlib/zutil.h \
+		plugin/zlib/zlib.h \
+		plugin/zlib/zconf.h \
+		plugin/zlib/crc32.h
+	$(CC) -c $(CFLAGS) $(INCPATH) -o crc32.o plugin/zlib/crc32.c
+
+deflate.o: plugin/zlib/deflate.c plugin/zlib/deflate.h \
+		plugin/zlib/zutil.h \
+		plugin/zlib/zlib.h \
+		plugin/zlib/zconf.h
+	$(CC) -c $(CFLAGS) $(INCPATH) -o deflate.o plugin/zlib/deflate.c
+
+gzclose.o: plugin/zlib/gzclose.c plugin/zlib/gzguts.h \
+		plugin/zlib/zlib.h \
+		plugin/zlib/zconf.h
+	$(CC) -c $(CFLAGS) $(INCPATH) -o gzclose.o plugin/zlib/gzclose.c
+
+gzlib.o: plugin/zlib/gzlib.c plugin/zlib/gzguts.h \
+		plugin/zlib/zlib.h \
+		plugin/zlib/zconf.h
+	$(CC) -c $(CFLAGS) $(INCPATH) -o gzlib.o plugin/zlib/gzlib.c
+
+gzread.o: plugin/zlib/gzread.c plugin/zlib/gzguts.h \
+		plugin/zlib/zlib.h \
+		plugin/zlib/zconf.h
+	$(CC) -c $(CFLAGS) $(INCPATH) -o gzread.o plugin/zlib/gzread.c
+
+gzwrite.o: plugin/zlib/gzwrite.c plugin/zlib/gzguts.h \
+		plugin/zlib/zlib.h \
+		plugin/zlib/zconf.h
+	$(CC) -c $(CFLAGS) $(INCPATH) -o gzwrite.o plugin/zlib/gzwrite.c
+
+infback.o: plugin/zlib/infback.c plugin/zlib/zutil.h \
+		plugin/zlib/zlib.h \
+		plugin/zlib/zconf.h \
+		plugin/zlib/inftrees.h \
+		plugin/zlib/inflate.h \
+		plugin/zlib/inffast.h \
+		plugin/zlib/inffixed.h
+	$(CC) -c $(CFLAGS) $(INCPATH) -o infback.o plugin/zlib/infback.c
+
+inffast.o: plugin/zlib/inffast.c plugin/zlib/zutil.h \
+		plugin/zlib/zlib.h \
+		plugin/zlib/zconf.h \
+		plugin/zlib/inftrees.h \
+		plugin/zlib/inflate.h \
+		plugin/zlib/inffast.h
+	$(CC) -c $(CFLAGS) $(INCPATH) -o inffast.o plugin/zlib/inffast.c
+
+inflate.o: plugin/zlib/inflate.c plugin/zlib/zutil.h \
+		plugin/zlib/zlib.h \
+		plugin/zlib/zconf.h \
+		plugin/zlib/inftrees.h \
+		plugin/zlib/inflate.h \
+		plugin/zlib/inffast.h \
+		plugin/zlib/inffixed.h
+	$(CC) -c $(CFLAGS) $(INCPATH) -o inflate.o plugin/zlib/inflate.c
+
+inftrees.o: plugin/zlib/inftrees.c plugin/zlib/zutil.h \
+		plugin/zlib/zlib.h \
+		plugin/zlib/zconf.h \
+		plugin/zlib/inftrees.h
+	$(CC) -c $(CFLAGS) $(INCPATH) -o inftrees.o plugin/zlib/inftrees.c
+
+trees.o: plugin/zlib/trees.c plugin/zlib/deflate.h \
+		plugin/zlib/zutil.h \
+		plugin/zlib/zlib.h \
+		plugin/zlib/zconf.h \
+		plugin/zlib/trees.h
+	$(CC) -c $(CFLAGS) $(INCPATH) -o trees.o plugin/zlib/trees.c
+
+uncompr.o: plugin/zlib/uncompr.c plugin/zlib/zlib.h \
+		plugin/zlib/zconf.h
+	$(CC) -c $(CFLAGS) $(INCPATH) -o uncompr.o plugin/zlib/uncompr.c
+
+zutil.o: plugin/zlib/zutil.c plugin/zlib/zutil.h \
+		plugin/zlib/zlib.h \
+		plugin/zlib/zconf.h \
+		plugin/zlib/gzguts.h
+	$(CC) -c $(CFLAGS) $(INCPATH) -o zutil.o plugin/zlib/zutil.c
 
 qappinfo.o: qappinfo.cpp qappinfo.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o qappinfo.o qappinfo.cpp
@@ -1316,6 +1657,9 @@ moc_mainwindow.o: moc_mainwindow.cpp
 
 moc_mdichild.o: moc_mdichild.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_mdichild.o moc_mdichild.cpp
+
+moc_dbushandler.o: moc_dbushandler.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_dbushandler.o moc_dbushandler.cpp
 
 moc_downloadmanager.o: moc_downloadmanager.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_downloadmanager.o moc_downloadmanager.cpp
@@ -1355,6 +1699,15 @@ moc_sslserver.o: moc_sslserver.cpp
 
 moc_qonsole.o: moc_qonsole.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_qonsole.o moc_qonsole.cpp
+
+moc_quagzipfile.o: moc_quagzipfile.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_quagzipfile.o moc_quagzipfile.cpp
+
+moc_quaziodevice.o: moc_quaziodevice.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_quaziodevice.o moc_quaziodevice.cpp
+
+moc_quazipfile.o: moc_quazipfile.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_quazipfile.o moc_quazipfile.cpp
 
 moc_qhlwidget.o: moc_qhlwidget.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_qhlwidget.o moc_qhlwidget.cpp

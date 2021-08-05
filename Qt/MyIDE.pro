@@ -24,6 +24,7 @@ SOURCES += \
     main.cpp \
     mainwindow.cpp \
     mdichild.cpp \
+    plugin/QRCode/QrCode.cpp \
     plugin/downloadmanager.cpp \
     plugin/ftp-server/dataconnection.cpp \
     plugin/ftp-server/debuglogdialog.cpp \
@@ -35,7 +36,36 @@ SOURCES += \
     plugin/ftp-server/ftpserver.cpp \
     plugin/ftp-server/ftpstorcommand.cpp \
     plugin/ftp-server/sslserver.cpp \
+    plugin/gl/oglwidget.cpp \
     plugin/qonsole.cpp \
+    plugin/quazip/JlCompress.cpp \
+    plugin/quazip/qioapi.cpp \
+    plugin/quazip/quaadler32.cpp \
+    plugin/quazip/quacrc32.cpp \
+    plugin/quazip/quagzipfile.cpp \
+    plugin/quazip/quaziodevice.cpp \
+    plugin/quazip/quazip.cpp \
+    plugin/quazip/quazipdir.cpp \
+    plugin/quazip/quazipfile.cpp \
+    plugin/quazip/quazipfileinfo.cpp \
+    plugin/quazip/quazipnewinfo.cpp \
+    plugin/quazip/unzip.c \
+    plugin/quazip/zip.c \
+    plugin/zlib/adler32.c \
+    plugin/zlib/compress.c \
+    plugin/zlib/crc32.c \
+    plugin/zlib/deflate.c \
+    plugin/zlib/gzclose.c \
+    plugin/zlib/gzlib.c \
+    plugin/zlib/gzread.c \
+    plugin/zlib/gzwrite.c \
+    plugin/zlib/infback.c \
+    plugin/zlib/inffast.c \
+    plugin/zlib/inflate.c \
+    plugin/zlib/inftrees.c \
+    plugin/zlib/trees.c \
+    plugin/zlib/uncompr.c \
+    plugin/zlib/zutil.c \
     qappinfo.cpp \
     qhlwidget.cpp
 
@@ -47,7 +77,10 @@ HEADERS += \
     highlighter.h \
     mainwindow.h \
     mdichild.h \
+    plugin/QRCode/QrCode.hpp \
+    plugin/dbus/dbushandler.h \
     plugin/downloadmanager.h \
+    plugin/email.h \
     plugin/ftp-server/CSslSocket/csslsocket.h \
     plugin/ftp-server/dataconnection.h \
     plugin/ftp-server/debuglogdialog.h \
@@ -59,7 +92,37 @@ HEADERS += \
     plugin/ftp-server/ftpserver.h \
     plugin/ftp-server/ftpstorcommand.h \
     plugin/ftp-server/sslserver.h \
+    plugin/gl/oglwidget.h \
+    plugin/python/qtpython.h \
     plugin/qonsole.h \
+    plugin/quazip/JlCompress.h \
+    plugin/quazip/crypt.h \
+    plugin/quazip/ioapi.h \
+    plugin/quazip/quaadler32.h \
+    plugin/quazip/quachecksum32.h \
+    plugin/quazip/quacrc32.h \
+    plugin/quazip/quagzipfile.h \
+    plugin/quazip/quaziodevice.h \
+    plugin/quazip/quazip.h \
+    plugin/quazip/quazip_global.h \
+    plugin/quazip/quazipdir.h \
+    plugin/quazip/quazipfile.h \
+    plugin/quazip/quazipfileinfo.h \
+    plugin/quazip/quazipnewinfo.h \
+    plugin/quazip/unzip.h \
+    plugin/quazip/zip.h \
+    plugin/smtp.h \
+    plugin/zlib/crc32.h \
+    plugin/zlib/deflate.h \
+    plugin/zlib/gzguts.h \
+    plugin/zlib/inffast.h \
+    plugin/zlib/inffixed.h \
+    plugin/zlib/inflate.h \
+    plugin/zlib/inftrees.h \
+    plugin/zlib/trees.h \
+    plugin/zlib/zconf.h \
+    plugin/zlib/zlib.h \
+    plugin/zlib/zutil.h \
     qappinfo.h \
     qhlwidget.h
 
@@ -67,6 +130,7 @@ FORMS += \
     mainwindow.ui \
     plugin/ftp-server/debuglogdialog.ui \
     plugin/ftp-server/ftpgui.ui \
+    plugin/python/mainwindow.ui \
     plugin/qonsole.ui
 
 # Default rules for deployment.
