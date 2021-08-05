@@ -14,7 +14,7 @@ EQ            = =
 
 CC            = gcc
 CXX           = g++
-DEFINES       = -DQT_DEPRECATED_WARNINGS -Dplugins -DQT_QML_DEBUG -DQT_MULTIMEDIA_LIB -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB
+DEFINES       = -DQT_DEPRECATED_WARNINGS -Dplugins -DENCRYPTION2 -DQT_QML_DEBUG -DQT_MULTIMEDIA_LIB -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB
 CFLAGS        = -pipe -g -Wall -W -D_REENTRANT -fPIC $(DEFINES)
 CXXFLAGS      = -pipe -g -std=gnu++11 -Wall -W -D_REENTRANT -fPIC $(DEFINES)
 INCPATH       = -I. -isystem /usr/include/qt5 -isystem /usr/include/qt5/QtMultimedia -isystem /usr/include/qt5/QtWidgets -isystem /usr/include/qt5/QtGui -isystem /usr/include/qt5/QtNetwork -isystem /usr/include/qt5/QtCore -I. -I. -I/usr/lib64/qt5/mkspecs/linux-g++
@@ -1068,6 +1068,8 @@ moc_mainwindow.cpp: mainwindow.h \
 		highlighter.h \
 		plugin/qonsole.h \
 		ui_qonsole.h \
+		plugin/downloadmanager.h \
+		plugin/dbus/dbushandler.h \
 		moc_predefs.h \
 		/usr/lib64/qt5/bin/moc
 	/usr/lib64/qt5/bin/moc $(DEFINES) --include /home/netpipe/Desktop/ProIDE/Qt/moc_predefs.h -I/usr/lib64/qt5/mkspecs/linux-g++ -I/home/netpipe/Desktop/ProIDE/Qt -I/usr/include/qt5 -I/usr/include/qt5/QtMultimedia -I/usr/include/qt5/QtWidgets -I/usr/include/qt5/QtGui -I/usr/include/qt5/QtNetwork -I/usr/include/qt5/QtCore -I/usr/include/c++/7 -I/usr/include/c++/7/x86_64-suse-linux -I/usr/include/c++/7/backward -I/usr/lib64/gcc/x86_64-suse-linux/7/include -I/usr/local/include -I/usr/lib64/gcc/x86_64-suse-linux/7/include-fixed -I/usr/x86_64-suse-linux/include -I/usr/include mainwindow.h -o moc_mainwindow.cpp
@@ -1198,7 +1200,9 @@ main.o: main.cpp mainwindow.h \
 		qhlwidget.h \
 		highlighter.h \
 		plugin/qonsole.h \
-		ui_qonsole.h
+		ui_qonsole.h \
+		plugin/downloadmanager.h \
+		plugin/dbus/dbushandler.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o main.cpp
 
 mainwindow.o: mainwindow.cpp mainwindow.h \
@@ -1207,11 +1211,22 @@ mainwindow.o: mainwindow.cpp mainwindow.h \
 		highlighter.h \
 		plugin/qonsole.h \
 		ui_qonsole.h \
+		plugin/downloadmanager.h \
+		plugin/dbus/dbushandler.h \
 		qappinfo.h \
 		CBP2MAKEFILE.h \
 		ui_mainwindow.h \
 		plugin/ftp-server/ftpgui.h \
-		plugin/ftp-server/CSslSocket/csslsocket.h
+		plugin/ftp-server/CSslSocket/csslsocket.h \
+		plugin/quazip/quazip.h \
+		plugin/quazip/zip.h \
+		plugin/quazip/ioapi.h \
+		plugin/quazip/unzip.h \
+		plugin/quazip/quazip_global.h \
+		plugin/quazip/quazipfileinfo.h \
+		plugin/quazip/quazipfile.h \
+		plugin/quazip/quazipnewinfo.h \
+		plugin/quazip/JlCompress.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mainwindow.o mainwindow.cpp
 
 mdichild.o: mdichild.cpp mdichild.h
@@ -1279,7 +1294,9 @@ qhlwidget.o: qhlwidget.cpp qhlwidget.h \
 		mdichild.h \
 		highlighter.h \
 		plugin/qonsole.h \
-		ui_qonsole.h
+		ui_qonsole.h \
+		plugin/downloadmanager.h \
+		plugin/dbus/dbushandler.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o qhlwidget.o qhlwidget.cpp
 
 qrc_MyIDE.o: qrc_MyIDE.cpp 

@@ -14,6 +14,23 @@
 #include "plugin/qonsole.h"
 #include "ui_qonsole.h"
 
+#include <QtSql/QSqlDatabase>
+#include <QtSql/QSqlQuery>
+#include <QtSql/QSqlError>
+#ifdef SOUND
+#include <QMediaPlayer>
+#endif
+//#include "src/encryption/rsa/Rsa.h"
+#include <QEvent>
+#include <QThread>
+#include <QDebug>
+#include <QCryptographicHash>
+#include <QGraphicsView>
+#include <QTabWidget>
+#include "plugin/downloadmanager.h"
+#include "plugin/dbus/dbushandler.h"
+
+
 QT_BEGIN_NAMESPACE
 class QAction;
 class QActionGroup;
@@ -31,6 +48,49 @@ class MainWindow;
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
+
+
+    int adminftp=0;
+
+
+#ifdef ENCRYPTION2
+        //encryption
+        QString encryptxor(QString test,QString key);
+        QString decryptxor(QString string,QString key);
+
+        QByteArray md5Checksum(QString stuff);
+        QByteArray fileChecksum(const QString &fileName,QCryptographicHash::Algorithm hashAlgorithm);
+        QString rot13( const QString & input );
+
+        QString simplecrypt(QString string,QString key,QCryptographicHash::Algorithm hash);
+        QString simpledecrypt(QString string,QString key,QCryptographicHash::Algorithm hash);
+
+    #ifdef ENCRYPTION
+        Rsa *rsaTester;
+        BigInt m_e, m_n;
+        QString aesKey;
+
+    #endif
+
+        QString encdec(QString ,int );
+        QString encdec2(QString ,int );
+        #ifdef ENCRYPTION
+        QString rsaenc(QString input, Rsa *rsa = NULL);
+        QString rsadec(QString input, Rsa *rsa);
+        #endif
+        QByteArray aesenc(QString input,QString,QString);
+        QString aesdec(QByteArray input,QString,QString);
+
+        QByteArray EncryptMsg(QString plainMsg,QString aeskey1,QString aeskey2);
+        #ifdef ENCRYPTION
+        QString DecryptMsg(QByteArray encryptedMsg, Rsa *rsa,QString aeskey1,QString aeskey2);
+    #endif
+        void GenerateQRCode(QString data,QGraphicsView *view);
+    //    void EAN13(QString productname,QString country,QString ean,QGraphicsView *graphicsView);
+        QString decodeqr(QString image);
+#endif
+
+
 
 public:
     explicit MainWindow(QWidget *parent = nullptr);
@@ -129,6 +189,10 @@ private:
     QStringList     styleNameList;
 
     int             splitterValue;
+
+    void unCompress(QString filename , QString ofilename);
+    void Compress(QString filename , QString ofilename);
+
 private:
     Ui::MainWindow *ui;
     QSystemTrayIcon *trayIcon;

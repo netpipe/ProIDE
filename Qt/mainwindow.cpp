@@ -22,6 +22,12 @@
 #endif
 
 
+#include "plugin/quazip/quazip.h"
+#include "plugin/quazip/quazipfile.h"
+#include "plugin/quazip/JlCompress.h"
+//#include <QProcess>
+#include <QDirIterator>
+
 
 QString mediadir = "./Resource/";
 
@@ -116,6 +122,33 @@ MainWindow::MainWindow(QWidget *parent) :
     //QSound::play( mediadir + "phone.wav");
 
   //  CBP2MAKE("./test.cbp");
+}
+
+void MainWindow::Compress(QString saveFile , QString ofilename)
+{
+#ifdef QUAZIP
+    //QString saveFile = QFileDialog::getSaveFileName(this, "Select file to save","", "Zip File(*.zip)");
+    QStringList list;
+    if(JlCompress::compressFiles(saveFile, list)){    }
+#endif
+}
+
+void MainWindow::unCompress(QString zipFile , QString outdir)
+{
+#ifdef QUAZIP
+    if(zipFile == "")
+        return;
+
+   // QString dir = QFileDialog::getExistingDirectory(this, tr("Open Directory"),
+                                       //               "",
+                                          //            QFileDialog::ShowDirsOnly
+                                          //            | QFileDialog::DontResolveSymlinks);
+    if(outdir == "")
+        return;
+
+    QStringList list = JlCompress::getFileList(zipFile);
+    JlCompress::extractFiles(zipFile, list, outdir);
+#endif
 }
 
 MainWindow::~MainWindow()

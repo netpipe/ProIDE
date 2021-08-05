@@ -170,7 +170,7 @@ accessManager->put(request, byte_file);
 
 
 }
-#endif
+
 
 void DownloadManager::Download(QString URL){
     // QUrl url{"https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png"};
@@ -191,3 +191,4 @@ void DownloadManager::Download(QString URL){
     //    manager.replaceFile("./new.exe","./S.exe");
 #endif
 }
+#endif
