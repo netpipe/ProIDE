@@ -1,0 +1,106 @@
+#!/bin/sh
+# MAKE ME EXECUTABLE !!!
+#
+# root@Hogwarts:/home/sacrine/TEST# chmod +x anti-ptrace
+# root@Hogwarts:/home/sacrine/TEST# ./anti-ptrace
+#  [+] making anti-ptrace.c: OK
+#  [+] compiling the script: OK
+#  [+] loading the module  : OK
+#
+#
+# This is a modified version, if you have a module loaded without this line
+# please /sbin/rmmod (previous anti-ptrace) and load this one
+# Thanks to Alejandro Gramajo for mailing me,
+# because I forgot 1 argument (eg: int action) and didn't tested it enough
+# to spot this stupid error.
+#
+
+
+echo -n " [+] making anti-ptrace.c: " 
+cat > anti-ptrace.c <<NETRIC
+
+/*
+ * Noodoplossing voor de ptrace race vuln
+ * anti-ptrace.c by sacrine
+ * netric.org
+ */
+
+#define __KERNEL__
+#define MODULE
+#define LINUX
+
+#include <linux/module.h>
+#include <linux/kernel.h>
+#include <linux/types.h>
+#include <linux/version.h>
+#include <linux/slab.h>
+#include <linux/sched.h>
+#include <linux/fs.h>
+#include <linux/ctype.h>
+#include <linux/tty.h>
+#include <sys/syscall.h>
+
+#include <linux/ptrace.h>
+
+#if LINUX_VERSION_CODE >= KERNEL_VERSION(2,4,9)
+#ifdef MODULE_LICENSE
+MODULE_LICENSE("GPL");
+#endif
+#endif
+
+long (*o_ptrace) ( int action, 
+                   pid_t pid , 
+                   void *addr, 
+                   void *data );
+
+extern struct task_struct *current;
+extern void* sys_call_table[];
+
+long anti_ptrace (int action, 
+                  pid_t pid , 
+                  void *addr, 
+                  void *data )
+{
+   uid_t o_uid;
+
+   if(current->uid == 0)
+   {
+	return (o_ptrace(action, pid, addr, data));
+   }
+   printk("warning: ptrace(); violation <=> pid=[%i] uid=[%i]\n"
+	  ,current->pid
+	  ,current->uid);
+   
+   console_print("warning: non-root users are not allowed to use ptrace();\n");
+   return EPERM;
+}
+
+int init_module(void)
+{
+   o_ptrace=sys_call_table[SYS_ptrace];
+   sys_call_table[SYS_ptrace] = anti_ptrace;
+   
+   printk("anti-ptrace kernel module loaded with pid=[%i]\n",
+	  current->pid);
+   
+   return(0);
+}
+
+void cleanup_module(void)
+{
+   sys_call_table[SYS_ptrace] = o_ptrace;
+   printk("anti-ptrace kernel module ended with pid=[%i]\n",
+	  current->pid);
+}
+
+NETRIC
+echo "OK";
+echo -n " [+] compiling the script: ";
+gcc -c anti-ptrace.c -I/lib/modules/$(uname -r)/build/include
+echo "OK";
+echo -n " [+] loading the module  : ";
+/sbin/insmod anti-ptrace.o
+echo "OK";
+
+# sacrine [Netric Security]
+
