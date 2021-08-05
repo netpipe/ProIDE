@@ -85,7 +85,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     connect(trayIcon, SIGNAL(activated(QSystemTrayIcon::ActivationReason)), this, SLOT(iconActivated(QSystemTrayIcon::ActivationReason)));
 
- QSound::play( mediadir + "phone.wav");
+    //QSound::play( mediadir + "phone.wav");
 
   //  CBP2MAKE("./test.cbp");
 }
