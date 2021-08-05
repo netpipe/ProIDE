@@ -10,7 +10,7 @@
 #include <QMenu>
 #include <QSystemTrayIcon>
 
-//#define plugins
+#define plugins
 #include "plugin/qonsole.h"
 #include "ui_qonsole.h"
 
@@ -133,6 +133,7 @@ private:
     Ui::MainWindow *ui;
     QSystemTrayIcon *trayIcon;
     QMenu *trayIconMenu;
+        Qonsole e;
 };
 
 #endif

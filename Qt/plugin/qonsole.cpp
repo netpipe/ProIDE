@@ -1,4 +1,4 @@
-#ifdef plugins
+//#ifdef plugins
 #include "qonsole.h"
 #include "ui_qonsole.h"
 
@@ -17,8 +17,8 @@ Qonsole::Qonsole(QWidget *parent) :
     m_process->setReadChannelMode(QProcess::MergedChannels);
     connect(m_process, SIGNAL(readyReadStandardOutput()), this, SLOT(showOutput()));
 
-    QString program = "myscript.sh";
-    m_process->start("/bin/sh", QStringList() << program, QIODevice::ReadWrite);
+ //   QString program = "myscript.sh";
+ //   m_process->start("/bin/sh", QStringList() << program, QIODevice::ReadWrite);
 }
 
 Qonsole::~Qonsole()
@@ -75,4 +75,4 @@ bool Qonsole::eventFilter(QObject *watched, QEvent *event)
 }
 
 
-#endif
+//#endif

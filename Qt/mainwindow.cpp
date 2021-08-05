@@ -22,8 +22,7 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
-//    Qonsole e;
-//    e.show();
+
 
     splitterValue = 0;
 
@@ -84,6 +83,10 @@ MainWindow::MainWindow(QWidget *parent) :
 
 
     connect(trayIcon, SIGNAL(activated(QSystemTrayIcon::ActivationReason)), this, SLOT(iconActivated(QSystemTrayIcon::ActivationReason)));
+
+
+
+    e.show();
 
     //QSound::play( mediadir + "phone.wav");
 
