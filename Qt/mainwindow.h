@@ -35,6 +35,8 @@ public:
     QTextEdit * getActiveTextEdit();
 
     static MainWindow * instance();
+    bool eventFilter(QObject *obj, QEvent *event);
+
 
 protected:
     void        closeEvent(QCloseEvent *event) override;

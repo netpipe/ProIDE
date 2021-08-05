@@ -48,6 +48,12 @@
           <layout class="QGridLayout" name="gridLayout_4">
            <item row="0" column="0">
             <widget class="QStackedWidget" name="stackedWidget">
+             <property name="autoFillBackground">
+              <bool>false</bool>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">background-image: url(:/Resource/save.png);</string>
+             </property>
              <property name="currentIndex">
               <number>1</number>
              </property>

@@ -50,6 +50,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     gMainWindow = this;
 
+    mdiArea->viewport()->installEventFilter(this);
 
 
   //  CBP2MAKE("./test.cbp");
@@ -63,6 +64,28 @@ MainWindow::~MainWindow()
 MainWindow * MainWindow::instance()
 {
     return gMainWindow;
+}
+
+bool MainWindow::eventFilter(QObject *obj, QEvent *event)
+ { //https://www.qtcentre.org/threads/15713-Displaying-text-on-a-MDI-area-background
+//     if (obj == mdiArea->viewport()) {
+//         if (event->type() == QEvent::Paint) {
+//             //loggerSingleton::Instance()->addDebugString("Found paint event for mdiArea...",0);
+//            // this->updateMessagesAndLogs();
+//             //QPaintEvent *paintEvent = static_cast<QPaintEvent*>(event);
+//             QPainter painter(mdiArea);
+//             painter.setPen(Qt::blue);
+//             painter.setFont(QFont("Arial", 30));
+//             painter.drawText(10,10,"Test 123...");
+
+//             QRectF rectangle(10.0, 20.0, 80.0, 60.0);
+//             int startAngle = 30 * 16;
+//             int spanAngle = 120 * 16;
+//             painter.drawPie(rectangle, startAngle, spanAngle);
+//             painter.end();
+//             return true;
+//        }
+//    }
 }
 
 void MainWindow::closeEvent(QCloseEvent *event)
