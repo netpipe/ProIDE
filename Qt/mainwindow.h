@@ -59,6 +59,8 @@ private slots:
     void        fileListWidgetItemClicked(QListWidgetItem * item);
     MdiChild *  createMdiChild();
 
+    void on_actioncompile_triggered();
+
 private:
     enum { MaxRecentFiles = 5 };
 

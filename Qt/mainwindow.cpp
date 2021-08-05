@@ -12,7 +12,6 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
-  //  ui->stackedWidget=stackedWidget2;
     splitterValue = 0;
 
     mdiArea=new QMdiArea;
@@ -27,6 +26,9 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->stackedWidget = new QStackedWidget(this);
     ui->stackedWidget->addWidget(mdiArea);
     ui->stackedWidget->addWidget(splitter);
+
+ //   ui->stackedWidget->setCurrentIndex(1);
+   // ui->tab_3->focusWidget(ui->stackedWidget);
     setCentralWidget(ui->stackedWidget);
 
     getStyleList();
@@ -718,4 +720,10 @@ void MainWindow::switchSplitter(int type)
 
         ui->stackedWidget->setCurrentWidget(mdiArea);
     }
+}
+
+void MainWindow::on_actioncompile_triggered()
+{
+    QString builddir="./test";
+    system("make -f "+builddir.toLatin1()+"makefile");
 }
