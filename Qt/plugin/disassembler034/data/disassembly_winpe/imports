@@ -1,0 +1,2 @@
+user32.dll	TranslateMessage	bool	MSG	*lpMsg
+user32.dll	WaitMessage		bool

@@ -1,0 +1,3 @@
+	.././src/disassembler.cc \
+	.././src/MainWindow_glade.cc \
+	.././src/MainWindow.cc

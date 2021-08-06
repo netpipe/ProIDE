@@ -1,0 +1,105 @@
+dnl Process this file with autoconf to produce a configure script.
+
+DISASSEMBLER_MAJOR_VERSION=0
+DISASSEMBLER_MINOR_VERSION=3
+DISASSEMBLER_MICRO_VERSION=4
+
+DISASSEMBLER_VERSION=$DISASSEMBLER_MAJOR_VERSION.$DISASSEMBLER_MINOR_VERSION.$DISASSEMBLER_MICRO_VERSION
+DISASSEMBLER_RELEASE=$DISASSEMBLER_MAJOR_VERSION.$DISASSEMBLER_MINOR_VERSION
+
+#
+# +1 : ? : +1  == new interface that does not break old one
+# +1 : ? : 0   == new interface that breaks old one
+#  ? : ? : 0   == no new interfaces, but breaks apps
+#  ? :+1 : ?   == just some internal changes, nothing breaks but might work
+#                 better
+# CURRENT : REVISION : AGE
+LIBDISASSEMBLER_SO_VERSION=0:0:1
+AC_SUBST(LIBDISASSEMBLER_SO_VERSION)
+
+VERSION=$DISASSEMBLER_VERSION   
+
+AC_PREREQ(2.52)
+AC_INIT(disassembler_for_linux, 0.3.4)
+AM_INIT_AUTOMAKE(AC_PACKAGE_NAME, AC_PACKAGE_VERSION)
+
+AM_MAINTAINER_MODE
+AM_CONFIG_HEADER(config.h)
+
+AC_PROG_CC
+AC_PROG_CXX
+AC_LANG_CPLUSPLUS
+dnl AC_PROG_INTLTOOL
+
+AC_DISABLE_STATIC
+AC_PROG_LIBTOOL
+
+dnl Languages which your application supports
+ALL_LINGUAS=""
+
+dnl get-text stuff
+GETTEXT_PACKAGE='Disassembler for linux'
+AC_SUBST(GETTEXT_PACKAGE)
+AC_DEFINE_UNQUOTED(GETTEXT_PACKAGE, "$GETTEXT_PACKAGE", [package name for gettext usage])
+dnl AM_GLIB_GNU_GETTEXT
+
+#########################################################################
+#  Dependency checks
+#########################################################################
+
+dnl ----------------------
+dnl See if gtk is installed 
+dnl ----------------------
+
+
+PKG_CHECK_MODULES(GTK, \
+		gtkmm-2.4 libgnomeuimm-2.6 libgnomecanvasmm-2.6 libglademm-2.4 gconfmm-2.6,
+		have_gtk=yes,have_gtk=no)
+
+GUI_GTK=""
+
+AC_ARG_ENABLE(gui, [AC_HELP_STRING([--enable-gui],
+                                        [build the gui [default=yes]])],,
+                        [enable_gui=yes])
+
+if test x"$enable_gui" = xyes; then
+	if test x"$have_gtk" = xyes; then
+		GUI_GTK="-DHAVE_GTK"
+		AC_SUBST(GUI_GTK)
+		AC_SUBST(GTK_CFLAGS)
+		AC_SUBST(GTK_LIBS)
+	fi 
+fi	
+
+
+if test "x$enable_examples" = "xyes"; then
+  EXAMPLE_SUBDIR="examples"
+else
+  EXAMPLE_SUBDIR=""
+fi
+
+AC_SUBST(EXAMPLE_SUBDIR)
+
+
+dnl Build makefiles
+AC_OUTPUT([
+	Makefile
+	po/Makefile.in
+	src/Makefile
+	src/libdis/Makefile
+	src/liblog/Makefile
+	src/libmem/Makefile
+	src/libutil/Makefile
+	src/prep/Makefile
+])
+
+dnl Installation info
+echo "
+Configuration:
+	Package name :		${PACKAGE}
+	Package version :	${VERSION}
+	Install path :		${prefix}
+	Gui enabled:		${enable_gui}
+	Gtk found:		${have_gtk}
+	Gtk enabled:		${GUI_GTK}
+"

@@ -1,0 +1,32 @@
+documentation
+	with doxygen? : describe classes so that other people can add disassembly routines
+
+uninstall scenario in Makefile
+recognizing whether gtk libraries are installed or not in Makefile
+	(if not, build guiless version only)
+
+recognize exports
+
+recognize other windows executable formats
+recognize other executable formats
+
+options dialog
+	hexa / decimal offsets
+	max length for a string label
+	
+real navigating in the gui
+	bookmarks
+	search a label
+allow comments in the gui
+construct useful labels for nodes
+add section name to node info
+
+save as recompilable code
+
+save/read options to/from file
+	wml: cuj may 2004
+
+and lots and lots more ...
+
+-----------------------------------------
+                                 

@@ -1,0 +1,20 @@
+Hello all,
+
+For the time being, this is a one man project. Which of course means that I have a lot of ideas for the 
+disassembler, but a lot less time to try and make them come true.
+
+I would like 'disassembler' to be a versatile product that can disassemble different kinds of executables 
+on different kinds of processors. But without help from others, I will only be able to do something for intel 
+environments.
+
+The code is written in C++, because I like the language, and it felt natural to try and make the 
+inheritance model work for reusing common disassembly techniques on different sorts of input.
+             
+There is of course a commercial project available that does everything you would ever want a 
+disassembler to do. But it only works on windows... My ultimate goal (dream?) is of reaching a state of
+usability that equals theirs... 
+
+Many greetings,
+ 
+Danny Van Elsen
+velsd@users.sourceforge.net

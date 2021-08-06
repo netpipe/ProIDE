@@ -1,0 +1,246 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+</head>
+<body>
+<table border="2" cellpadding="0" cellspacing="0" width="0">
+  <caption>Disassembler for linux: News</caption> <tbody>
+    <tr>
+      <td>20060927:
+      <ul>
+The makefiles should permit by now to build the program without gnome,
+making it at least possible to use the command line version, if you
+don't have the libraries installed for the default gui...
+      </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>20060902:
+      <ul>
+I've finished some basic documentation about the disassembler ...
+      </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>20060429:
+      <ul>
+The helper program parsing the windows header files finally works, so
+this justifies a new release ... Perhaps the best thing to do next is
+provide some documentation about the way the disassembler works...
+      </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>20060405:
+      <ul>
+working on better Windows functions recognition... and almost there!
+      </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>20051212:
+      <ul>
+release 0.3.1: A new release, because it seems ELF disassembly now
+works!
+      </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>20051111:
+      <ul>
+not yet a new release, but disassembling a linux executable is
+beginning to work in cvs ...
+      </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>20050627:
+      <ul>
+release 0.3.0: I've finally completed the new gui! much faster than the
+original one, and with all the old functionality. So now I'm ready for
+the next step: adding a new binary to disassemble ...
+      </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>20050312:
+      <ul>
+release 0.2.2 now enables disassembling without a gui ...
+      </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>20050125:
+      <ul>
+disassembly can now be saved in text and db format...
+      </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>20041110:
+      <ul>
+I've made a 0.2 release: after finally upgrading to gnome 2.8 and
+improving performance a little bit... also of course because this
+programming effort has seen its second birthday...
+      </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>20040801:
+      <ul>
+I've begun adding recognition of parameters to functions, starting with
+parameters to known imports
+      </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>20040405:
+      <ul>
+I've added some searching functionality: direct offset, searching a
+(string of) byte(s)
+      </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>20031227:
+      <ul>
+Finally completed all 80x87 co-processor instructions!
+      </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>20031019:
+      <ul>
+This program's first anniversary ... I guess I've been programming away
+at this for about one year; time probably to ask myself what I've got
+to show for it.
+      </ul>
+      <ul>
+Well, all of the Intel 8086 instructions have been translated, and I've
+finally begun adding the 8087 coprocessor instructions as well. Only
+one binary format is available, of course,
+the ubiquitous windows PE.
+      </ul>
+      <ul>
+But at least each time I had to add something, I was pleased with the
+ease that the data
+structures I've arrived at, allowed this to be done with. So I guess...
+I will continue there is a future for this wonderful hobby project!
+      </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>20031006:
+      <ul>
+Finally started with 80x87 instructions: because it seems that they
+really are used ... :-)<!--
+<ul-->
+      </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>20030802:
+      <ul>
+Release 0.1 with string parsing in the data sections ...
+      </ul>
+      <ul>
+      </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>20030615:
+      <ul>
+Windows PE imports are recognized!
+      </ul>
+      <ul>
+      </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>20030514:
+      <ul>
+Intel 80x86 instructions are complete!
+      </ul>
+      <ul>
+      </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>20030510:
+      <ul>
+Navigation works! I mean, when you double click a reference to memory
+or an instruction:
+the gui shows the referenced element!
+      </ul>
+      <ul>
+Trapping the double click was a question of finding
+the right event to hook into... and returning 'true' if we don't want
+the double click to be
+taken into account anymore...
+      </ul>
+      <ul>
+So I guess the next thing to do will be to try and recognize imports...
+      </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>20030501:
+      <ul>
+guess what? I've got working makefiles!
+      </ul>
+      <ul>
+      </ul>
+      <ul>
+and navigating through the references is beginning to work!
+      </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>20030421:
+      <ul>
+So, what does the program do, right now?
+      </ul>
+      <ul>
+-It disassembles most INTEL instructions (90% of normal instructions
+and 0% of coprocessor instructions)
+      </ul>
+      <ul>
+-It can recognize only one type of binary: a Windows PE, of which it
+will select the code sections
+      </ul>
+      <ul>
+-It can show the result of the disassembly of this code section in the
+gui
+      </ul>
+      <ul>
+-It can detect references to other portions of memory, and list them in
+the gui
+      </ul>
+      <ul>
+that's it... for now...
+      </ul>
+      <ul>
+      </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>20030418:
+      <ul>
+Well, I've finally done it... created a sourceforge project. If you
+have hours to waste,I guess
+you could adapt the makefiles for your system, and compile this first
+0.0 version...
+      </ul>
+      <ul>
+But uploading the files really is only meant to show to the rest of the
+world that I have begun
+writing this disassembler... I have a lot to learn about c++, gtk, and
+disassembly itself... but
+what is a hobby programmer without a project?
+      </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+</body>
+</html>

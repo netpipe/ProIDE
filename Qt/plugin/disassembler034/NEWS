@@ -1,0 +1,122 @@
+
+20051212:                            
+      release 0.3.1: A new release, because it seems ELF disassembly now works! 
+--------------------------------0.3.1---------------------------------------------------------------
+
+20051111:                                                                                           
+      not yet a new release, but disassembling a linux executable is beginning to work in cvs ... 
+----------------------------------------------------------------------------------------------------
+
+20050627:
+      release 0.3.0: I've finally completed the new gui! much faster than the original one, and
+      with all the old functionality. So now I'm ready for the next step: adding a new binary to 
+      disassemble ... 
+--------------------------------0.3.0---------------------------------------------------------------
+
+20050312:                            
+      release 0.2.2 now enables disassembling without a gui ... 
+--------------------------------0.2.2---------------------------------------------------------------
+
+20050125:
+      disassembly can now be saved in text and db format... 
+----------------------------------------------------------------------------------------------------
+
+20041110:
+      I've made a 0.2 release: after finally upgrading to gnome 2.8 and improving performance a little bit... also of course because this programming effort has seen its second birthday... 
+--------------------------------0.2.0---------------------------------------------------------------
+
+20040801:
+      I've begun adding recognition of parameters to functions, starting with parameters to known imports 
+----------------------------------------------------------------------------------------------------
+
+20040405:
+      I've added some searching functionality: direct offset, searching a (string of) byte(s) 
+----------------------------------------------------------------------------------------------------
+
+20031227:                                                                                           
+      Finally completed all 80x87 co-processor instructions! 
+----------------------------------------------------------------------------------------------------
+
+20031019:                                                                                           
+      This program's first anniversary ... I guess I've been programming away at this for about one year; 
+      time probably to ask myself what I've got to show for it. 
+
+      Well, all of the Intel 8086 instructions have been translated, and I've finally begun adding the 8087
+      coprocessor instructions as well. Only one binary format is available, of course, the ubiquitous 
+      windows PE. 
+
+      But at least each time I had to add something, I was pleased with the ease that the data structures 
+      I've arrived at, allowed this to be done with. So I guess... I will continue there is a future for
+      this wonderful hobby project!                                                                 
+----------------------------------------------------------------------------------------------------
+
+20031005:	
+Finally started with 80x87 instructions: because it seems that they really are used ... :-)
+--------------------------------0.1.2---------------------------------------------------------------
+
+20030817:	
+Release 0.1.1 : because I finally got round to writing an 'options' dialog, allowing the user
+		to confirm the type of disassembly, and so on...
+--------------------------------0.1.1---------------------------------------------------------------
+
+20030802:	
+Release 0.1 with string parsing in the data sections ... 
+--------------------------------0.1-----------------------------------------------------------------
+
+20030615:
+Windows PE imports are recognized!
+--------------------------------0.0.4---------------------------------------------------------------
+
+20030518:	  
+I simplified the synchronisation between the master list of Disassembly_Nodes and the
+gui counterpart... Gui_Synchronize makes for much simpler code than previous gui code.
+--------------------------------0.0.3---------------------------------------------------------------
+
+20030514:	  
+Intel 80x86 instructions are complete!
+--------------------------------0.0.2---------------------------------------------------------------
+
+
+20030510:	  
+Navigation works! I mean, when you double click a reference to memory or an instruction:
+the gui shows the referenced element! Trapping the double click was a question of finding
+the right event to hook into... and returning 'true' if we don't want the double click to be
+taken into account anymore...
+
+So I guess the next thing to do will be to try and recognize imports...
+--------------------------------0.0.2---------------------------------------------------------------
+
+
+20030501:	  
+Incredibly... I've managed to fabricate a working set of Makefile.am and 
+configure.in thingies... so ./configure and all that should work... from now on!
+
+The aclocal part still remains a complete mystery though.
+
+Navigating through the references is beginning to work...
+and... I'm almost completely done with normal 80x86 instructions...
+--------------------------------0.0.1---------------------------------------------------------------
+
+20030421:	  
+So, what does the program do, right now? 
+-It disassembles most INTEL instructions 
+	(75% of normal instructions and 0% of coprocessor instructions)
+-It can recognize only one type of binary: a Windows PE, of which it will select the code sections
+-It can show the result of the disassembly of this code section in the gui
+-It can detect references to other portions of memory, and list them in the gui
+
+that's it... for now!
+--------------------------------0.0.0---------------------------------------------------------------
+
+20030418: 										  
+Well, I've finally done it... created a sourceforge project. If you have hours to waste,I guess
+you could adapt the makefiles for your system, and compile this first 0.0 version...
+
+But uploading the files really is only meant to show to the rest of the world that I have begun
+writing this disassembler... I have a lot to learn about c++, gtk, and disassembly itself... but
+what is a hobby programmer without a project?                                                       
+--------------------------------0.0.0---------------------------------------------------------------
+
+
+
+

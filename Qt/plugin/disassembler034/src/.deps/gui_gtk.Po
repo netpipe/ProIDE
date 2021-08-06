@@ -1,0 +1,3 @@
+gui_gtk.o: gui_gtk.cc /usr/include/stdc-predef.h
+
+/usr/include/stdc-predef.h:

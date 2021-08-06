@@ -1,0 +1,3 @@
+gui_detail.o: gui_detail.cc /usr/include/stdc-predef.h
+
+/usr/include/stdc-predef.h:

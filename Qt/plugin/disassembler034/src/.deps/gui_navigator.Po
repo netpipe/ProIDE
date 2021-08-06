@@ -1,0 +1,3 @@
+gui_navigator.o: gui_navigator.cc /usr/include/stdc-predef.h
+
+/usr/include/stdc-predef.h:

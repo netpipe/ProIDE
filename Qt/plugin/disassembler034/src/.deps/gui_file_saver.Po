@@ -1,0 +1,3 @@
+gui_file_saver.o: gui_file_saver.cc /usr/include/stdc-predef.h
+
+/usr/include/stdc-predef.h:

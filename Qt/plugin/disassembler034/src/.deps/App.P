@@ -1,0 +1,981 @@
+App.o: App.cc ../config.h App.hh /opt/gnome/include/gtk--/fileselection.h \
+  /opt/gnome/include/gtk--/window.h /opt/gnome/include/gtk--/bin.h \
+  /opt/gnome/include/gtk--/container.h /opt/gnome/include/gtk--/widget.h \
+  /opt/gnome/include/gtk--/object.h /opt/gnome/include/gtk--/base.h \
+  /opt/gnome/lib/gtkmm/include/gtk--config.h \
+  /usr/local/include/g++-v3/string \
+  /usr/local/include/g++-v3/bits/std_string.h \
+  /usr/local/include/g++-v3/i686-pc-linux-gnu/bits/c++config.h \
+  /usr/local/include/g++-v3/i686-pc-linux-gnu/bits/os_defines.h \
+  /usr/include/features.h /usr/include/sys/cdefs.h \
+  /usr/include/gnu/stubs.h \
+  /usr/local/include/g++-v3/i686-pc-linux-gnu/bits/limits.h \
+  /usr/local/include/g++-v3/bits/stringfwd.h \
+  /usr/local/include/g++-v3/bits/char_traits.h \
+  /usr/local/include/g++-v3/bits/std_cstring.h \
+  /usr/local/include/g++-v3/bits/std_cstddef.h \
+  /usr/local/lib/gcc-lib/i686-pc-linux-gnu/3.0.4/include/stddef.h \
+  /usr/include/string.h /usr/include/xlocale.h \
+  /usr/local/include/g++-v3/bits/fpos.h \
+  /usr/local/include/g++-v3/i686-pc-linux-gnu/bits/c++io.h \
+  /usr/local/include/g++-v3/cstdio \
+  /usr/local/include/g++-v3/bits/std_cstdio.h \
+  /usr/local/lib/gcc-lib/i686-pc-linux-gnu/3.0.4/include/stdio.h \
+  /usr/include/bits/types.h /usr/include/bits/pthreadtypes.h \
+  /usr/include/bits/sched.h /usr/include/libio.h /usr/include/_G_config.h \
+  /usr/include/wchar.h /usr/include/bits/wchar.h /usr/include/gconv.h \
+  /usr/local/lib/gcc-lib/i686-pc-linux-gnu/3.0.4/include/stdarg.h \
+  /usr/include/bits/stdio_lim.h /usr/include/bits/stdio.h \
+  /usr/local/include/g++-v3/cstddef \
+  /usr/local/include/g++-v3/i686-pc-linux-gnu/bits/gthr.h \
+  /usr/local/include/g++-v3/i686-pc-linux-gnu/bits/gthr-single.h \
+  /usr/local/include/g++-v3/bits/std_cwchar.h \
+  /usr/local/include/g++-v3/bits/std_ctime.h /usr/include/time.h \
+  /usr/include/bits/time.h /usr/local/include/g++-v3/bits/std_iterator.h \
+  /usr/local/include/g++-v3/bits/std_iosfwd.h \
+  /usr/local/include/g++-v3/bits/functexcept.h \
+  /usr/local/include/g++-v3/exception_defines.h \
+  /usr/local/include/g++-v3/bits/stl_iterator_base_types.h \
+  /usr/local/include/g++-v3/bits/stl_iterator_base_funcs.h \
+  /usr/local/include/g++-v3/bits/concept_check.h \
+  /usr/local/include/g++-v3/bits/stl_iterator.h \
+  /usr/local/include/g++-v3/bits/std_memory.h \
+  /usr/local/include/g++-v3/bits/stl_algobase.h \
+  /usr/local/include/g++-v3/bits/stl_pair.h \
+  /usr/local/include/g++-v3/bits/type_traits.h \
+  /usr/local/include/g++-v3/bits/std_climits.h \
+  /usr/local/lib/gcc-lib/i686-pc-linux-gnu/3.0.4/include/limits.h \
+  /usr/local/lib/gcc-lib/i686-pc-linux-gnu/3.0.4/include/syslimits.h \
+  /usr/include/limits.h /usr/include/bits/posix1_lim.h \
+  /usr/include/bits/local_lim.h /usr/include/linux/limits.h \
+  /usr/include/bits/posix2_lim.h /usr/include/bits/xopen_lim.h \
+  /usr/include/bits/wordsize.h \
+  /usr/local/include/g++-v3/bits/std_cstdlib.h /usr/include/stdlib.h \
+  /usr/include/bits/waitflags.h /usr/include/bits/waitstatus.h \
+  /usr/include/endian.h /usr/include/bits/endian.h \
+  /usr/include/sys/types.h /usr/include/sys/select.h \
+  /usr/include/bits/select.h /usr/include/bits/sigset.h \
+  /usr/include/sys/sysmacros.h /usr/include/alloca.h \
+  /usr/local/include/g++-v3/new /usr/local/include/g++-v3/exception \
+  /usr/local/include/g++-v3/bits/stl_alloc.h \
+  /usr/local/include/g++-v3/bits/std_cassert.h /usr/include/assert.h \
+  /usr/local/include/g++-v3/bits/stl_threads.h \
+  /usr/local/include/g++-v3/bits/stl_construct.h \
+  /usr/local/include/g++-v3/bits/stl_tempbuf.h \
+  /usr/local/include/g++-v3/bits/stl_uninitialized.h \
+  /usr/local/include/g++-v3/bits/stl_raw_storage_iter.h \
+  /usr/local/include/g++-v3/bits/basic_string.h \
+  /usr/local/include/g++-v3/i686-pc-linux-gnu/bits/atomicity.h \
+  /usr/local/include/g++-v3/bits/std_algorithm.h \
+  /usr/local/include/g++-v3/bits/stl_algo.h \
+  /usr/local/include/g++-v3/bits/stl_heap.h \
+  /usr/local/include/g++-v3/bits/basic_string.tcc \
+  /usr/local/include/g++-v3/iterator /opt/gnome/include/gdk--.h \
+  /opt/gnome/include/gtk-1.2/gdk/gdk.h \
+  /opt/gnome/include/gtk-1.2/gdk/gdktypes.h \
+  /opt/gnome/include/glib-1.2/glib.h \
+  /opt/gnome/lib/glib/include/glibconfig.h \
+  /usr/local/lib/gcc-lib/i686-pc-linux-gnu/3.0.4/include/float.h \
+  /opt/gnome/include/gtk-1.2/gdk/gdkcursors.h \
+  /opt/gnome/include/gtk-1.2/gdk/gdkrgb.h \
+  /opt/gnome/include/gdk--/types.h \
+  /opt/gnome/lib/gtkmm/include/gdk--config.h \
+  /opt/gnome/include/gtk-1.2/gtk/gtkfeatures.h \
+  /opt/gnome/include/gdk--/color.h /opt/gnome/include/gdk--/main.h \
+  /opt/gnome/include/gdk--/colormap.h /opt/gnome/include/gdk--/visual.h \
+  /opt/gnome/include/gdk--/gc.h /opt/gnome/include/gdk--/font.h \
+  /opt/gnome/include/gdk--/drawable.h /opt/gnome/include/gdk--/window.h \
+  /opt/gnome/include/gdk--/list.h /opt/gnome/include/gdk--/pixmap.h \
+  /opt/gnome/include/gdk--/bitmap.h /opt/gnome/include/gdk--/image.h \
+  /opt/gnome/include/gdk--/cursor.h /opt/gnome/include/gtk--/proxy.h \
+  /opt/gnome/include/sigc++/signal_system.h \
+  /opt/gnome/include/sigc++/slot.h /usr/lib/sigc++/include/sigc++config.h \
+  /opt/gnome/include/sigc++/type.h /opt/gnome/include/sigc++/object.h \
+  /opt/gnome/include/sigc++/scope.h /opt/gnome/include/sigc++/handle.h \
+  /opt/gnome/include/sigc++/object_slot.h \
+  /opt/gnome/include/sigc++/func_slot.h \
+  /opt/gnome/include/sigc++/basic_signal.h \
+  /opt/gnome/include/sigc++/marshal.h /opt/gnome/include/sigc++/thread.h \
+  /opt/gnome/include/sigc++/bind.h /opt/gnome/include/sigc++/adaptor.h \
+  /opt/gnome/include/sigc++/convert.h \
+  /opt/gnome/include/gtk-1.2/gtk/gtkobject.h \
+  /opt/gnome/include/gtk-1.2/gtk/gtkarg.h \
+  /opt/gnome/include/gtk-1.2/gtk/gtktypeutils.h \
+  /opt/gnome/include/gtk-1.2/gtk/gtktypebuiltins.h \
+  /opt/gnome/include/gtk-1.2/gtk/gtkenums.h \
+  /opt/gnome/include/gtk-1.2/gtk/gtkdebug.h \
+  /opt/gnome/include/gtk-1.2/gtk/gtksignal.h \
+  /opt/gnome/include/gtk-1.2/gtk/gtkmarshal.h \
+  /opt/gnome/include/gtk--/marshal.h \
+  /opt/gnome/include/gtk-1.2/gtk/gtkdnd.h \
+  /opt/gnome/include/gtk-1.2/gtk/gtkwidget.h \
+  /opt/gnome/include/gtk-1.2/gtk/gtkaccelgroup.h \
+  /opt/gnome/include/gtk-1.2/gtk/gtkadjustment.h \
+  /opt/gnome/include/gtk-1.2/gtk/gtkdata.h \
+  /opt/gnome/include/gtk-1.2/gtk/gtkstyle.h \
+  /opt/gnome/include/gtk-1.2/gtk/gtkselection.h \
+  /opt/gnome/include/gtk-1.2/gtk/gtkcontainer.h \
+  /opt/gnome/include/gtk-1.2/gtk/gtkbin.h \
+  /opt/gnome/include/gtk-1.2/gtk/gtkwindow.h \
+  /opt/gnome/include/gtk--/entry.h /opt/gnome/include/gtk--/editable.h \
+  /opt/gnome/include/gtk-1.2/gtk/gtkeditable.h \
+  /opt/gnome/include/gtk-1.2/gtk/gtkentry.h \
+  /opt/gnome/include/gtk--/label.h /opt/gnome/include/gtk--/misc.h \
+  /opt/gnome/include/gtk-1.2/gtk/gtkmisc.h \
+  /opt/gnome/include/gtk-1.2/gtk/gtklabel.h \
+  /opt/gnome/include/gtk--/box.h /opt/gnome/include/gtk-1.2/gtk/gtkbox.h \
+  /opt/gnome/include/gtk-1.2/gtk/gtkvbox.h \
+  /opt/gnome/include/gtk-1.2/gtk/gtkhbox.h \
+  /opt/gnome/include/gtk--/button.h \
+  /opt/gnome/include/gtk-1.2/gtk/gtkbutton.h \
+  /opt/gnome/include/gtk-1.2/gtk/gtkfilesel.h MainWindow.hh \
+  CommonWidget.hh CommonGlade.hh /usr/local/include/g++-v3/iostream \
+  /usr/local/include/g++-v3/bits/std_iostream.h \
+  /usr/local/include/g++-v3/bits/std_ostream.h \
+  /usr/local/include/g++-v3/bits/std_ios.h \
+  /usr/local/include/g++-v3/bits/localefwd.h \
+  /usr/local/include/g++-v3/i686-pc-linux-gnu/bits/c++locale.h \
+  /usr/local/include/g++-v3/bits/std_cctype.h /usr/include/ctype.h \
+  /usr/local/include/g++-v3/bits/ios_base.h \
+  /usr/local/include/g++-v3/bits/std_streambuf.h \
+  /usr/local/include/g++-v3/bits/streambuf.tcc \
+  /usr/local/include/g++-v3/bits/basic_ios.h \
+  /usr/local/include/g++-v3/bits/sbuf_iter.h \
+  /usr/local/include/g++-v3/bits/locale_facets.h /usr/include/langinfo.h \
+  /usr/include/nl_types.h /usr/include/bits/locale.h \
+  /usr/local/include/g++-v3/bits/std_cwctype.h /usr/include/wctype.h \
+  /usr/include/iconv.h \
+  /usr/local/include/g++-v3/i686-pc-linux-gnu/bits/ctype_base.h \
+  /usr/local/include/g++-v3/i686-pc-linux-gnu/bits/ctype_inline.h \
+  /usr/local/include/g++-v3/bits/codecvt.h \
+  /usr/local/include/g++-v3/bits/basic_ios.tcc \
+  /usr/local/include/g++-v3/bits/ostream.tcc \
+  /usr/local/include/g++-v3/bits/std_locale.h \
+  /usr/local/include/g++-v3/bits/locale_facets.tcc \
+  /usr/local/include/g++-v3/bits/std_cerrno.h /usr/include/errno.h \
+  /usr/include/bits/errno.h /usr/include/linux/errno.h \
+  /usr/include/asm/errno.h /usr/local/include/g++-v3/bits/std_clocale.h \
+  /usr/include/locale.h /usr/local/include/g++-v3/bits/std_limits.h \
+  /usr/local/include/g++-v3/typeinfo \
+  /usr/local/include/g++-v3/bits/std_vector.h \
+  /usr/local/include/g++-v3/bits/stl_vector.h \
+  /usr/local/include/g++-v3/bits/stl_bvector.h \
+  /usr/local/include/g++-v3/bits/std_istream.h \
+  /usr/local/include/g++-v3/bits/istream.tcc \
+  /opt/gnome/include/glade/glade-xml.h \
+  /opt/gnome/include/gtk-1.2/gtk/gtktooltips.h CommonMisc.hh \
+  /usr/local/include/g++-v3/sstream \
+  /usr/local/include/g++-v3/bits/std_sstream.h \
+  /usr/local/include/g++-v3/bits/sstream.tcc /opt/gnome/include/gnome--.h \
+  /opt/gnome/include/gtk--.h /opt/gnome/include/gtk-1.2/gtk/gtk.h \
+  /opt/gnome/include/gtk-1.2/gtk/gtkaccellabel.h \
+  /opt/gnome/include/gtk-1.2/gtk/gtkalignment.h \
+  /opt/gnome/include/gtk-1.2/gtk/gtkaspectframe.h \
+  /opt/gnome/include/gtk-1.2/gtk/gtkframe.h \
+  /opt/gnome/include/gtk-1.2/gtk/gtkarrow.h \
+  /opt/gnome/include/gtk-1.2/gtk/gtkbindings.h \
+  /opt/gnome/include/gtk-1.2/gtk/gtkbbox.h \
+  /opt/gnome/include/gtk-1.2/gtk/gtkcalendar.h \
+  /opt/gnome/include/gtk-1.2/gtk/gtkcheckbutton.h \
+  /opt/gnome/include/gtk-1.2/gtk/gtktogglebutton.h \
+  /opt/gnome/include/gtk-1.2/gtk/gtkcheckmenuitem.h \
+  /opt/gnome/include/gtk-1.2/gtk/gtkmenuitem.h \
+  /opt/gnome/include/gtk-1.2/gtk/gtkitem.h \
+  /opt/gnome/include/gtk-1.2/gtk/gtkclist.h \
+  /opt/gnome/include/gtk-1.2/gtk/gtkhscrollbar.h \
+  /opt/gnome/include/gtk-1.2/gtk/gtkscrollbar.h \
+  /opt/gnome/include/gtk-1.2/gtk/gtkrange.h \
+  /opt/gnome/include/gtk-1.2/gtk/gtkvscrollbar.h \
+  /opt/gnome/include/gtk-1.2/gtk/gtkcolorsel.h \
+  /opt/gnome/include/gtk-1.2/gtk/gtkpreview.h \
+  /opt/gnome/include/gtk-1.2/gtk/gtkmain.h \
+  /opt/gnome/include/gtk-1.2/gtk/gtkscale.h \
+  /opt/gnome/include/gtk-1.2/gtk/gtkhscale.h \
+  /opt/gnome/include/gtk-1.2/gtk/gtktable.h \
+  /opt/gnome/include/gtk-1.2/gtk/gtkeventbox.h \
+  /opt/gnome/include/gtk-1.2/gtk/gtkcombo.h \
+  /opt/gnome/include/gtk-1.2/gtk/gtkcompat.h \
+  /opt/gnome/include/gtk-1.2/gtk/gtkctree.h \
+  /opt/gnome/include/gtk-1.2/gtk/gtkcurve.h \
+  /opt/gnome/include/gtk-1.2/gtk/gtkdrawingarea.h \
+  /opt/gnome/include/gtk-1.2/gtk/gtkdialog.h \
+  /opt/gnome/include/gtk-1.2/gtk/gtkfixed.h \
+  /opt/gnome/include/gtk-1.2/gtk/gtkfontsel.h \
+  /opt/gnome/include/gtk-1.2/gtk/gtknotebook.h \
+  /opt/gnome/include/gtk-1.2/gtk/gtkgamma.h \
+  /opt/gnome/include/gtk-1.2/gtk/gtkgc.h \
+  /opt/gnome/include/gtk-1.2/gtk/gtkhandlebox.h \
+  /opt/gnome/include/gtk-1.2/gtk/gtkhbbox.h \
+  /opt/gnome/include/gtk-1.2/gtk/gtkhpaned.h \
+  /opt/gnome/include/gtk-1.2/gtk/gtkpaned.h \
+  /opt/gnome/include/gtk-1.2/gtk/gtkhruler.h \
+  /opt/gnome/include/gtk-1.2/gtk/gtkruler.h \
+  /opt/gnome/include/gtk-1.2/gtk/gtkhseparator.h \
+  /opt/gnome/include/gtk-1.2/gtk/gtkseparator.h \
+  /opt/gnome/include/gtk-1.2/gtk/gtkimage.h \
+  /opt/gnome/include/gtk-1.2/gtk/gtkinputdialog.h \
+  /opt/gnome/include/gtk-1.2/gtk/gtkitemfactory.h \
+  /opt/gnome/include/gtk-1.2/gtk/gtkmenufactory.h \
+  /opt/gnome/include/gtk-1.2/gtk/gtklayout.h \
+  /opt/gnome/include/gtk-1.2/gtk/gtklist.h \
+  /opt/gnome/include/gtk-1.2/gtk/gtklistitem.h \
+  /opt/gnome/include/gtk-1.2/gtk/gtkmenu.h \
+  /opt/gnome/include/gtk-1.2/gtk/gtkmenushell.h \
+  /opt/gnome/include/gtk-1.2/gtk/gtkmenubar.h \
+  /opt/gnome/include/gtk-1.2/gtk/gtkoptionmenu.h \
+  /opt/gnome/include/gtk-1.2/gtk/gtkpacker.h \
+  /opt/gnome/include/gtk-1.2/gtk/gtkpixmap.h \
+  /opt/gnome/include/gtk-1.2/gtk/gtkplug.h \
+  /opt/gnome/include/gtk-1.2/gtk/gtkprogress.h \
+  /opt/gnome/include/gtk-1.2/gtk/gtkprogressbar.h \
+  /opt/gnome/include/gtk-1.2/gtk/gtkradiobutton.h \
+  /opt/gnome/include/gtk-1.2/gtk/gtkradiomenuitem.h \
+  /opt/gnome/include/gtk-1.2/gtk/gtkrc.h \
+  /opt/gnome/include/gtk-1.2/gtk/gtkscrolledwindow.h \
+  /opt/gnome/include/gtk-1.2/gtk/gtkviewport.h \
+  /opt/gnome/include/gtk-1.2/gtk/gtksocket.h \
+  /opt/gnome/include/gtk-1.2/gtk/gtkspinbutton.h \
+  /opt/gnome/include/gtk-1.2/gtk/gtkstatusbar.h \
+  /opt/gnome/include/gtk-1.2/gtk/gtktearoffmenuitem.h \
+  /opt/gnome/include/gtk-1.2/gtk/gtktext.h \
+  /opt/gnome/include/gtk-1.2/gtk/gtkthemes.h \
+  /opt/gnome/include/gtk-1.2/gtk/gtktipsquery.h \
+  /opt/gnome/include/gtk-1.2/gtk/gtktoolbar.h \
+  /opt/gnome/include/gtk-1.2/gtk/gtktree.h \
+  /opt/gnome/include/gtk-1.2/gtk/gtktreeitem.h \
+  /opt/gnome/include/gtk-1.2/gtk/gtkvbbox.h \
+  /opt/gnome/include/gtk-1.2/gtk/gtkvpaned.h \
+  /opt/gnome/include/gtk-1.2/gtk/gtkvruler.h \
+  /opt/gnome/include/gtk-1.2/gtk/gtkvscale.h \
+  /opt/gnome/include/gtk-1.2/gtk/gtkvseparator.h \
+  /opt/gnome/include/gtk--/accelgroup.h \
+  /opt/gnome/include/gtk--/adjustment.h /opt/gnome/include/gtk--/data.h \
+  /opt/gnome/include/gtk--/alignment.h /opt/gnome/include/gtk--/arrow.h \
+  /opt/gnome/include/gtk--/aspectframe.h /opt/gnome/include/gtk--/frame.h \
+  /opt/gnome/include/gtk--/buttonbox.h \
+  /opt/gnome/include/gtk--/checkbutton.h \
+  /opt/gnome/include/gtk--/togglebutton.h \
+  /opt/gnome/include/gtk--/checkmenuitem.h \
+  /opt/gnome/include/gtk--/menuitem.h /opt/gnome/include/gtk--/item.h \
+  /opt/gnome/include/gtk--/clist.h \
+  /opt/gnome/include/gtk--/colorselection.h \
+  /opt/gnome/include/gtk--/combo.h \
+  /opt/gnome/include/gtk--/scrolledwindow.h \
+  /opt/gnome/include/gtk--/list.h /opt/gnome/include/gtk--/listitem.h \
+  /opt/gnome/include/gtk--/curve.h /opt/gnome/include/gtk--/drawingarea.h \
+  /opt/gnome/include/gtk--/dialog.h /opt/gnome/include/gtk--/eventbox.h \
+  /opt/gnome/include/gtk--/fixed.h /opt/gnome/include/gtk--/handlebox.h \
+  /opt/gnome/include/gtk--/image.h /opt/gnome/include/gtk--/inputdialog.h \
+  /opt/gnome/include/gtk--/optionmenu.h \
+  /opt/gnome/include/gtk--/calendar.h /opt/gnome/include/gtk--/ctree.h \
+  /opt/gnome/include/gtk--/invisible.h \
+  /opt/gnome/include/gtk-1.2/gtk/gtkinvisible.h \
+  /opt/gnome/include/gtk--/main.h /opt/gnome/include/gtk--/menu.h \
+  /opt/gnome/include/gtk--/menushell.h \
+  /opt/gnome/include/gtk-1.2/gdk/gdkkeysyms.h \
+  /opt/gnome/include/gtk--/radiomenuitem.h \
+  /opt/gnome/include/gtk--/tearoffmenuitem.h \
+  /opt/gnome/include/gtk--/menubar.h /opt/gnome/include/gtk--/notebook.h \
+  /opt/gnome/include/gtk--/paned.h /opt/gnome/include/gtk--/pixmap.h \
+  /opt/gnome/include/gtk--/preview.h \
+  /opt/gnome/include/gtk--/progressbar.h \
+  /opt/gnome/include/gtk--/progress.h \
+  /opt/gnome/include/gtk--/radiobutton.h /opt/gnome/include/gtk--/range.h \
+  /opt/gnome/include/gtk--/ruler.h /opt/gnome/include/gtk--/scale.h \
+  /opt/gnome/include/gtk--/scrollbar.h \
+  /opt/gnome/include/gtk--/separator.h \
+  /opt/gnome/include/gtk--/spinbutton.h \
+  /opt/gnome/include/gtk--/statusbar.h /opt/gnome/include/gtk--/style.h \
+  /opt/gnome/include/gtk--/table.h /opt/gnome/include/gtk--/text.h \
+  /opt/gnome/include/gtk--/tipsquery.h /opt/gnome/include/gtk--/toolbar.h \
+  /opt/gnome/include/gtk--/tooltips.h /opt/gnome/include/gtk--/tree.h \
+  /opt/gnome/include/gtk--/treeitem.h /opt/gnome/include/gtk--/viewport.h \
+  /opt/gnome/include/gnome--/animator.h \
+  /opt/gnome/include/gnome--/imlib.h /opt/gnome/include/gdk_imlib.h \
+  /opt/gnome/include/gdk_imlib_types.h \
+  /opt/gnome/include/libgnomeui/gnome-animator.h \
+  /opt/gnome/include/libgnome/gnome-defs.h \
+  /opt/gnome/include/libgnomeui/gnome-pixmap.h \
+  /opt/gnome/include/gnome--/about.h /opt/gnome/include/gnome--/dialog.h \
+  /opt/gnome/include/gnome--/types.h \
+  /opt/gnome/include/libgnomeui/gnome-types.h \
+  /opt/gnome/include/libgnomeui/gnome-dialog.h \
+  /opt/gnome/include/libgnomeui/gnome-dialog-util.h \
+  /opt/gnome/include/libgnomeui/gnome-about.h \
+  /opt/gnome/include/gnome--/app.h /opt/gnome/include/gnome--/dock.h \
+  /opt/gnome/include/libgnomeui/gnome-dock.h \
+  /opt/gnome/include/libgnomeui/gnome-dock-band.h \
+  /opt/gnome/include/libgnomeui/gnome-dock-item.h \
+  /opt/gnome/include/libgnomeui/gnome-dock-layout.h \
+  /opt/gnome/include/gnome--/stock.h /opt/gnome/include/gnome--/pixmap.h \
+  /opt/gnome/include/libgnome/gnome-util.h \
+  /opt/gnome/include/libgnomeui/gnome-stock.h \
+  /opt/gnome/include/libgnome/gnome-i18n.h /usr/include/libintl.h \
+  /opt/gnome/include/libgnomeui/gnome-app.h \
+  /opt/gnome/include/libgnomeui/gnome-app-util.h \
+  /opt/gnome/include/gnome--/app-helper.h \
+  /opt/gnome/include/libgnomeui/gnome-app-helper.h \
+  /opt/gnome/include/libgnomeui/gnome-appbar.h \
+  /usr/local/include/g++-v3/vector /usr/local/include/g++-v3/list \
+  /usr/local/include/g++-v3/bits/std_list.h \
+  /usr/local/include/g++-v3/bits/stl_list.h \
+  /opt/gnome/include/gnome--/appbar.h \
+  /opt/gnome/include/gnome--/calculator.h \
+  /opt/gnome/include/libgnomeui/gnome-calculator.h \
+  /opt/gnome/include/gnome--/canvas-ellipse.h \
+  /opt/gnome/include/gnome--/canvas-item.h \
+  /opt/gnome/include/libgnomeui/gnome-canvas.h \
+  /opt/gnome/include/libart_lgpl/art_misc.h \
+  /opt/gnome/include/libart_lgpl/art_config.h \
+  /opt/gnome/include/libart_lgpl/art_rect.h \
+  /opt/gnome/include/libart_lgpl/art_svp.h \
+  /opt/gnome/include/libart_lgpl/art_point.h \
+  /opt/gnome/include/libart_lgpl/art_uta.h \
+  /opt/gnome/include/libart_lgpl/art_affine.h \
+  /opt/gnome/include/gnome--/point.h \
+  /opt/gnome/include/gnome--/affinetrans.h \
+  /opt/gnome/include/gnome--/canvas-property.h \
+  /opt/gnome/include/gnome--/canvas-group.h \
+  /opt/gnome/include/gnome--/canvas-rect-ellipse.h \
+  /opt/gnome/include/libgnomeui/gnome-canvas-rect-ellipse.h \
+  /opt/gnome/include/gnome--/canvas-image.h \
+  /opt/gnome/include/libgnomeui/gnome-canvas-image.h \
+  /opt/gnome/include/libart_lgpl/art_pixbuf.h \
+  /opt/gnome/include/gnome--/canvas-line.h \
+  /opt/gnome/include/libgnomeui/gnome-canvas-line.h \
+  /opt/gnome/include/libgnomeui/gnome-canvas-util.h \
+  /opt/gnome/include/libart_lgpl/art_vpath.h \
+  /opt/gnome/include/libart_lgpl/art_pathcode.h \
+  /opt/gnome/include/libart_lgpl/art_svp_vpath_stroke.h \
+  /opt/gnome/include/gnome--/canvas-polygon.h \
+  /opt/gnome/include/libgnomeui/gnome-canvas-polygon.h \
+  /opt/gnome/include/gnome--/canvas-rect.h \
+  /opt/gnome/include/gnome--/canvas-text.h \
+  /opt/gnome/include/libgnomeui/gnome-canvas-text.h \
+  /opt/gnome/include/gnome--/canvas-widget.h \
+  /opt/gnome/include/libgnomeui/gnome-canvas-widget.h \
+  /opt/gnome/include/gnome--/canvas.h /opt/gnome/include/gtk--/layout.h \
+  /opt/gnome/include/gnome--/client.h \
+  /opt/gnome/include/libgnomeui/gnome-client.h /usr/include/unistd.h \
+  /usr/include/bits/posix_opt.h /usr/include/bits/environments.h \
+  /usr/include/bits/confname.h /usr/include/getopt.h \
+  /opt/gnome/include/gnome--/clock.h \
+  /opt/gnome/include/libgnomeui/gtk-clock.h \
+  /opt/gnome/include/gnome--/color-picker.h \
+  /opt/gnome/include/libgnomeui/gnome-color-picker.h \
+  /opt/gnome/include/gnome--/dateedit.h \
+  /opt/gnome/include/libgnomeui/gnome-dateedit.h \
+  /opt/gnome/include/gnome--/dentry-edit.h \
+  /opt/gnome/include/libgnome/gnome-dentry.h \
+  /opt/gnome/include/libgnomeui/gnome-dentry-edit.h \
+  /opt/gnome/include/gnome--/dial.h \
+  /opt/gnome/include/libgnomeui/gtkdial.h \
+  /opt/gnome/include/gnome--/dock-item.h \
+  /opt/gnome/include/gnome--/dock-layout.h \
+  /opt/gnome/include/gnome--/druid-page-finish.h \
+  /opt/gnome/include/gnome--/druid-page.h \
+  /opt/gnome/include/libgnomeui/gnome-druid-page.h \
+  /opt/gnome/include/libgnomeui/gnome-druid-page-finish.h \
+  /opt/gnome/include/gnome--/druid-page-standard.h \
+  /opt/gnome/include/libgnomeui/gnome-druid-page-standard.h \
+  /opt/gnome/include/gnome--/druid-page-start.h \
+  /opt/gnome/include/libgnomeui/gnome-druid-page-start.h \
+  /opt/gnome/include/gnome--/druid.h \
+  /opt/gnome/include/libgnomeui/gnome-druid.h \
+  /opt/gnome/include/gnome--/entry.h \
+  /opt/gnome/include/libgnomeui/gnome-entry.h \
+  /opt/gnome/include/gnome--/file-entry.h \
+  /opt/gnome/include/libgnomeui/gnome-file-entry.h \
+  /opt/gnome/include/gnome--/font-picker.h \
+  /opt/gnome/include/libgnomeui/gnome-font-picker.h \
+  /opt/gnome/include/gnome--/icon-entry.h \
+  /opt/gnome/include/libgnomeui/gnome-icon-entry.h \
+  /opt/gnome/include/gnome--/icon-item.h \
+  /opt/gnome/include/libgnomeui/gnome-icon-item.h \
+  /opt/gnome/include/libgnomeui/gnome-icon-text.h \
+  /opt/gnome/include/gnome--/icon-list.h \
+  /opt/gnome/include/libgnomeui/gnome-icon-list.h \
+  /opt/gnome/include/gnome--/icon-sel.h \
+  /opt/gnome/include/libgnomeui/gnome-icon-sel.h \
+  /opt/gnome/include/gnome--/less.h \
+  /opt/gnome/include/libgnomeui/gnome-less.h \
+  /opt/gnome/include/gnome--/main.h \
+  /opt/gnome/include/libgnomeui/libgnomeui.h \
+  /opt/gnome/include/libgnomeui/gnome-compat.h \
+  /opt/gnome/include/libgnomeui/gnome-uidefs.h \
+  /opt/gnome/include/libgnomeui/gnome-canvas-load.h \
+  /opt/gnome/include/libgnomeui/gnome-dns.h \
+  /opt/gnome/include/libgnomeui/gnome-font-selector.h \
+  /opt/gnome/include/libgnomeui/gnome-geometry.h \
+  /opt/gnome/include/libgnomeui/gnome-guru.h \
+  /opt/gnome/include/libgnomeui/gnome-init.h \
+  /opt/gnome/include/libgnome/gnome-popt.h \
+  /opt/gnome/include/popt-gnome.h \
+  /opt/gnome/include/libgnomeui/gnome-messagebox.h \
+  /opt/gnome/include/libgnomeui/gnome-number-entry.h \
+  /opt/gnome/include/libgnomeui/gnome-paper-selector.h \
+  /opt/gnome/include/libgnomeui/gnome-popup-menu.h \
+  /opt/gnome/include/libgnomeui/gnome-popup-help.h \
+  /opt/gnome/include/libgnomeui/gnome-pixmap-entry.h \
+  /opt/gnome/include/libgnomeui/gnome-preferences.h \
+  /opt/gnome/include/libgnomeui/gnome-mdi.h \
+  /opt/gnome/include/libgnomeui/gnome-mdi-child.h \
+  /opt/gnome/include/libgnomeui/gnome-propertybox.h \
+  /opt/gnome/include/libgnomeui/gnome-properties.h \
+  /opt/gnome/include/libgnomeui/gnome-property-entries.h \
+  /opt/gnome/include/libgnomeui/gnome-scores.h \
+  /opt/gnome/include/libgnomeui/gnome-spell.h \
+  /opt/gnome/include/libgnomeui/gnome-startup.h \
+  /opt/gnome/include/libgnomeui/gtkcauldron.h \
+  /opt/gnome/include/libgnomeui/gtk-ted.h \
+  /opt/gnome/include/libgnomeui/gtkpixmapmenuitem.h \
+  /opt/gnome/include/libgnomeui/gnome-mdi-generic-child.h \
+  /opt/gnome/include/libgnomeui/gnome-mdi-session.h \
+  /opt/gnome/include/libgnomeui/gnometypebuiltins.h \
+  /opt/gnome/include/libgnomeui/gnome-winhints.h \
+  /opt/gnome/include/libgnomeui/gnome-href.h \
+  /opt/gnome/include/libgnomeui/gnome-procbar.h \
+  /opt/gnome/include/gnome--/mdi-child.h \
+  /opt/gnome/include/gnome--/mdi-generic-child.h \
+  /opt/gnome/include/gnome--/mdi.h \
+  /opt/gnome/include/gnome--/messagebox.h \
+  /opt/gnome/include/gnome--/number-entry.h \
+  /opt/gnome/include/gnome--/paper-selector.h \
+  /opt/gnome/include/gnome--/pixmap-entry.h \
+  /opt/gnome/include/gnome--/pixmapmenuitem.h \
+  /opt/gnome/include/gnome--/procbar.h \
+  /opt/gnome/include/gnome--/propertybox.h
+App.cc :
+../config.h :
+App.hh :
+/opt/gnome/include/gtk--/fileselection.h :
+/opt/gnome/include/gtk--/window.h :
+/opt/gnome/include/gtk--/bin.h :
+/opt/gnome/include/gtk--/container.h :
+/opt/gnome/include/gtk--/widget.h :
+/opt/gnome/include/gtk--/object.h :
+/opt/gnome/include/gtk--/base.h :
+/opt/gnome/lib/gtkmm/include/gtk--config.h :
+/usr/local/include/g++-v3/string :
+/usr/local/include/g++-v3/bits/std_string.h :
+/usr/local/include/g++-v3/i686-pc-linux-gnu/bits/c++config.h :
+/usr/local/include/g++-v3/i686-pc-linux-gnu/bits/os_defines.h :
+/usr/include/features.h :
+/usr/include/sys/cdefs.h :
+/usr/include/gnu/stubs.h :
+/usr/local/include/g++-v3/i686-pc-linux-gnu/bits/limits.h :
+/usr/local/include/g++-v3/bits/stringfwd.h :
+/usr/local/include/g++-v3/bits/char_traits.h :
+/usr/local/include/g++-v3/bits/std_cstring.h :
+/usr/local/include/g++-v3/bits/std_cstddef.h :
+/usr/local/lib/gcc-lib/i686-pc-linux-gnu/3.0.4/include/stddef.h :
+/usr/include/string.h :
+/usr/include/xlocale.h :
+/usr/local/include/g++-v3/bits/fpos.h :
+/usr/local/include/g++-v3/i686-pc-linux-gnu/bits/c++io.h :
+/usr/local/include/g++-v3/cstdio :
+/usr/local/include/g++-v3/bits/std_cstdio.h :
+/usr/local/lib/gcc-lib/i686-pc-linux-gnu/3.0.4/include/stdio.h :
+/usr/include/bits/types.h :
+/usr/include/bits/pthreadtypes.h :
+/usr/include/bits/sched.h :
+/usr/include/libio.h :
+/usr/include/_G_config.h :
+/usr/include/wchar.h :
+/usr/include/bits/wchar.h :
+/usr/include/gconv.h :
+/usr/local/lib/gcc-lib/i686-pc-linux-gnu/3.0.4/include/stdarg.h :
+/usr/include/bits/stdio_lim.h :
+/usr/include/bits/stdio.h :
+/usr/local/include/g++-v3/cstddef :
+/usr/local/include/g++-v3/i686-pc-linux-gnu/bits/gthr.h :
+/usr/local/include/g++-v3/i686-pc-linux-gnu/bits/gthr-single.h :
+/usr/local/include/g++-v3/bits/std_cwchar.h :
+/usr/local/include/g++-v3/bits/std_ctime.h :
+/usr/include/time.h :
+/usr/include/bits/time.h :
+/usr/local/include/g++-v3/bits/std_iterator.h :
+/usr/local/include/g++-v3/bits/std_iosfwd.h :
+/usr/local/include/g++-v3/bits/functexcept.h :
+/usr/local/include/g++-v3/exception_defines.h :
+/usr/local/include/g++-v3/bits/stl_iterator_base_types.h :
+/usr/local/include/g++-v3/bits/stl_iterator_base_funcs.h :
+/usr/local/include/g++-v3/bits/concept_check.h :
+/usr/local/include/g++-v3/bits/stl_iterator.h :
+/usr/local/include/g++-v3/bits/std_memory.h :
+/usr/local/include/g++-v3/bits/stl_algobase.h :
+/usr/local/include/g++-v3/bits/stl_pair.h :
+/usr/local/include/g++-v3/bits/type_traits.h :
+/usr/local/include/g++-v3/bits/std_climits.h :
+/usr/local/lib/gcc-lib/i686-pc-linux-gnu/3.0.4/include/limits.h :
+/usr/local/lib/gcc-lib/i686-pc-linux-gnu/3.0.4/include/syslimits.h :
+/usr/include/limits.h :
+/usr/include/bits/posix1_lim.h :
+/usr/include/bits/local_lim.h :
+/usr/include/linux/limits.h :
+/usr/include/bits/posix2_lim.h :
+/usr/include/bits/xopen_lim.h :
+/usr/include/bits/wordsize.h :
+/usr/local/include/g++-v3/bits/std_cstdlib.h :
+/usr/include/stdlib.h :
+/usr/include/bits/waitflags.h :
+/usr/include/bits/waitstatus.h :
+/usr/include/endian.h :
+/usr/include/bits/endian.h :
+/usr/include/sys/types.h :
+/usr/include/sys/select.h :
+/usr/include/bits/select.h :
+/usr/include/bits/sigset.h :
+/usr/include/sys/sysmacros.h :
+/usr/include/alloca.h :
+/usr/local/include/g++-v3/new :
+/usr/local/include/g++-v3/exception :
+/usr/local/include/g++-v3/bits/stl_alloc.h :
+/usr/local/include/g++-v3/bits/std_cassert.h :
+/usr/include/assert.h :
+/usr/local/include/g++-v3/bits/stl_threads.h :
+/usr/local/include/g++-v3/bits/stl_construct.h :
+/usr/local/include/g++-v3/bits/stl_tempbuf.h :
+/usr/local/include/g++-v3/bits/stl_uninitialized.h :
+/usr/local/include/g++-v3/bits/stl_raw_storage_iter.h :
+/usr/local/include/g++-v3/bits/basic_string.h :
+/usr/local/include/g++-v3/i686-pc-linux-gnu/bits/atomicity.h :
+/usr/local/include/g++-v3/bits/std_algorithm.h :
+/usr/local/include/g++-v3/bits/stl_algo.h :
+/usr/local/include/g++-v3/bits/stl_heap.h :
+/usr/local/include/g++-v3/bits/basic_string.tcc :
+/usr/local/include/g++-v3/iterator :
+/opt/gnome/include/gdk--.h :
+/opt/gnome/include/gtk-1.2/gdk/gdk.h :
+/opt/gnome/include/gtk-1.2/gdk/gdktypes.h :
+/opt/gnome/include/glib-1.2/glib.h :
+/opt/gnome/lib/glib/include/glibconfig.h :
+/usr/local/lib/gcc-lib/i686-pc-linux-gnu/3.0.4/include/float.h :
+/opt/gnome/include/gtk-1.2/gdk/gdkcursors.h :
+/opt/gnome/include/gtk-1.2/gdk/gdkrgb.h :
+/opt/gnome/include/gdk--/types.h :
+/opt/gnome/lib/gtkmm/include/gdk--config.h :
+/opt/gnome/include/gtk-1.2/gtk/gtkfeatures.h :
+/opt/gnome/include/gdk--/color.h :
+/opt/gnome/include/gdk--/main.h :
+/opt/gnome/include/gdk--/colormap.h :
+/opt/gnome/include/gdk--/visual.h :
+/opt/gnome/include/gdk--/gc.h :
+/opt/gnome/include/gdk--/font.h :
+/opt/gnome/include/gdk--/drawable.h :
+/opt/gnome/include/gdk--/window.h :
+/opt/gnome/include/gdk--/list.h :
+/opt/gnome/include/gdk--/pixmap.h :
+/opt/gnome/include/gdk--/bitmap.h :
+/opt/gnome/include/gdk--/image.h :
+/opt/gnome/include/gdk--/cursor.h :
+/opt/gnome/include/gtk--/proxy.h :
+/opt/gnome/include/sigc++/signal_system.h :
+/opt/gnome/include/sigc++/slot.h :
+/usr/lib/sigc++/include/sigc++config.h :
+/opt/gnome/include/sigc++/type.h :
+/opt/gnome/include/sigc++/object.h :
+/opt/gnome/include/sigc++/scope.h :
+/opt/gnome/include/sigc++/handle.h :
+/opt/gnome/include/sigc++/object_slot.h :
+/opt/gnome/include/sigc++/func_slot.h :
+/opt/gnome/include/sigc++/basic_signal.h :
+/opt/gnome/include/sigc++/marshal.h :
+/opt/gnome/include/sigc++/thread.h :
+/opt/gnome/include/sigc++/bind.h :
+/opt/gnome/include/sigc++/adaptor.h :
+/opt/gnome/include/sigc++/convert.h :
+/opt/gnome/include/gtk-1.2/gtk/gtkobject.h :
+/opt/gnome/include/gtk-1.2/gtk/gtkarg.h :
+/opt/gnome/include/gtk-1.2/gtk/gtktypeutils.h :
+/opt/gnome/include/gtk-1.2/gtk/gtktypebuiltins.h :
+/opt/gnome/include/gtk-1.2/gtk/gtkenums.h :
+/opt/gnome/include/gtk-1.2/gtk/gtkdebug.h :
+/opt/gnome/include/gtk-1.2/gtk/gtksignal.h :
+/opt/gnome/include/gtk-1.2/gtk/gtkmarshal.h :
+/opt/gnome/include/gtk--/marshal.h :
+/opt/gnome/include/gtk-1.2/gtk/gtkdnd.h :
+/opt/gnome/include/gtk-1.2/gtk/gtkwidget.h :
+/opt/gnome/include/gtk-1.2/gtk/gtkaccelgroup.h :
+/opt/gnome/include/gtk-1.2/gtk/gtkadjustment.h :
+/opt/gnome/include/gtk-1.2/gtk/gtkdata.h :
+/opt/gnome/include/gtk-1.2/gtk/gtkstyle.h :
+/opt/gnome/include/gtk-1.2/gtk/gtkselection.h :
+/opt/gnome/include/gtk-1.2/gtk/gtkcontainer.h :
+/opt/gnome/include/gtk-1.2/gtk/gtkbin.h :
+/opt/gnome/include/gtk-1.2/gtk/gtkwindow.h :
+/opt/gnome/include/gtk--/entry.h :
+/opt/gnome/include/gtk--/editable.h :
+/opt/gnome/include/gtk-1.2/gtk/gtkeditable.h :
+/opt/gnome/include/gtk-1.2/gtk/gtkentry.h :
+/opt/gnome/include/gtk--/label.h :
+/opt/gnome/include/gtk--/misc.h :
+/opt/gnome/include/gtk-1.2/gtk/gtkmisc.h :
+/opt/gnome/include/gtk-1.2/gtk/gtklabel.h :
+/opt/gnome/include/gtk--/box.h :
+/opt/gnome/include/gtk-1.2/gtk/gtkbox.h :
+/opt/gnome/include/gtk-1.2/gtk/gtkvbox.h :
+/opt/gnome/include/gtk-1.2/gtk/gtkhbox.h :
+/opt/gnome/include/gtk--/button.h :
+/opt/gnome/include/gtk-1.2/gtk/gtkbutton.h :
+/opt/gnome/include/gtk-1.2/gtk/gtkfilesel.h :
+MainWindow.hh :
+CommonWidget.hh :
+CommonGlade.hh :
+/usr/local/include/g++-v3/iostream :
+/usr/local/include/g++-v3/bits/std_iostream.h :
+/usr/local/include/g++-v3/bits/std_ostream.h :
+/usr/local/include/g++-v3/bits/std_ios.h :
+/usr/local/include/g++-v3/bits/localefwd.h :
+/usr/local/include/g++-v3/i686-pc-linux-gnu/bits/c++locale.h :
+/usr/local/include/g++-v3/bits/std_cctype.h :
+/usr/include/ctype.h :
+/usr/local/include/g++-v3/bits/ios_base.h :
+/usr/local/include/g++-v3/bits/std_streambuf.h :
+/usr/local/include/g++-v3/bits/streambuf.tcc :
+/usr/local/include/g++-v3/bits/basic_ios.h :
+/usr/local/include/g++-v3/bits/sbuf_iter.h :
+/usr/local/include/g++-v3/bits/locale_facets.h :
+/usr/include/langinfo.h :
+/usr/include/nl_types.h :
+/usr/include/bits/locale.h :
+/usr/local/include/g++-v3/bits/std_cwctype.h :
+/usr/include/wctype.h :
+/usr/include/iconv.h :
+/usr/local/include/g++-v3/i686-pc-linux-gnu/bits/ctype_base.h :
+/usr/local/include/g++-v3/i686-pc-linux-gnu/bits/ctype_inline.h :
+/usr/local/include/g++-v3/bits/codecvt.h :
+/usr/local/include/g++-v3/bits/basic_ios.tcc :
+/usr/local/include/g++-v3/bits/ostream.tcc :
+/usr/local/include/g++-v3/bits/std_locale.h :
+/usr/local/include/g++-v3/bits/locale_facets.tcc :
+/usr/local/include/g++-v3/bits/std_cerrno.h :
+/usr/include/errno.h :
+/usr/include/bits/errno.h :
+/usr/include/linux/errno.h :
+/usr/include/asm/errno.h :
+/usr/local/include/g++-v3/bits/std_clocale.h :
+/usr/include/locale.h :
+/usr/local/include/g++-v3/bits/std_limits.h :
+/usr/local/include/g++-v3/typeinfo :
+/usr/local/include/g++-v3/bits/std_vector.h :
+/usr/local/include/g++-v3/bits/stl_vector.h :
+/usr/local/include/g++-v3/bits/stl_bvector.h :
+/usr/local/include/g++-v3/bits/std_istream.h :
+/usr/local/include/g++-v3/bits/istream.tcc :
+/opt/gnome/include/glade/glade-xml.h :
+/opt/gnome/include/gtk-1.2/gtk/gtktooltips.h :
+CommonMisc.hh :
+/usr/local/include/g++-v3/sstream :
+/usr/local/include/g++-v3/bits/std_sstream.h :
+/usr/local/include/g++-v3/bits/sstream.tcc :
+/opt/gnome/include/gnome--.h :
+/opt/gnome/include/gtk--.h :
+/opt/gnome/include/gtk-1.2/gtk/gtk.h :
+/opt/gnome/include/gtk-1.2/gtk/gtkaccellabel.h :
+/opt/gnome/include/gtk-1.2/gtk/gtkalignment.h :
+/opt/gnome/include/gtk-1.2/gtk/gtkaspectframe.h :
+/opt/gnome/include/gtk-1.2/gtk/gtkframe.h :
+/opt/gnome/include/gtk-1.2/gtk/gtkarrow.h :
+/opt/gnome/include/gtk-1.2/gtk/gtkbindings.h :
+/opt/gnome/include/gtk-1.2/gtk/gtkbbox.h :
+/opt/gnome/include/gtk-1.2/gtk/gtkcalendar.h :
+/opt/gnome/include/gtk-1.2/gtk/gtkcheckbutton.h :
+/opt/gnome/include/gtk-1.2/gtk/gtktogglebutton.h :
+/opt/gnome/include/gtk-1.2/gtk/gtkcheckmenuitem.h :
+/opt/gnome/include/gtk-1.2/gtk/gtkmenuitem.h :
+/opt/gnome/include/gtk-1.2/gtk/gtkitem.h :
+/opt/gnome/include/gtk-1.2/gtk/gtkclist.h :
+/opt/gnome/include/gtk-1.2/gtk/gtkhscrollbar.h :
+/opt/gnome/include/gtk-1.2/gtk/gtkscrollbar.h :
+/opt/gnome/include/gtk-1.2/gtk/gtkrange.h :
+/opt/gnome/include/gtk-1.2/gtk/gtkvscrollbar.h :
+/opt/gnome/include/gtk-1.2/gtk/gtkcolorsel.h :
+/opt/gnome/include/gtk-1.2/gtk/gtkpreview.h :
+/opt/gnome/include/gtk-1.2/gtk/gtkmain.h :
+/opt/gnome/include/gtk-1.2/gtk/gtkscale.h :
+/opt/gnome/include/gtk-1.2/gtk/gtkhscale.h :
+/opt/gnome/include/gtk-1.2/gtk/gtktable.h :
+/opt/gnome/include/gtk-1.2/gtk/gtkeventbox.h :
+/opt/gnome/include/gtk-1.2/gtk/gtkcombo.h :
+/opt/gnome/include/gtk-1.2/gtk/gtkcompat.h :
+/opt/gnome/include/gtk-1.2/gtk/gtkctree.h :
+/opt/gnome/include/gtk-1.2/gtk/gtkcurve.h :
+/opt/gnome/include/gtk-1.2/gtk/gtkdrawingarea.h :
+/opt/gnome/include/gtk-1.2/gtk/gtkdialog.h :
+/opt/gnome/include/gtk-1.2/gtk/gtkfixed.h :
+/opt/gnome/include/gtk-1.2/gtk/gtkfontsel.h :
+/opt/gnome/include/gtk-1.2/gtk/gtknotebook.h :
+/opt/gnome/include/gtk-1.2/gtk/gtkgamma.h :
+/opt/gnome/include/gtk-1.2/gtk/gtkgc.h :
+/opt/gnome/include/gtk-1.2/gtk/gtkhandlebox.h :
+/opt/gnome/include/gtk-1.2/gtk/gtkhbbox.h :
+/opt/gnome/include/gtk-1.2/gtk/gtkhpaned.h :
+/opt/gnome/include/gtk-1.2/gtk/gtkpaned.h :
+/opt/gnome/include/gtk-1.2/gtk/gtkhruler.h :
+/opt/gnome/include/gtk-1.2/gtk/gtkruler.h :
+/opt/gnome/include/gtk-1.2/gtk/gtkhseparator.h :
+/opt/gnome/include/gtk-1.2/gtk/gtkseparator.h :
+/opt/gnome/include/gtk-1.2/gtk/gtkimage.h :
+/opt/gnome/include/gtk-1.2/gtk/gtkinputdialog.h :
+/opt/gnome/include/gtk-1.2/gtk/gtkitemfactory.h :
+/opt/gnome/include/gtk-1.2/gtk/gtkmenufactory.h :
+/opt/gnome/include/gtk-1.2/gtk/gtklayout.h :
+/opt/gnome/include/gtk-1.2/gtk/gtklist.h :
+/opt/gnome/include/gtk-1.2/gtk/gtklistitem.h :
+/opt/gnome/include/gtk-1.2/gtk/gtkmenu.h :
+/opt/gnome/include/gtk-1.2/gtk/gtkmenushell.h :
+/opt/gnome/include/gtk-1.2/gtk/gtkmenubar.h :
+/opt/gnome/include/gtk-1.2/gtk/gtkoptionmenu.h :
+/opt/gnome/include/gtk-1.2/gtk/gtkpacker.h :
+/opt/gnome/include/gtk-1.2/gtk/gtkpixmap.h :
+/opt/gnome/include/gtk-1.2/gtk/gtkplug.h :
+/opt/gnome/include/gtk-1.2/gtk/gtkprogress.h :
+/opt/gnome/include/gtk-1.2/gtk/gtkprogressbar.h :
+/opt/gnome/include/gtk-1.2/gtk/gtkradiobutton.h :
+/opt/gnome/include/gtk-1.2/gtk/gtkradiomenuitem.h :
+/opt/gnome/include/gtk-1.2/gtk/gtkrc.h :
+/opt/gnome/include/gtk-1.2/gtk/gtkscrolledwindow.h :
+/opt/gnome/include/gtk-1.2/gtk/gtkviewport.h :
+/opt/gnome/include/gtk-1.2/gtk/gtksocket.h :
+/opt/gnome/include/gtk-1.2/gtk/gtkspinbutton.h :
+/opt/gnome/include/gtk-1.2/gtk/gtkstatusbar.h :
+/opt/gnome/include/gtk-1.2/gtk/gtktearoffmenuitem.h :
+/opt/gnome/include/gtk-1.2/gtk/gtktext.h :
+/opt/gnome/include/gtk-1.2/gtk/gtkthemes.h :
+/opt/gnome/include/gtk-1.2/gtk/gtktipsquery.h :
+/opt/gnome/include/gtk-1.2/gtk/gtktoolbar.h :
+/opt/gnome/include/gtk-1.2/gtk/gtktree.h :
+/opt/gnome/include/gtk-1.2/gtk/gtktreeitem.h :
+/opt/gnome/include/gtk-1.2/gtk/gtkvbbox.h :
+/opt/gnome/include/gtk-1.2/gtk/gtkvpaned.h :
+/opt/gnome/include/gtk-1.2/gtk/gtkvruler.h :
+/opt/gnome/include/gtk-1.2/gtk/gtkvscale.h :
+/opt/gnome/include/gtk-1.2/gtk/gtkvseparator.h :
+/opt/gnome/include/gtk--/accelgroup.h :
+/opt/gnome/include/gtk--/adjustment.h :
+/opt/gnome/include/gtk--/data.h :
+/opt/gnome/include/gtk--/alignment.h :
+/opt/gnome/include/gtk--/arrow.h :
+/opt/gnome/include/gtk--/aspectframe.h :
+/opt/gnome/include/gtk--/frame.h :
+/opt/gnome/include/gtk--/buttonbox.h :
+/opt/gnome/include/gtk--/checkbutton.h :
+/opt/gnome/include/gtk--/togglebutton.h :
+/opt/gnome/include/gtk--/checkmenuitem.h :
+/opt/gnome/include/gtk--/menuitem.h :
+/opt/gnome/include/gtk--/item.h :
+/opt/gnome/include/gtk--/clist.h :
+/opt/gnome/include/gtk--/colorselection.h :
+/opt/gnome/include/gtk--/combo.h :
+/opt/gnome/include/gtk--/scrolledwindow.h :
+/opt/gnome/include/gtk--/list.h :
+/opt/gnome/include/gtk--/listitem.h :
+/opt/gnome/include/gtk--/curve.h :
+/opt/gnome/include/gtk--/drawingarea.h :
+/opt/gnome/include/gtk--/dialog.h :
+/opt/gnome/include/gtk--/eventbox.h :
+/opt/gnome/include/gtk--/fixed.h :
+/opt/gnome/include/gtk--/handlebox.h :
+/opt/gnome/include/gtk--/image.h :
+/opt/gnome/include/gtk--/inputdialog.h :
+/opt/gnome/include/gtk--/optionmenu.h :
+/opt/gnome/include/gtk--/calendar.h :
+/opt/gnome/include/gtk--/ctree.h :
+/opt/gnome/include/gtk--/invisible.h :
+/opt/gnome/include/gtk-1.2/gtk/gtkinvisible.h :
+/opt/gnome/include/gtk--/main.h :
+/opt/gnome/include/gtk--/menu.h :
+/opt/gnome/include/gtk--/menushell.h :
+/opt/gnome/include/gtk-1.2/gdk/gdkkeysyms.h :
+/opt/gnome/include/gtk--/radiomenuitem.h :
+/opt/gnome/include/gtk--/tearoffmenuitem.h :
+/opt/gnome/include/gtk--/menubar.h :
+/opt/gnome/include/gtk--/notebook.h :
+/opt/gnome/include/gtk--/paned.h :
+/opt/gnome/include/gtk--/pixmap.h :
+/opt/gnome/include/gtk--/preview.h :
+/opt/gnome/include/gtk--/progressbar.h :
+/opt/gnome/include/gtk--/progress.h :
+/opt/gnome/include/gtk--/radiobutton.h :
+/opt/gnome/include/gtk--/range.h :
+/opt/gnome/include/gtk--/ruler.h :
+/opt/gnome/include/gtk--/scale.h :
+/opt/gnome/include/gtk--/scrollbar.h :
+/opt/gnome/include/gtk--/separator.h :
+/opt/gnome/include/gtk--/spinbutton.h :
+/opt/gnome/include/gtk--/statusbar.h :
+/opt/gnome/include/gtk--/style.h :
+/opt/gnome/include/gtk--/table.h :
+/opt/gnome/include/gtk--/text.h :
+/opt/gnome/include/gtk--/tipsquery.h :
+/opt/gnome/include/gtk--/toolbar.h :
+/opt/gnome/include/gtk--/tooltips.h :
+/opt/gnome/include/gtk--/tree.h :
+/opt/gnome/include/gtk--/treeitem.h :
+/opt/gnome/include/gtk--/viewport.h :
+/opt/gnome/include/gnome--/animator.h :
+/opt/gnome/include/gnome--/imlib.h :
+/opt/gnome/include/gdk_imlib.h :
+/opt/gnome/include/gdk_imlib_types.h :
+/opt/gnome/include/libgnomeui/gnome-animator.h :
+/opt/gnome/include/libgnome/gnome-defs.h :
+/opt/gnome/include/libgnomeui/gnome-pixmap.h :
+/opt/gnome/include/gnome--/about.h :
+/opt/gnome/include/gnome--/dialog.h :
+/opt/gnome/include/gnome--/types.h :
+/opt/gnome/include/libgnomeui/gnome-types.h :
+/opt/gnome/include/libgnomeui/gnome-dialog.h :
+/opt/gnome/include/libgnomeui/gnome-dialog-util.h :
+/opt/gnome/include/libgnomeui/gnome-about.h :
+/opt/gnome/include/gnome--/app.h :
+/opt/gnome/include/gnome--/dock.h :
+/opt/gnome/include/libgnomeui/gnome-dock.h :
+/opt/gnome/include/libgnomeui/gnome-dock-band.h :
+/opt/gnome/include/libgnomeui/gnome-dock-item.h :
+/opt/gnome/include/libgnomeui/gnome-dock-layout.h :
+/opt/gnome/include/gnome--/stock.h :
+/opt/gnome/include/gnome--/pixmap.h :
+/opt/gnome/include/libgnome/gnome-util.h :
+/opt/gnome/include/libgnomeui/gnome-stock.h :
+/opt/gnome/include/libgnome/gnome-i18n.h :
+/usr/include/libintl.h :
+/opt/gnome/include/libgnomeui/gnome-app.h :
+/opt/gnome/include/libgnomeui/gnome-app-util.h :
+/opt/gnome/include/gnome--/app-helper.h :
+/opt/gnome/include/libgnomeui/gnome-app-helper.h :
+/opt/gnome/include/libgnomeui/gnome-appbar.h :
+/usr/local/include/g++-v3/vector :
+/usr/local/include/g++-v3/list :
+/usr/local/include/g++-v3/bits/std_list.h :
+/usr/local/include/g++-v3/bits/stl_list.h :
+/opt/gnome/include/gnome--/appbar.h :
+/opt/gnome/include/gnome--/calculator.h :
+/opt/gnome/include/libgnomeui/gnome-calculator.h :
+/opt/gnome/include/gnome--/canvas-ellipse.h :
+/opt/gnome/include/gnome--/canvas-item.h :
+/opt/gnome/include/libgnomeui/gnome-canvas.h :
+/opt/gnome/include/libart_lgpl/art_misc.h :
+/opt/gnome/include/libart_lgpl/art_config.h :
+/opt/gnome/include/libart_lgpl/art_rect.h :
+/opt/gnome/include/libart_lgpl/art_svp.h :
+/opt/gnome/include/libart_lgpl/art_point.h :
+/opt/gnome/include/libart_lgpl/art_uta.h :
+/opt/gnome/include/libart_lgpl/art_affine.h :
+/opt/gnome/include/gnome--/point.h :
+/opt/gnome/include/gnome--/affinetrans.h :
+/opt/gnome/include/gnome--/canvas-property.h :
+/opt/gnome/include/gnome--/canvas-group.h :
+/opt/gnome/include/gnome--/canvas-rect-ellipse.h :
+/opt/gnome/include/libgnomeui/gnome-canvas-rect-ellipse.h :
+/opt/gnome/include/gnome--/canvas-image.h :
+/opt/gnome/include/libgnomeui/gnome-canvas-image.h :
+/opt/gnome/include/libart_lgpl/art_pixbuf.h :
+/opt/gnome/include/gnome--/canvas-line.h :
+/opt/gnome/include/libgnomeui/gnome-canvas-line.h :
+/opt/gnome/include/libgnomeui/gnome-canvas-util.h :
+/opt/gnome/include/libart_lgpl/art_vpath.h :
+/opt/gnome/include/libart_lgpl/art_pathcode.h :
+/opt/gnome/include/libart_lgpl/art_svp_vpath_stroke.h :
+/opt/gnome/include/gnome--/canvas-polygon.h :
+/opt/gnome/include/libgnomeui/gnome-canvas-polygon.h :
+/opt/gnome/include/gnome--/canvas-rect.h :
+/opt/gnome/include/gnome--/canvas-text.h :
+/opt/gnome/include/libgnomeui/gnome-canvas-text.h :
+/opt/gnome/include/gnome--/canvas-widget.h :
+/opt/gnome/include/libgnomeui/gnome-canvas-widget.h :
+/opt/gnome/include/gnome--/canvas.h :
+/opt/gnome/include/gtk--/layout.h :
+/opt/gnome/include/gnome--/client.h :
+/opt/gnome/include/libgnomeui/gnome-client.h :
+/usr/include/unistd.h :
+/usr/include/bits/posix_opt.h :
+/usr/include/bits/environments.h :
+/usr/include/bits/confname.h :
+/usr/include/getopt.h :
+/opt/gnome/include/gnome--/clock.h :
+/opt/gnome/include/libgnomeui/gtk-clock.h :
+/opt/gnome/include/gnome--/color-picker.h :
+/opt/gnome/include/libgnomeui/gnome-color-picker.h :
+/opt/gnome/include/gnome--/dateedit.h :
+/opt/gnome/include/libgnomeui/gnome-dateedit.h :
+/opt/gnome/include/gnome--/dentry-edit.h :
+/opt/gnome/include/libgnome/gnome-dentry.h :
+/opt/gnome/include/libgnomeui/gnome-dentry-edit.h :
+/opt/gnome/include/gnome--/dial.h :
+/opt/gnome/include/libgnomeui/gtkdial.h :
+/opt/gnome/include/gnome--/dock-item.h :
+/opt/gnome/include/gnome--/dock-layout.h :
+/opt/gnome/include/gnome--/druid-page-finish.h :
+/opt/gnome/include/gnome--/druid-page.h :
+/opt/gnome/include/libgnomeui/gnome-druid-page.h :
+/opt/gnome/include/libgnomeui/gnome-druid-page-finish.h :
+/opt/gnome/include/gnome--/druid-page-standard.h :
+/opt/gnome/include/libgnomeui/gnome-druid-page-standard.h :
+/opt/gnome/include/gnome--/druid-page-start.h :
+/opt/gnome/include/libgnomeui/gnome-druid-page-start.h :
+/opt/gnome/include/gnome--/druid.h :
+/opt/gnome/include/libgnomeui/gnome-druid.h :
+/opt/gnome/include/gnome--/entry.h :
+/opt/gnome/include/libgnomeui/gnome-entry.h :
+/opt/gnome/include/gnome--/file-entry.h :
+/opt/gnome/include/libgnomeui/gnome-file-entry.h :
+/opt/gnome/include/gnome--/font-picker.h :
+/opt/gnome/include/libgnomeui/gnome-font-picker.h :
+/opt/gnome/include/gnome--/icon-entry.h :
+/opt/gnome/include/libgnomeui/gnome-icon-entry.h :
+/opt/gnome/include/gnome--/icon-item.h :
+/opt/gnome/include/libgnomeui/gnome-icon-item.h :
+/opt/gnome/include/libgnomeui/gnome-icon-text.h :
+/opt/gnome/include/gnome--/icon-list.h :
+/opt/gnome/include/libgnomeui/gnome-icon-list.h :
+/opt/gnome/include/gnome--/icon-sel.h :
+/opt/gnome/include/libgnomeui/gnome-icon-sel.h :
+/opt/gnome/include/gnome--/less.h :
+/opt/gnome/include/libgnomeui/gnome-less.h :
+/opt/gnome/include/gnome--/main.h :
+/opt/gnome/include/libgnomeui/libgnomeui.h :
+/opt/gnome/include/libgnomeui/gnome-compat.h :
+/opt/gnome/include/libgnomeui/gnome-uidefs.h :
+/opt/gnome/include/libgnomeui/gnome-canvas-load.h :
+/opt/gnome/include/libgnomeui/gnome-dns.h :
+/opt/gnome/include/libgnomeui/gnome-font-selector.h :
+/opt/gnome/include/libgnomeui/gnome-geometry.h :
+/opt/gnome/include/libgnomeui/gnome-guru.h :
+/opt/gnome/include/libgnomeui/gnome-init.h :
+/opt/gnome/include/libgnome/gnome-popt.h :
+/opt/gnome/include/popt-gnome.h :
+/opt/gnome/include/libgnomeui/gnome-messagebox.h :
+/opt/gnome/include/libgnomeui/gnome-number-entry.h :
+/opt/gnome/include/libgnomeui/gnome-paper-selector.h :
+/opt/gnome/include/libgnomeui/gnome-popup-menu.h :
+/opt/gnome/include/libgnomeui/gnome-popup-help.h :
+/opt/gnome/include/libgnomeui/gnome-pixmap-entry.h :
+/opt/gnome/include/libgnomeui/gnome-preferences.h :
+/opt/gnome/include/libgnomeui/gnome-mdi.h :
+/opt/gnome/include/libgnomeui/gnome-mdi-child.h :
+/opt/gnome/include/libgnomeui/gnome-propertybox.h :
+/opt/gnome/include/libgnomeui/gnome-properties.h :
+/opt/gnome/include/libgnomeui/gnome-property-entries.h :
+/opt/gnome/include/libgnomeui/gnome-scores.h :
+/opt/gnome/include/libgnomeui/gnome-spell.h :
+/opt/gnome/include/libgnomeui/gnome-startup.h :
+/opt/gnome/include/libgnomeui/gtkcauldron.h :
+/opt/gnome/include/libgnomeui/gtk-ted.h :
+/opt/gnome/include/libgnomeui/gtkpixmapmenuitem.h :
+/opt/gnome/include/libgnomeui/gnome-mdi-generic-child.h :
+/opt/gnome/include/libgnomeui/gnome-mdi-session.h :
+/opt/gnome/include/libgnomeui/gnometypebuiltins.h :
+/opt/gnome/include/libgnomeui/gnome-winhints.h :
+/opt/gnome/include/libgnomeui/gnome-href.h :
+/opt/gnome/include/libgnomeui/gnome-procbar.h :
+/opt/gnome/include/gnome--/mdi-child.h :
+/opt/gnome/include/gnome--/mdi-generic-child.h :
+/opt/gnome/include/gnome--/mdi.h :
+/opt/gnome/include/gnome--/messagebox.h :
+/opt/gnome/include/gnome--/number-entry.h :
+/opt/gnome/include/gnome--/paper-selector.h :
+/opt/gnome/include/gnome--/pixmap-entry.h :
+/opt/gnome/include/gnome--/pixmapmenuitem.h :
+/opt/gnome/include/gnome--/procbar.h :
+/opt/gnome/include/gnome--/propertybox.h :
