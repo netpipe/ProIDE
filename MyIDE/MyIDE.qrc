@@ -1,0 +1,31 @@
+<RCC>
+    <qresource prefix="/">
+        <file>Resource/ProIDE.ico</file>
+		<file>Resource/copy.png</file> 
+		<file>Resource/cut.png</file>
+        <file>Resource/new.png</file>
+        <file>Resource/open.png</file>
+        <file>Resource/paste.png</file>
+        <file>Resource/save.png</file>
+        <file>Resource/about.png</file>
+        <file>Resource/exit.png</file>
+        <file>Resource/split_horizontal.png</file>
+        <file>Resource/split_none.png</file>
+        <file>Resource/split_vertical.png</file>
+        <file>Resource/ProIDE.png</file>
+        <file>Resource/dockbufttons/close-button.svg</file>
+        <file>Resource/dockbufttons/close-button-disabled.svg</file>
+        <file>Resource/dockbufttons/close-button-focused.svg</file>
+        <file>Resource/dockbufttons/tabs-menu-button.svg</file>
+        <file>Resource/dockbufttons/detach-button.svg</file>
+        <file>Resource/dockbufttons/detach-button-disabled.svg</file>
+        <file>Resource/dockbufttons/maximize-button.svg</file>
+        <file>Resource/dockbufttons/maximize-button-focused.svg</file>
+        <file>Resource/dockbufttons/restore-button.svg</file>
+        <file>Resource/dockbufttons/restore-button-focused.svg</file>		
+		<file>Resource/dockstylesheets/default.css</file>
+        <file>Resource/dockstylesheets/default_linux.css</file>
+        <file>Resource/dockstylesheets/focus_highlighting.css</file>
+        <file>Resource/dockstylesheets/focus_highlighting_linux.css</file>		
+    </qresource>
+</RCC>
