@@ -5,6 +5,10 @@ first version - codename Artemus
 Basic loading and saving to CBP files
 impliment CBP2MAKE2
 
+we now have unlimited code window splits like I had implimented into codeblocks when the cursor used to blink too fast.
+
+todo 
+impliment the qt-old/plugins folder into the IDE.
 
 ![screenshot ](Qt/Resource/ProIDE.png)
 
