@@ -348,6 +348,7 @@ public:
 	 * \see restoreState()
 	 */
 	QByteArray saveState(int version = 0) const;
+    void saveStateToWriter(QXmlStreamWriter &s, int version) const;
 
 	/**
 	 * Restores the state of this dockmanagers dockwidgets.
@@ -358,6 +359,7 @@ public:
 	 * \see saveState()
 	 */
 	bool restoreState(const QByteArray &state, int version = 0);
+    bool restoreStateFromReader(CDockingStateReader &state, int version = 0);
 
 	/**
 	 * Saves the current perspective to the internal list of perspectives.

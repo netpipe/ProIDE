@@ -104,6 +104,8 @@ private slots:
     void open();
     bool save();
     bool saveAs();
+    void saveState();
+    void restoreState();
     void about();
     void applyTheme(int index);
     void fileListWidgetItemClicked(QListWidgetItem * item);
@@ -137,6 +139,11 @@ private:
     int  getTabIndex(QString name);
 
     QString strippedName(const QString &fullFileName);
+
+    void addWelcomeTab();
+    void addNewFileTab(const QString &fileName, const QString &fName);
+    void saveDockingState(const QString &stateFileName);
+    void restoreDockingState(const QString &stateFileName);
 
 private:
     QAction *       copyAct;
