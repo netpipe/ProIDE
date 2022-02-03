@@ -4,6 +4,7 @@
 #include "DockCtrl/dockindock.h"
 #include "DockCtrl/dockindockmanager.h"
 #include "DockCtrl/perspectives.h"
+#include "DockCtrl/DockingStateReader.h"
 #include <set>
 #include <QDesktopWidget>
 
@@ -43,15 +44,6 @@ MainWindow::MainWindow()
 
     dockManager = new QtAdsUtl::DockInDockWidget(this, true, m_perspectivesManager);
     setCentralWidget(dockManager);
-    // Create an example editor
-    QLabel* lblLogo = new QLabel();
-    lblLogo->setAlignment(Qt::AlignCenter);
-    lblLogo->setContentsMargins(0, 0, 0, 50);
-
-    QString strImageFile = QString(":/Resource/ProIDE.png");
-    lblLogo->setPixmap(QPixmap(strImageFile));
-
-    previousDockWidget = dockManager->addTabWidget(lblLogo, "Welcome to ProIDE", previousDockWidget);
 
     getStyleList();
 
@@ -61,6 +53,9 @@ MainWindow::MainWindow()
     updateMenus();
 
     readSettings();        
+
+    // Create an example editor
+    addWelcomeTab();
 
     connect(fileListWidget, &QListWidget::itemClicked, this, &MainWindow::fileListWidgetItemClicked);
 
@@ -145,6 +140,23 @@ bool MainWindow::saveAs()
     return saveFile(dialog.selectedFiles().first());
 }
 
+void MainWindow::restoreState()
+{
+    QString fileName = QFileDialog::getOpenFileName(this, "Load docking state", "", "XML Files (*.xml)");
+    if (!fileName.isEmpty())
+        restoreDockingState(fileName);
+}
+
+void MainWindow::saveState()
+{
+    QFileDialog dialog(this, "Save docking state", "", "XML Files (*.xml)");
+    dialog.setWindowModality(Qt::WindowModal);
+    dialog.setAcceptMode(QFileDialog::AcceptSave);
+    dialog.selectFile("ProIDEDockingState.xml");
+    if (dialog.exec() == QDialog::Accepted)
+        saveDockingState(dialog.selectedFiles().first());
+}
+
 void MainWindow::about()
 {
     //aboutForm->show();
@@ -186,6 +198,19 @@ void MainWindow::createActions()
     saveAsAct->setStatusTip(tr("Save the document under a new name"));
 
     fileMenu->addSeparator();
+
+    // Restore/save docking state main menu items
+
+    QAction *loadStateAct = new QAction("Load State...", this);
+    connect(loadStateAct, &QAction::triggered, this, &MainWindow::restoreState);
+    fileMenu->addAction(loadStateAct);
+
+    QAction *saveStateAct = new QAction("Save State...", this);
+    connect(saveStateAct, &QAction::triggered, this, &MainWindow::saveState);
+    fileMenu->addAction(saveStateAct);
+
+    fileMenu->addSeparator();
+
 
     const QIcon exitIcon = QIcon::fromTheme("application-exit", QIcon(":/Resource/exit.png"));
     QAction *exitAct = fileMenu->addAction(exitIcon, tr("E&xit"), this, &QWidget::close);
@@ -658,4 +683,158 @@ QTextEdit * MainWindow::getTabTextEdit()
     srcEditor->hide();
 
     return srcEditor;
+}
+
+void MainWindow::addWelcomeTab()
+{
+    // Create an example editor
+    const QIcon openIcon = QIcon::fromTheme("document-open", QIcon(":/Resource/open.png"));
+    QListWidgetItem * pItem = new QListWidgetItem(openIcon, "Welcome to ProIDE", fileListWidget);
+    fileListWidget->addItem(pItem);
+
+    QLabel* lblLogo = new QLabel();
+    lblLogo->setAlignment(Qt::AlignCenter);
+    lblLogo->setContentsMargins(0, 0, 0, 50);
+
+    QString strImageFile = QString(":/Resource/ProIDE.png");
+    lblLogo->setPixmap(QPixmap(strImageFile));
+
+    previousDockWidget = dockManager->addTabWidget(lblLogo, "Welcome to ProIDE", previousDockWidget);
+}
+
+void MainWindow::addNewFileTab(const QString &fileNamePath, const QString &fName)
+{
+    if (!isExistListWidget(fName)) // just in case
+    {
+        const QIcon openIcon = QIcon::fromTheme("document-open", QIcon(":/Resource/open.png"));
+        QListWidgetItem * pItem = new QListWidgetItem(openIcon, fName, fileListWidget);
+        pItem->setData(Qt::UserRole, fileNamePath);
+        fileListWidget->addItem(pItem);
+
+        // Create an example editor
+        QTextEdit* txtedit = new QTextEdit();
+        txtedit->setPlaceholderText("Please enter your text here ...");
+
+        previousDockWidget = dockManager->addTabWidget(txtedit, fName, openIcon, previousDockWidget);
+    }
+}
+
+void MainWindow::saveDockingState(const QString &stateFileName)
+{
+    QFile file(stateFileName);
+    if (!file.open(QIODevice::WriteOnly))
+    {
+        QMessageBox::critical(this, "Save state failed",
+                              "Failed to open xml-file for writting!\nError: " + file.errorString());
+    }
+    else
+    {
+        QXmlStreamWriter xml(&file);
+        xml.setAutoFormatting(true);
+        xml.writeStartDocument();
+        xml.writeStartElement("ProIDEDockingState");
+        xml.writeStartElement("FileList");
+
+        // Save file list
+        for (int i = 0; i < fileListWidget->count(); ++i)
+        {
+            QListWidgetItem* lwItem = fileListWidget->item(i);
+            if (lwItem->data(Qt::UserRole).isNull() && lwItem->text() == "Welcome to ProIDE")
+                xml.writeTextElement("File", "Welcome to ProIDE");
+            else
+            {
+                QString fileName = lwItem->data(Qt::UserRole).toString();
+                if (QFileInfo::exists(fileName) || fileName.indexOf("Noname") < 0)
+                    xml.writeTextElement("File", fileName);
+                else
+                    xml.writeTextElement("File", strippedName(fileName));
+            }
+        }
+
+        xml.writeEndElement();
+
+        // Save adv. docking system state
+        dockManager->getManager()->saveStateToWriter(xml, 0);
+
+        xml.writeEndElement();
+        xml.writeEndDocument();
+    }
+}
+
+void MainWindow::restoreDockingState(const QString &stateFileName)
+{
+    //
+    // Remove current tabs/files
+
+    if (dockManager)
+    {
+        dockManager->deleteLater();
+        dockManager = nullptr;
+        previousDockWidget = nullptr;
+    }
+
+    fileListWidget->clear();
+
+    //
+    // Create/open new ones
+
+    dockManager = new QtAdsUtl::DockInDockWidget(this, true, m_perspectivesManager);
+    setCentralWidget(dockManager);
+
+    QFile file(stateFileName);
+    if (!file.open(QIODevice::ReadOnly))
+    {
+        QMessageBox::critical(this, "Restore state failed",
+                              "Failed to open xml-file for reading.\nError: " + file.errorString());
+    }
+    else
+    {
+        ads::CDockingStateReader xml(&file);
+        if (xml.readNextStartElement() && xml.name() == "ProIDEDockingState" &&
+            xml.readNextStartElement() && xml.name() == "FileList")
+        {
+            QStringList saveStateFileNames;
+
+            // Read file list
+            while (xml.readNextStartElement())
+            {
+                if (xml.name() == "File")
+                {
+                    QString fileName = xml.readElementText();
+                    saveStateFileNames.push_back(fileName);
+                }
+                else
+                    xml.skipCurrentElement();
+            }
+
+            // Create/open files/tabs
+            for (const QString& fileName : saveStateFileNames)
+            {
+                if (fileName == "Welcome to ProIDE")
+                {
+                    addWelcomeTab();
+                }
+                else if (QFile::exists(fileName))
+                {
+                    openFileAt(fileName, -1);
+                }
+                else
+                {
+                    QString fName = strippedName(fileName);
+                    addNewFileTab(fileName, fName);
+                }
+            }
+
+            // Restore dock widgets state
+            dockManager->getManager()->restoreStateFromReader(xml);
+
+            // Make the 1st dock area as the area for adding new tabs/files.
+            previousDockWidget = dockManager->getManager()->dockArea(0);
+        }
+        else
+        {
+            QMessageBox::critical(this, "Restore state failed",
+                                  "Error while reading docking state file.");
+        }
+    }
 }

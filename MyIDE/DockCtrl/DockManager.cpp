@@ -126,11 +126,13 @@ struct DockManagerPrivate
 	 * Restores the state
 	 */
 	bool restoreStateFromXml(const QByteArray &state, int version, bool Testing = internal::Restore);
+    bool restoreStateFromXmlReader(CDockingStateReader &s, int version, bool Testing = internal::Restore);
 
 	/**
 	 * Restore state
 	 */
 	bool restoreState(const QByteArray &state, int version);
+    bool restoreStateFromReader(CDockingStateReader &state, int version);
 
 	void restoreDockWidgetsOpenState();
 	void restoreDockAreasIndices();
@@ -249,6 +251,17 @@ bool DockManagerPrivate::restoreStateFromXml(const QByteArray &state,  int versi
         return false;
     }
     CDockingStateReader s(state);
+
+    return restoreStateFromXmlReader(s, version, Testing);
+}
+
+
+//============================================================================
+bool DockManagerPrivate::restoreStateFromXmlReader(CDockingStateReader &s, int version, bool Testing)
+{
+    if (s.hasError())
+        return false;
+
     s.readNextStartElement();
     if (s.name() != QLatin1String("QtAdvancedDockingSystem"))
     {
@@ -435,6 +448,28 @@ bool DockManagerPrivate::restoreState(const QByteArray& State, int version)
     {
         ADS_PRINT("restoreState: Error restoring state!!!!!!!");
     	return false;
+    }
+
+    restoreDockWidgetsOpenState();
+    restoreDockAreasIndices();
+    emitTopLevelEvents();
+    _this->dumpLayout();
+
+    return true;
+}
+
+
+//============================================================================
+bool DockManagerPrivate::restoreStateFromReader(CDockingStateReader &s, int version)
+{
+    // Hide updates of floating widgets from use
+    hideFloatingWidgets();
+    markDockWidgetsDirty();
+
+    if (!restoreStateFromXmlReader(s, version))
+    {
+        ADS_PRINT("restoreState: Error restoring state!!!!!!!");
+        return false;
     }
 
     restoreDockWidgetsOpenState();
@@ -666,24 +701,32 @@ QByteArray CDockManager::saveState(int version) const
     auto ConfigFlags = CDockManager::configFlags();
 	s.setAutoFormatting(ConfigFlags.testFlag(XmlAutoFormattingEnabled));
     s.writeStartDocument();
-		s.writeStartElement("QtAdvancedDockingSystem");
-		s.writeAttribute("Version", QString::number(CurrentVersion));
-		s.writeAttribute("UserVersion", QString::number(version));
-		s.writeAttribute("Containers", QString::number(d->Containers.count()));
-		if (d->CentralWidget)
-		{
-			s.writeAttribute("CentralWidget", d->CentralWidget->objectName());
-		}
-		for (auto Container : d->Containers)
-		{
-			Container->saveState(s);
-		}
 
-		s.writeEndElement();
+    saveStateToWriter(s, version);
+
     s.writeEndDocument();
 
     return ConfigFlags.testFlag(XmlCompressionEnabled)
     	? qCompress(xmldata, 9) : xmldata;
+}
+
+
+//============================================================================
+void CDockManager::saveStateToWriter(QXmlStreamWriter &s, int version) const
+{
+    s.writeStartElement("QtAdvancedDockingSystem");
+    s.writeAttribute("Version", QString::number(CurrentVersion));
+    s.writeAttribute("UserVersion", QString::number(version));
+    s.writeAttribute("Containers", QString::number(d->Containers.count()));
+    if (d->CentralWidget)
+    {
+        s.writeAttribute("CentralWidget", d->CentralWidget->objectName());
+    }
+    for (auto Container : d->Containers)
+    {
+        Container->saveState(s);
+    }
+    s.writeEndElement();
 }
 
 
@@ -720,6 +763,42 @@ bool CDockManager::restoreState(const QByteArray &state, int version)
 	}
 	Q_EMIT stateRestored();
 	return Result;
+}
+
+
+//============================================================================
+bool CDockManager::restoreStateFromReader(CDockingStateReader &state, int version)
+{
+    // Prevent multiple calls as long as state is not restore. This may
+    // happen, if QApplication::processEvents() is called somewhere
+    if (d->RestoringState)
+    {
+        return false;
+    }
+
+    // We hide the complete dock manager here. Restoring the state means
+    // that DockWidgets are removed from the DockArea internal stack layout
+    // which in turn  means, that each time a widget is removed the stack
+    // will show and raise the next available widget which in turn
+    // triggers show events for the dock widgets. To avoid this we hide the
+    // dock manager. Because there will be no processing of application
+    // events until this function is finished, the user will not see this
+    // hiding
+    bool IsHidden = this->isHidden();
+    if (!IsHidden)
+    {
+        hide();
+    }
+    d->RestoringState = true;
+    Q_EMIT restoringState();
+    bool Result = d->restoreStateFromReader(state, version);
+    d->RestoringState = false;
+    if (!IsHidden)
+    {
+        show();
+    }
+    Q_EMIT stateRestored();
+    return Result;
 }
 
 
