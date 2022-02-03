@@ -155,7 +155,7 @@ private:
 
     QMdiArea *      mdiArea;
 
-   // QStackedWidget *stackedWidget;
+    QStackedWidget *stackedWidget;
 
     QSplitter *     splitter;
 

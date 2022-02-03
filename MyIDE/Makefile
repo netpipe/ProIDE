@@ -37,7 +37,7 @@ MOVE          = mv -f
 TAR           = tar -cf
 COMPRESS      = gzip -9f
 DISTNAME      = MyIDE1.0.0
-DISTDIR = /home/netpipe/Desktop/MyIDE/.tmp/MyIDE1.0.0
+DISTDIR = /home/netpipe/qtprojects/ProIDE/MyIDE/.tmp/MyIDE1.0.0
 LINK          = g++
 LFLAGS        = 
 LIBS          = $(SUBLIBS) /usr/lib64/libQt5Widgets.so /usr/lib64/libQt5Gui.so /usr/lib64/libQt5Core.so /usr/lib64/libGL.so -lpthread   
@@ -173,6 +173,75 @@ DIST          = /usr/lib64/qt5/mkspecs/features/spec_pre.prf \
 		/usr/lib64/qt5/mkspecs/common/g++-unix.conf \
 		/usr/lib64/qt5/mkspecs/qconfig.pri \
 		/usr/lib64/qt5/mkspecs/modules/qt_AkonadiMime.pri \
+		/usr/lib64/qt5/mkspecs/modules/qt_Attica.pri \
+		/usr/lib64/qt5/mkspecs/modules/qt_Baloo.pri \
+		/usr/lib64/qt5/mkspecs/modules/qt_BluezQt.pri \
+		/usr/lib64/qt5/mkspecs/modules/qt_KActivities.pri \
+		/usr/lib64/qt5/mkspecs/modules/qt_KActivitiesStats.pri \
+		/usr/lib64/qt5/mkspecs/modules/qt_KArchive.pri \
+		/usr/lib64/qt5/mkspecs/modules/qt_KAuth.pri \
+		/usr/lib64/qt5/mkspecs/modules/qt_KAuthCore.pri \
+		/usr/lib64/qt5/mkspecs/modules/qt_KBookmarks.pri \
+		/usr/lib64/qt5/mkspecs/modules/qt_KCMUtils.pri \
+		/usr/lib64/qt5/mkspecs/modules/qt_KCodecs.pri \
+		/usr/lib64/qt5/mkspecs/modules/qt_KCompletion.pri \
+		/usr/lib64/qt5/mkspecs/modules/qt_KConfigCore.pri \
+		/usr/lib64/qt5/mkspecs/modules/qt_KConfigGui.pri \
+		/usr/lib64/qt5/mkspecs/modules/qt_KConfigWidgets.pri \
+		/usr/lib64/qt5/mkspecs/modules/qt_KCoreAddons.pri \
+		/usr/lib64/qt5/mkspecs/modules/qt_KCrash.pri \
+		/usr/lib64/qt5/mkspecs/modules/qt_KDBusAddons.pri \
+		/usr/lib64/qt5/mkspecs/modules/qt_KDeclarative.pri \
+		/usr/lib64/qt5/mkspecs/modules/qt_KDESu.pri \
+		/usr/lib64/qt5/mkspecs/modules/qt_KDEWebKit.pri \
+		/usr/lib64/qt5/mkspecs/modules/qt_KDNSSD.pri \
+		/usr/lib64/qt5/mkspecs/modules/qt_KEmoticons.pri \
+		/usr/lib64/qt5/mkspecs/modules/qt_KFileMetaData.pri \
+		/usr/lib64/qt5/mkspecs/modules/qt_KGlobalAccel.pri \
+		/usr/lib64/qt5/mkspecs/modules/qt_KGuiAddons.pri \
+		/usr/lib64/qt5/mkspecs/modules/qt_KHolidays.pri \
+		/usr/lib64/qt5/mkspecs/modules/qt_KHtml.pri \
+		/usr/lib64/qt5/mkspecs/modules/qt_KI18n.pri \
+		/usr/lib64/qt5/mkspecs/modules/qt_KIconThemes.pri \
+		/usr/lib64/qt5/mkspecs/modules/qt_KIdleTime.pri \
+		/usr/lib64/qt5/mkspecs/modules/qt_KIOCore.pri \
+		/usr/lib64/qt5/mkspecs/modules/qt_KIOFileWidgets.pri \
+		/usr/lib64/qt5/mkspecs/modules/qt_KIOGui.pri \
+		/usr/lib64/qt5/mkspecs/modules/qt_KIOWidgets.pri \
+		/usr/lib64/qt5/mkspecs/modules/qt_Kirigami.pri \
+		/usr/lib64/qt5/mkspecs/modules/qt_Kirigami2.pri \
+		/usr/lib64/qt5/mkspecs/modules/qt_KItemModels.pri \
+		/usr/lib64/qt5/mkspecs/modules/qt_KItemViews.pri \
+		/usr/lib64/qt5/mkspecs/modules/qt_KJobWidgets.pri \
+		/usr/lib64/qt5/mkspecs/modules/qt_KJS.pri \
+		/usr/lib64/qt5/mkspecs/modules/qt_KJSApi.pri \
+		/usr/lib64/qt5/mkspecs/modules/qt_KJsEmbed.pri \
+		/usr/lib64/qt5/mkspecs/modules/qt_KNewStuff.pri \
+		/usr/lib64/qt5/mkspecs/modules/qt_KNewStuffCore.pri \
+		/usr/lib64/qt5/mkspecs/modules/qt_KNotifications.pri \
+		/usr/lib64/qt5/mkspecs/modules/qt_KNotifyConfig.pri \
+		/usr/lib64/qt5/mkspecs/modules/qt_KNTLM.pri \
+		/usr/lib64/qt5/mkspecs/modules/qt_KParts.pri \
+		/usr/lib64/qt5/mkspecs/modules/qt_KPeople.pri \
+		/usr/lib64/qt5/mkspecs/modules/qt_KPeopleWidgets.pri \
+		/usr/lib64/qt5/mkspecs/modules/qt_KPlotting.pri \
+		/usr/lib64/qt5/mkspecs/modules/qt_KPty.pri \
+		/usr/lib64/qt5/mkspecs/modules/qt_KrossCore.pri \
+		/usr/lib64/qt5/mkspecs/modules/qt_KrossUi.pri \
+		/usr/lib64/qt5/mkspecs/modules/qt_KRunner.pri \
+		/usr/lib64/qt5/mkspecs/modules/qt_KScreen.pri \
+		/usr/lib64/qt5/mkspecs/modules/qt_KService.pri \
+		/usr/lib64/qt5/mkspecs/modules/qt_KSyntaxHighlighting.pri \
+		/usr/lib64/qt5/mkspecs/modules/qt_KTextEditor.pri \
+		/usr/lib64/qt5/mkspecs/modules/qt_KTextWidgets.pri \
+		/usr/lib64/qt5/mkspecs/modules/qt_KUnitConversion.pri \
+		/usr/lib64/qt5/mkspecs/modules/qt_KWallet.pri \
+		/usr/lib64/qt5/mkspecs/modules/qt_KWaylandClient.pri \
+		/usr/lib64/qt5/mkspecs/modules/qt_KWaylandServer.pri \
+		/usr/lib64/qt5/mkspecs/modules/qt_KWidgetsAddons.pri \
+		/usr/lib64/qt5/mkspecs/modules/qt_KWindowSystem.pri \
+		/usr/lib64/qt5/mkspecs/modules/qt_KXmlGui.pri \
+		/usr/lib64/qt5/mkspecs/modules/qt_KXmlRpcClient.pri \
 		/usr/lib64/qt5/mkspecs/modules/qt_lib_3danimation.pri \
 		/usr/lib64/qt5/mkspecs/modules/qt_lib_3danimation_private.pri \
 		/usr/lib64/qt5/mkspecs/modules/qt_lib_3dcore.pri \
@@ -218,6 +287,8 @@ DIST          = /usr/lib64/qt5/mkspecs/features/spec_pre.prf \
 		/usr/lib64/qt5/mkspecs/modules/qt_lib_eventdispatcher_support_private.pri \
 		/usr/lib64/qt5/mkspecs/modules/qt_lib_fb_support_private.pri \
 		/usr/lib64/qt5/mkspecs/modules/qt_lib_fontdatabase_support_private.pri \
+		/usr/lib64/qt5/mkspecs/modules/qt_lib_gamepad.pri \
+		/usr/lib64/qt5/mkspecs/modules/qt_lib_gamepad_private.pri \
 		/usr/lib64/qt5/mkspecs/modules/qt_lib_glx_support_private.pri \
 		/usr/lib64/qt5/mkspecs/modules/qt_lib_gui.pri \
 		/usr/lib64/qt5/mkspecs/modules/qt_lib_gui_private.pri \
@@ -226,6 +297,8 @@ DIST          = /usr/lib64/qt5/mkspecs/features/spec_pre.prf \
 		/usr/lib64/qt5/mkspecs/modules/qt_lib_input_support_private.pri \
 		/usr/lib64/qt5/mkspecs/modules/qt_lib_kms_support_private.pri \
 		/usr/lib64/qt5/mkspecs/modules/qt_lib_linuxaccessibility_support_private.pri \
+		/usr/lib64/qt5/mkspecs/modules/qt_lib_location.pri \
+		/usr/lib64/qt5/mkspecs/modules/qt_lib_location_private.pri \
 		/usr/lib64/qt5/mkspecs/modules/qt_lib_multimedia.pri \
 		/usr/lib64/qt5/mkspecs/modules/qt_lib_multimedia_private.pri \
 		/usr/lib64/qt5/mkspecs/modules/qt_lib_multimediagsttools_private.pri \
@@ -233,6 +306,8 @@ DIST          = /usr/lib64/qt5/mkspecs/features/spec_pre.prf \
 		/usr/lib64/qt5/mkspecs/modules/qt_lib_multimediawidgets_private.pri \
 		/usr/lib64/qt5/mkspecs/modules/qt_lib_network.pri \
 		/usr/lib64/qt5/mkspecs/modules/qt_lib_network_private.pri \
+		/usr/lib64/qt5/mkspecs/modules/qt_lib_networkauth.pri \
+		/usr/lib64/qt5/mkspecs/modules/qt_lib_networkauth_private.pri \
 		/usr/lib64/qt5/mkspecs/modules/qt_lib_nfc.pri \
 		/usr/lib64/qt5/mkspecs/modules/qt_lib_nfc_private.pri \
 		/usr/lib64/qt5/mkspecs/modules/qt_lib_opengl.pri \
@@ -241,6 +316,10 @@ DIST          = /usr/lib64/qt5/mkspecs/features/spec_pre.prf \
 		/usr/lib64/qt5/mkspecs/modules/qt_lib_openglextensions_private.pri \
 		/usr/lib64/qt5/mkspecs/modules/qt_lib_packetprotocol_private.pri \
 		/usr/lib64/qt5/mkspecs/modules/qt_lib_platformcompositor_support_private.pri \
+		/usr/lib64/qt5/mkspecs/modules/qt_lib_positioning.pri \
+		/usr/lib64/qt5/mkspecs/modules/qt_lib_positioning_private.pri \
+		/usr/lib64/qt5/mkspecs/modules/qt_lib_positioningquick.pri \
+		/usr/lib64/qt5/mkspecs/modules/qt_lib_positioningquick_private.pri \
 		/usr/lib64/qt5/mkspecs/modules/qt_lib_printsupport.pri \
 		/usr/lib64/qt5/mkspecs/modules/qt_lib_printsupport_private.pri \
 		/usr/lib64/qt5/mkspecs/modules/qt_lib_qml.pri \
@@ -256,40 +335,79 @@ DIST          = /usr/lib64/qt5/mkspecs/features/spec_pre.prf \
 		/usr/lib64/qt5/mkspecs/modules/qt_lib_quickshapes_private.pri \
 		/usr/lib64/qt5/mkspecs/modules/qt_lib_quickwidgets.pri \
 		/usr/lib64/qt5/mkspecs/modules/qt_lib_quickwidgets_private.pri \
+		/usr/lib64/qt5/mkspecs/modules/qt_lib_remoteobjects.pri \
+		/usr/lib64/qt5/mkspecs/modules/qt_lib_remoteobjects_private.pri \
+		/usr/lib64/qt5/mkspecs/modules/qt_lib_repparser.pri \
+		/usr/lib64/qt5/mkspecs/modules/qt_lib_repparser_private.pri \
 		/usr/lib64/qt5/mkspecs/modules/qt_lib_script.pri \
 		/usr/lib64/qt5/mkspecs/modules/qt_lib_script_private.pri \
 		/usr/lib64/qt5/mkspecs/modules/qt_lib_scripttools.pri \
 		/usr/lib64/qt5/mkspecs/modules/qt_lib_scripttools_private.pri \
+		/usr/lib64/qt5/mkspecs/modules/qt_lib_scxml.pri \
+		/usr/lib64/qt5/mkspecs/modules/qt_lib_scxml_private.pri \
 		/usr/lib64/qt5/mkspecs/modules/qt_lib_sensors.pri \
 		/usr/lib64/qt5/mkspecs/modules/qt_lib_sensors_private.pri \
+		/usr/lib64/qt5/mkspecs/modules/qt_lib_serialbus.pri \
+		/usr/lib64/qt5/mkspecs/modules/qt_lib_serialbus_private.pri \
 		/usr/lib64/qt5/mkspecs/modules/qt_lib_serialport.pri \
 		/usr/lib64/qt5/mkspecs/modules/qt_lib_serialport_private.pri \
 		/usr/lib64/qt5/mkspecs/modules/qt_lib_service_support_private.pri \
 		/usr/lib64/qt5/mkspecs/modules/qt_lib_sql.pri \
 		/usr/lib64/qt5/mkspecs/modules/qt_lib_sql_private.pri \
+		/usr/lib64/qt5/mkspecs/modules/qt_lib_svg.pri \
+		/usr/lib64/qt5/mkspecs/modules/qt_lib_svg_private.pri \
 		/usr/lib64/qt5/mkspecs/modules/qt_lib_testlib.pri \
 		/usr/lib64/qt5/mkspecs/modules/qt_lib_testlib_private.pri \
+		/usr/lib64/qt5/mkspecs/modules/qt_lib_texttospeech.pri \
+		/usr/lib64/qt5/mkspecs/modules/qt_lib_texttospeech_private.pri \
 		/usr/lib64/qt5/mkspecs/modules/qt_lib_theme_support_private.pri \
 		/usr/lib64/qt5/mkspecs/modules/qt_lib_uiplugin.pri \
 		/usr/lib64/qt5/mkspecs/modules/qt_lib_uitools.pri \
 		/usr/lib64/qt5/mkspecs/modules/qt_lib_uitools_private.pri \
+		/usr/lib64/qt5/mkspecs/modules/qt_lib_virtualkeyboard.pri \
 		/usr/lib64/qt5/mkspecs/modules/qt_lib_vulkan_support_private.pri \
 		/usr/lib64/qt5/mkspecs/modules/qt_lib_waylandclient.pri \
 		/usr/lib64/qt5/mkspecs/modules/qt_lib_waylandclient_private.pri \
 		/usr/lib64/qt5/mkspecs/modules/qt_lib_waylandcompositor.pri \
 		/usr/lib64/qt5/mkspecs/modules/qt_lib_waylandcompositor_private.pri \
+		/usr/lib64/qt5/mkspecs/modules/qt_lib_webchannel.pri \
+		/usr/lib64/qt5/mkspecs/modules/qt_lib_webchannel_private.pri \
+		/usr/lib64/qt5/mkspecs/modules/qt_lib_webengine.pri \
+		/usr/lib64/qt5/mkspecs/modules/qt_lib_webengine_private.pri \
+		/usr/lib64/qt5/mkspecs/modules/qt_lib_webenginecore.pri \
+		/usr/lib64/qt5/mkspecs/modules/qt_lib_webenginecore_private.pri \
+		/usr/lib64/qt5/mkspecs/modules/qt_lib_webenginecoreheaders_private.pri \
+		/usr/lib64/qt5/mkspecs/modules/qt_lib_webenginewidgets.pri \
+		/usr/lib64/qt5/mkspecs/modules/qt_lib_webenginewidgets_private.pri \
+		/usr/lib64/qt5/mkspecs/modules/qt_lib_webkit.pri \
+		/usr/lib64/qt5/mkspecs/modules/qt_lib_webkit_private.pri \
+		/usr/lib64/qt5/mkspecs/modules/qt_lib_webkitwidgets.pri \
+		/usr/lib64/qt5/mkspecs/modules/qt_lib_webkitwidgets_private.pri \
+		/usr/lib64/qt5/mkspecs/modules/qt_lib_websockets.pri \
+		/usr/lib64/qt5/mkspecs/modules/qt_lib_websockets_private.pri \
+		/usr/lib64/qt5/mkspecs/modules/qt_lib_webview.pri \
+		/usr/lib64/qt5/mkspecs/modules/qt_lib_webview_private.pri \
 		/usr/lib64/qt5/mkspecs/modules/qt_lib_widgets.pri \
 		/usr/lib64/qt5/mkspecs/modules/qt_lib_widgets_private.pri \
+		/usr/lib64/qt5/mkspecs/modules/qt_lib_x11extras.pri \
+		/usr/lib64/qt5/mkspecs/modules/qt_lib_x11extras_private.pri \
 		/usr/lib64/qt5/mkspecs/modules/qt_lib_xcb_qpa_lib_private.pri \
 		/usr/lib64/qt5/mkspecs/modules/qt_lib_xml.pri \
 		/usr/lib64/qt5/mkspecs/modules/qt_lib_xml_private.pri \
 		/usr/lib64/qt5/mkspecs/modules/qt_lib_xmlpatterns.pri \
 		/usr/lib64/qt5/mkspecs/modules/qt_lib_xmlpatterns_private.pri \
-		/usr/lib64/qt5/mkspecs/modules/qt_Qt5Keychain.pri \
+		/usr/lib64/qt5/mkspecs/modules/qt_phonon4qt5.pri \
+		/usr/lib64/qt5/mkspecs/modules/qt_Prison.pri \
+		/usr/lib64/qt5/mkspecs/modules/qt_QuickAddons.pri \
+		/usr/lib64/qt5/mkspecs/modules/qt_Solid.pri \
+		/usr/lib64/qt5/mkspecs/modules/qt_SonnetCore.pri \
+		/usr/lib64/qt5/mkspecs/modules/qt_SonnetUi.pri \
+		/usr/lib64/qt5/mkspecs/modules/qt_ThreadWeaver.pri \
 		/usr/lib64/qt5/mkspecs/features/qt_functions.prf \
 		/usr/lib64/qt5/mkspecs/features/qt_config.prf \
 		/usr/lib64/qt5/mkspecs/linux-g++/qmake.conf \
 		/usr/lib64/qt5/mkspecs/features/spec_post.prf \
+		.qmake.stash \
 		/usr/lib64/qt5/mkspecs/features/exclusive_builds.prf \
 		/usr/lib64/qt5/mkspecs/features/toolchain.prf \
 		/usr/lib64/qt5/mkspecs/features/default_pre.prf \
@@ -389,6 +507,75 @@ Makefile: MyIDE.pro /usr/lib64/qt5/mkspecs/linux-g++/qmake.conf /usr/lib64/qt5/m
 		/usr/lib64/qt5/mkspecs/common/g++-unix.conf \
 		/usr/lib64/qt5/mkspecs/qconfig.pri \
 		/usr/lib64/qt5/mkspecs/modules/qt_AkonadiMime.pri \
+		/usr/lib64/qt5/mkspecs/modules/qt_Attica.pri \
+		/usr/lib64/qt5/mkspecs/modules/qt_Baloo.pri \
+		/usr/lib64/qt5/mkspecs/modules/qt_BluezQt.pri \
+		/usr/lib64/qt5/mkspecs/modules/qt_KActivities.pri \
+		/usr/lib64/qt5/mkspecs/modules/qt_KActivitiesStats.pri \
+		/usr/lib64/qt5/mkspecs/modules/qt_KArchive.pri \
+		/usr/lib64/qt5/mkspecs/modules/qt_KAuth.pri \
+		/usr/lib64/qt5/mkspecs/modules/qt_KAuthCore.pri \
+		/usr/lib64/qt5/mkspecs/modules/qt_KBookmarks.pri \
+		/usr/lib64/qt5/mkspecs/modules/qt_KCMUtils.pri \
+		/usr/lib64/qt5/mkspecs/modules/qt_KCodecs.pri \
+		/usr/lib64/qt5/mkspecs/modules/qt_KCompletion.pri \
+		/usr/lib64/qt5/mkspecs/modules/qt_KConfigCore.pri \
+		/usr/lib64/qt5/mkspecs/modules/qt_KConfigGui.pri \
+		/usr/lib64/qt5/mkspecs/modules/qt_KConfigWidgets.pri \
+		/usr/lib64/qt5/mkspecs/modules/qt_KCoreAddons.pri \
+		/usr/lib64/qt5/mkspecs/modules/qt_KCrash.pri \
+		/usr/lib64/qt5/mkspecs/modules/qt_KDBusAddons.pri \
+		/usr/lib64/qt5/mkspecs/modules/qt_KDeclarative.pri \
+		/usr/lib64/qt5/mkspecs/modules/qt_KDESu.pri \
+		/usr/lib64/qt5/mkspecs/modules/qt_KDEWebKit.pri \
+		/usr/lib64/qt5/mkspecs/modules/qt_KDNSSD.pri \
+		/usr/lib64/qt5/mkspecs/modules/qt_KEmoticons.pri \
+		/usr/lib64/qt5/mkspecs/modules/qt_KFileMetaData.pri \
+		/usr/lib64/qt5/mkspecs/modules/qt_KGlobalAccel.pri \
+		/usr/lib64/qt5/mkspecs/modules/qt_KGuiAddons.pri \
+		/usr/lib64/qt5/mkspecs/modules/qt_KHolidays.pri \
+		/usr/lib64/qt5/mkspecs/modules/qt_KHtml.pri \
+		/usr/lib64/qt5/mkspecs/modules/qt_KI18n.pri \
+		/usr/lib64/qt5/mkspecs/modules/qt_KIconThemes.pri \
+		/usr/lib64/qt5/mkspecs/modules/qt_KIdleTime.pri \
+		/usr/lib64/qt5/mkspecs/modules/qt_KIOCore.pri \
+		/usr/lib64/qt5/mkspecs/modules/qt_KIOFileWidgets.pri \
+		/usr/lib64/qt5/mkspecs/modules/qt_KIOGui.pri \
+		/usr/lib64/qt5/mkspecs/modules/qt_KIOWidgets.pri \
+		/usr/lib64/qt5/mkspecs/modules/qt_Kirigami.pri \
+		/usr/lib64/qt5/mkspecs/modules/qt_Kirigami2.pri \
+		/usr/lib64/qt5/mkspecs/modules/qt_KItemModels.pri \
+		/usr/lib64/qt5/mkspecs/modules/qt_KItemViews.pri \
+		/usr/lib64/qt5/mkspecs/modules/qt_KJobWidgets.pri \
+		/usr/lib64/qt5/mkspecs/modules/qt_KJS.pri \
+		/usr/lib64/qt5/mkspecs/modules/qt_KJSApi.pri \
+		/usr/lib64/qt5/mkspecs/modules/qt_KJsEmbed.pri \
+		/usr/lib64/qt5/mkspecs/modules/qt_KNewStuff.pri \
+		/usr/lib64/qt5/mkspecs/modules/qt_KNewStuffCore.pri \
+		/usr/lib64/qt5/mkspecs/modules/qt_KNotifications.pri \
+		/usr/lib64/qt5/mkspecs/modules/qt_KNotifyConfig.pri \
+		/usr/lib64/qt5/mkspecs/modules/qt_KNTLM.pri \
+		/usr/lib64/qt5/mkspecs/modules/qt_KParts.pri \
+		/usr/lib64/qt5/mkspecs/modules/qt_KPeople.pri \
+		/usr/lib64/qt5/mkspecs/modules/qt_KPeopleWidgets.pri \
+		/usr/lib64/qt5/mkspecs/modules/qt_KPlotting.pri \
+		/usr/lib64/qt5/mkspecs/modules/qt_KPty.pri \
+		/usr/lib64/qt5/mkspecs/modules/qt_KrossCore.pri \
+		/usr/lib64/qt5/mkspecs/modules/qt_KrossUi.pri \
+		/usr/lib64/qt5/mkspecs/modules/qt_KRunner.pri \
+		/usr/lib64/qt5/mkspecs/modules/qt_KScreen.pri \
+		/usr/lib64/qt5/mkspecs/modules/qt_KService.pri \
+		/usr/lib64/qt5/mkspecs/modules/qt_KSyntaxHighlighting.pri \
+		/usr/lib64/qt5/mkspecs/modules/qt_KTextEditor.pri \
+		/usr/lib64/qt5/mkspecs/modules/qt_KTextWidgets.pri \
+		/usr/lib64/qt5/mkspecs/modules/qt_KUnitConversion.pri \
+		/usr/lib64/qt5/mkspecs/modules/qt_KWallet.pri \
+		/usr/lib64/qt5/mkspecs/modules/qt_KWaylandClient.pri \
+		/usr/lib64/qt5/mkspecs/modules/qt_KWaylandServer.pri \
+		/usr/lib64/qt5/mkspecs/modules/qt_KWidgetsAddons.pri \
+		/usr/lib64/qt5/mkspecs/modules/qt_KWindowSystem.pri \
+		/usr/lib64/qt5/mkspecs/modules/qt_KXmlGui.pri \
+		/usr/lib64/qt5/mkspecs/modules/qt_KXmlRpcClient.pri \
 		/usr/lib64/qt5/mkspecs/modules/qt_lib_3danimation.pri \
 		/usr/lib64/qt5/mkspecs/modules/qt_lib_3danimation_private.pri \
 		/usr/lib64/qt5/mkspecs/modules/qt_lib_3dcore.pri \
@@ -434,6 +621,8 @@ Makefile: MyIDE.pro /usr/lib64/qt5/mkspecs/linux-g++/qmake.conf /usr/lib64/qt5/m
 		/usr/lib64/qt5/mkspecs/modules/qt_lib_eventdispatcher_support_private.pri \
 		/usr/lib64/qt5/mkspecs/modules/qt_lib_fb_support_private.pri \
 		/usr/lib64/qt5/mkspecs/modules/qt_lib_fontdatabase_support_private.pri \
+		/usr/lib64/qt5/mkspecs/modules/qt_lib_gamepad.pri \
+		/usr/lib64/qt5/mkspecs/modules/qt_lib_gamepad_private.pri \
 		/usr/lib64/qt5/mkspecs/modules/qt_lib_glx_support_private.pri \
 		/usr/lib64/qt5/mkspecs/modules/qt_lib_gui.pri \
 		/usr/lib64/qt5/mkspecs/modules/qt_lib_gui_private.pri \
@@ -442,6 +631,8 @@ Makefile: MyIDE.pro /usr/lib64/qt5/mkspecs/linux-g++/qmake.conf /usr/lib64/qt5/m
 		/usr/lib64/qt5/mkspecs/modules/qt_lib_input_support_private.pri \
 		/usr/lib64/qt5/mkspecs/modules/qt_lib_kms_support_private.pri \
 		/usr/lib64/qt5/mkspecs/modules/qt_lib_linuxaccessibility_support_private.pri \
+		/usr/lib64/qt5/mkspecs/modules/qt_lib_location.pri \
+		/usr/lib64/qt5/mkspecs/modules/qt_lib_location_private.pri \
 		/usr/lib64/qt5/mkspecs/modules/qt_lib_multimedia.pri \
 		/usr/lib64/qt5/mkspecs/modules/qt_lib_multimedia_private.pri \
 		/usr/lib64/qt5/mkspecs/modules/qt_lib_multimediagsttools_private.pri \
@@ -449,6 +640,8 @@ Makefile: MyIDE.pro /usr/lib64/qt5/mkspecs/linux-g++/qmake.conf /usr/lib64/qt5/m
 		/usr/lib64/qt5/mkspecs/modules/qt_lib_multimediawidgets_private.pri \
 		/usr/lib64/qt5/mkspecs/modules/qt_lib_network.pri \
 		/usr/lib64/qt5/mkspecs/modules/qt_lib_network_private.pri \
+		/usr/lib64/qt5/mkspecs/modules/qt_lib_networkauth.pri \
+		/usr/lib64/qt5/mkspecs/modules/qt_lib_networkauth_private.pri \
 		/usr/lib64/qt5/mkspecs/modules/qt_lib_nfc.pri \
 		/usr/lib64/qt5/mkspecs/modules/qt_lib_nfc_private.pri \
 		/usr/lib64/qt5/mkspecs/modules/qt_lib_opengl.pri \
@@ -457,6 +650,10 @@ Makefile: MyIDE.pro /usr/lib64/qt5/mkspecs/linux-g++/qmake.conf /usr/lib64/qt5/m
 		/usr/lib64/qt5/mkspecs/modules/qt_lib_openglextensions_private.pri \
 		/usr/lib64/qt5/mkspecs/modules/qt_lib_packetprotocol_private.pri \
 		/usr/lib64/qt5/mkspecs/modules/qt_lib_platformcompositor_support_private.pri \
+		/usr/lib64/qt5/mkspecs/modules/qt_lib_positioning.pri \
+		/usr/lib64/qt5/mkspecs/modules/qt_lib_positioning_private.pri \
+		/usr/lib64/qt5/mkspecs/modules/qt_lib_positioningquick.pri \
+		/usr/lib64/qt5/mkspecs/modules/qt_lib_positioningquick_private.pri \
 		/usr/lib64/qt5/mkspecs/modules/qt_lib_printsupport.pri \
 		/usr/lib64/qt5/mkspecs/modules/qt_lib_printsupport_private.pri \
 		/usr/lib64/qt5/mkspecs/modules/qt_lib_qml.pri \
@@ -472,40 +669,79 @@ Makefile: MyIDE.pro /usr/lib64/qt5/mkspecs/linux-g++/qmake.conf /usr/lib64/qt5/m
 		/usr/lib64/qt5/mkspecs/modules/qt_lib_quickshapes_private.pri \
 		/usr/lib64/qt5/mkspecs/modules/qt_lib_quickwidgets.pri \
 		/usr/lib64/qt5/mkspecs/modules/qt_lib_quickwidgets_private.pri \
+		/usr/lib64/qt5/mkspecs/modules/qt_lib_remoteobjects.pri \
+		/usr/lib64/qt5/mkspecs/modules/qt_lib_remoteobjects_private.pri \
+		/usr/lib64/qt5/mkspecs/modules/qt_lib_repparser.pri \
+		/usr/lib64/qt5/mkspecs/modules/qt_lib_repparser_private.pri \
 		/usr/lib64/qt5/mkspecs/modules/qt_lib_script.pri \
 		/usr/lib64/qt5/mkspecs/modules/qt_lib_script_private.pri \
 		/usr/lib64/qt5/mkspecs/modules/qt_lib_scripttools.pri \
 		/usr/lib64/qt5/mkspecs/modules/qt_lib_scripttools_private.pri \
+		/usr/lib64/qt5/mkspecs/modules/qt_lib_scxml.pri \
+		/usr/lib64/qt5/mkspecs/modules/qt_lib_scxml_private.pri \
 		/usr/lib64/qt5/mkspecs/modules/qt_lib_sensors.pri \
 		/usr/lib64/qt5/mkspecs/modules/qt_lib_sensors_private.pri \
+		/usr/lib64/qt5/mkspecs/modules/qt_lib_serialbus.pri \
+		/usr/lib64/qt5/mkspecs/modules/qt_lib_serialbus_private.pri \
 		/usr/lib64/qt5/mkspecs/modules/qt_lib_serialport.pri \
 		/usr/lib64/qt5/mkspecs/modules/qt_lib_serialport_private.pri \
 		/usr/lib64/qt5/mkspecs/modules/qt_lib_service_support_private.pri \
 		/usr/lib64/qt5/mkspecs/modules/qt_lib_sql.pri \
 		/usr/lib64/qt5/mkspecs/modules/qt_lib_sql_private.pri \
+		/usr/lib64/qt5/mkspecs/modules/qt_lib_svg.pri \
+		/usr/lib64/qt5/mkspecs/modules/qt_lib_svg_private.pri \
 		/usr/lib64/qt5/mkspecs/modules/qt_lib_testlib.pri \
 		/usr/lib64/qt5/mkspecs/modules/qt_lib_testlib_private.pri \
+		/usr/lib64/qt5/mkspecs/modules/qt_lib_texttospeech.pri \
+		/usr/lib64/qt5/mkspecs/modules/qt_lib_texttospeech_private.pri \
 		/usr/lib64/qt5/mkspecs/modules/qt_lib_theme_support_private.pri \
 		/usr/lib64/qt5/mkspecs/modules/qt_lib_uiplugin.pri \
 		/usr/lib64/qt5/mkspecs/modules/qt_lib_uitools.pri \
 		/usr/lib64/qt5/mkspecs/modules/qt_lib_uitools_private.pri \
+		/usr/lib64/qt5/mkspecs/modules/qt_lib_virtualkeyboard.pri \
 		/usr/lib64/qt5/mkspecs/modules/qt_lib_vulkan_support_private.pri \
 		/usr/lib64/qt5/mkspecs/modules/qt_lib_waylandclient.pri \
 		/usr/lib64/qt5/mkspecs/modules/qt_lib_waylandclient_private.pri \
 		/usr/lib64/qt5/mkspecs/modules/qt_lib_waylandcompositor.pri \
 		/usr/lib64/qt5/mkspecs/modules/qt_lib_waylandcompositor_private.pri \
+		/usr/lib64/qt5/mkspecs/modules/qt_lib_webchannel.pri \
+		/usr/lib64/qt5/mkspecs/modules/qt_lib_webchannel_private.pri \
+		/usr/lib64/qt5/mkspecs/modules/qt_lib_webengine.pri \
+		/usr/lib64/qt5/mkspecs/modules/qt_lib_webengine_private.pri \
+		/usr/lib64/qt5/mkspecs/modules/qt_lib_webenginecore.pri \
+		/usr/lib64/qt5/mkspecs/modules/qt_lib_webenginecore_private.pri \
+		/usr/lib64/qt5/mkspecs/modules/qt_lib_webenginecoreheaders_private.pri \
+		/usr/lib64/qt5/mkspecs/modules/qt_lib_webenginewidgets.pri \
+		/usr/lib64/qt5/mkspecs/modules/qt_lib_webenginewidgets_private.pri \
+		/usr/lib64/qt5/mkspecs/modules/qt_lib_webkit.pri \
+		/usr/lib64/qt5/mkspecs/modules/qt_lib_webkit_private.pri \
+		/usr/lib64/qt5/mkspecs/modules/qt_lib_webkitwidgets.pri \
+		/usr/lib64/qt5/mkspecs/modules/qt_lib_webkitwidgets_private.pri \
+		/usr/lib64/qt5/mkspecs/modules/qt_lib_websockets.pri \
+		/usr/lib64/qt5/mkspecs/modules/qt_lib_websockets_private.pri \
+		/usr/lib64/qt5/mkspecs/modules/qt_lib_webview.pri \
+		/usr/lib64/qt5/mkspecs/modules/qt_lib_webview_private.pri \
 		/usr/lib64/qt5/mkspecs/modules/qt_lib_widgets.pri \
 		/usr/lib64/qt5/mkspecs/modules/qt_lib_widgets_private.pri \
+		/usr/lib64/qt5/mkspecs/modules/qt_lib_x11extras.pri \
+		/usr/lib64/qt5/mkspecs/modules/qt_lib_x11extras_private.pri \
 		/usr/lib64/qt5/mkspecs/modules/qt_lib_xcb_qpa_lib_private.pri \
 		/usr/lib64/qt5/mkspecs/modules/qt_lib_xml.pri \
 		/usr/lib64/qt5/mkspecs/modules/qt_lib_xml_private.pri \
 		/usr/lib64/qt5/mkspecs/modules/qt_lib_xmlpatterns.pri \
 		/usr/lib64/qt5/mkspecs/modules/qt_lib_xmlpatterns_private.pri \
-		/usr/lib64/qt5/mkspecs/modules/qt_Qt5Keychain.pri \
+		/usr/lib64/qt5/mkspecs/modules/qt_phonon4qt5.pri \
+		/usr/lib64/qt5/mkspecs/modules/qt_Prison.pri \
+		/usr/lib64/qt5/mkspecs/modules/qt_QuickAddons.pri \
+		/usr/lib64/qt5/mkspecs/modules/qt_Solid.pri \
+		/usr/lib64/qt5/mkspecs/modules/qt_SonnetCore.pri \
+		/usr/lib64/qt5/mkspecs/modules/qt_SonnetUi.pri \
+		/usr/lib64/qt5/mkspecs/modules/qt_ThreadWeaver.pri \
 		/usr/lib64/qt5/mkspecs/features/qt_functions.prf \
 		/usr/lib64/qt5/mkspecs/features/qt_config.prf \
 		/usr/lib64/qt5/mkspecs/linux-g++/qmake.conf \
 		/usr/lib64/qt5/mkspecs/features/spec_post.prf \
+		.qmake.stash \
 		/usr/lib64/qt5/mkspecs/features/exclusive_builds.prf \
 		/usr/lib64/qt5/mkspecs/features/toolchain.prf \
 		/usr/lib64/qt5/mkspecs/features/default_pre.prf \
@@ -538,6 +774,75 @@ Makefile: MyIDE.pro /usr/lib64/qt5/mkspecs/linux-g++/qmake.conf /usr/lib64/qt5/m
 /usr/lib64/qt5/mkspecs/common/g++-unix.conf:
 /usr/lib64/qt5/mkspecs/qconfig.pri:
 /usr/lib64/qt5/mkspecs/modules/qt_AkonadiMime.pri:
+/usr/lib64/qt5/mkspecs/modules/qt_Attica.pri:
+/usr/lib64/qt5/mkspecs/modules/qt_Baloo.pri:
+/usr/lib64/qt5/mkspecs/modules/qt_BluezQt.pri:
+/usr/lib64/qt5/mkspecs/modules/qt_KActivities.pri:
+/usr/lib64/qt5/mkspecs/modules/qt_KActivitiesStats.pri:
+/usr/lib64/qt5/mkspecs/modules/qt_KArchive.pri:
+/usr/lib64/qt5/mkspecs/modules/qt_KAuth.pri:
+/usr/lib64/qt5/mkspecs/modules/qt_KAuthCore.pri:
+/usr/lib64/qt5/mkspecs/modules/qt_KBookmarks.pri:
+/usr/lib64/qt5/mkspecs/modules/qt_KCMUtils.pri:
+/usr/lib64/qt5/mkspecs/modules/qt_KCodecs.pri:
+/usr/lib64/qt5/mkspecs/modules/qt_KCompletion.pri:
+/usr/lib64/qt5/mkspecs/modules/qt_KConfigCore.pri:
+/usr/lib64/qt5/mkspecs/modules/qt_KConfigGui.pri:
+/usr/lib64/qt5/mkspecs/modules/qt_KConfigWidgets.pri:
+/usr/lib64/qt5/mkspecs/modules/qt_KCoreAddons.pri:
+/usr/lib64/qt5/mkspecs/modules/qt_KCrash.pri:
+/usr/lib64/qt5/mkspecs/modules/qt_KDBusAddons.pri:
+/usr/lib64/qt5/mkspecs/modules/qt_KDeclarative.pri:
+/usr/lib64/qt5/mkspecs/modules/qt_KDESu.pri:
+/usr/lib64/qt5/mkspecs/modules/qt_KDEWebKit.pri:
+/usr/lib64/qt5/mkspecs/modules/qt_KDNSSD.pri:
+/usr/lib64/qt5/mkspecs/modules/qt_KEmoticons.pri:
+/usr/lib64/qt5/mkspecs/modules/qt_KFileMetaData.pri:
+/usr/lib64/qt5/mkspecs/modules/qt_KGlobalAccel.pri:
+/usr/lib64/qt5/mkspecs/modules/qt_KGuiAddons.pri:
+/usr/lib64/qt5/mkspecs/modules/qt_KHolidays.pri:
+/usr/lib64/qt5/mkspecs/modules/qt_KHtml.pri:
+/usr/lib64/qt5/mkspecs/modules/qt_KI18n.pri:
+/usr/lib64/qt5/mkspecs/modules/qt_KIconThemes.pri:
+/usr/lib64/qt5/mkspecs/modules/qt_KIdleTime.pri:
+/usr/lib64/qt5/mkspecs/modules/qt_KIOCore.pri:
+/usr/lib64/qt5/mkspecs/modules/qt_KIOFileWidgets.pri:
+/usr/lib64/qt5/mkspecs/modules/qt_KIOGui.pri:
+/usr/lib64/qt5/mkspecs/modules/qt_KIOWidgets.pri:
+/usr/lib64/qt5/mkspecs/modules/qt_Kirigami.pri:
+/usr/lib64/qt5/mkspecs/modules/qt_Kirigami2.pri:
+/usr/lib64/qt5/mkspecs/modules/qt_KItemModels.pri:
+/usr/lib64/qt5/mkspecs/modules/qt_KItemViews.pri:
+/usr/lib64/qt5/mkspecs/modules/qt_KJobWidgets.pri:
+/usr/lib64/qt5/mkspecs/modules/qt_KJS.pri:
+/usr/lib64/qt5/mkspecs/modules/qt_KJSApi.pri:
+/usr/lib64/qt5/mkspecs/modules/qt_KJsEmbed.pri:
+/usr/lib64/qt5/mkspecs/modules/qt_KNewStuff.pri:
+/usr/lib64/qt5/mkspecs/modules/qt_KNewStuffCore.pri:
+/usr/lib64/qt5/mkspecs/modules/qt_KNotifications.pri:
+/usr/lib64/qt5/mkspecs/modules/qt_KNotifyConfig.pri:
+/usr/lib64/qt5/mkspecs/modules/qt_KNTLM.pri:
+/usr/lib64/qt5/mkspecs/modules/qt_KParts.pri:
+/usr/lib64/qt5/mkspecs/modules/qt_KPeople.pri:
+/usr/lib64/qt5/mkspecs/modules/qt_KPeopleWidgets.pri:
+/usr/lib64/qt5/mkspecs/modules/qt_KPlotting.pri:
+/usr/lib64/qt5/mkspecs/modules/qt_KPty.pri:
+/usr/lib64/qt5/mkspecs/modules/qt_KrossCore.pri:
+/usr/lib64/qt5/mkspecs/modules/qt_KrossUi.pri:
+/usr/lib64/qt5/mkspecs/modules/qt_KRunner.pri:
+/usr/lib64/qt5/mkspecs/modules/qt_KScreen.pri:
+/usr/lib64/qt5/mkspecs/modules/qt_KService.pri:
+/usr/lib64/qt5/mkspecs/modules/qt_KSyntaxHighlighting.pri:
+/usr/lib64/qt5/mkspecs/modules/qt_KTextEditor.pri:
+/usr/lib64/qt5/mkspecs/modules/qt_KTextWidgets.pri:
+/usr/lib64/qt5/mkspecs/modules/qt_KUnitConversion.pri:
+/usr/lib64/qt5/mkspecs/modules/qt_KWallet.pri:
+/usr/lib64/qt5/mkspecs/modules/qt_KWaylandClient.pri:
+/usr/lib64/qt5/mkspecs/modules/qt_KWaylandServer.pri:
+/usr/lib64/qt5/mkspecs/modules/qt_KWidgetsAddons.pri:
+/usr/lib64/qt5/mkspecs/modules/qt_KWindowSystem.pri:
+/usr/lib64/qt5/mkspecs/modules/qt_KXmlGui.pri:
+/usr/lib64/qt5/mkspecs/modules/qt_KXmlRpcClient.pri:
 /usr/lib64/qt5/mkspecs/modules/qt_lib_3danimation.pri:
 /usr/lib64/qt5/mkspecs/modules/qt_lib_3danimation_private.pri:
 /usr/lib64/qt5/mkspecs/modules/qt_lib_3dcore.pri:
@@ -583,6 +888,8 @@ Makefile: MyIDE.pro /usr/lib64/qt5/mkspecs/linux-g++/qmake.conf /usr/lib64/qt5/m
 /usr/lib64/qt5/mkspecs/modules/qt_lib_eventdispatcher_support_private.pri:
 /usr/lib64/qt5/mkspecs/modules/qt_lib_fb_support_private.pri:
 /usr/lib64/qt5/mkspecs/modules/qt_lib_fontdatabase_support_private.pri:
+/usr/lib64/qt5/mkspecs/modules/qt_lib_gamepad.pri:
+/usr/lib64/qt5/mkspecs/modules/qt_lib_gamepad_private.pri:
 /usr/lib64/qt5/mkspecs/modules/qt_lib_glx_support_private.pri:
 /usr/lib64/qt5/mkspecs/modules/qt_lib_gui.pri:
 /usr/lib64/qt5/mkspecs/modules/qt_lib_gui_private.pri:
@@ -591,6 +898,8 @@ Makefile: MyIDE.pro /usr/lib64/qt5/mkspecs/linux-g++/qmake.conf /usr/lib64/qt5/m
 /usr/lib64/qt5/mkspecs/modules/qt_lib_input_support_private.pri:
 /usr/lib64/qt5/mkspecs/modules/qt_lib_kms_support_private.pri:
 /usr/lib64/qt5/mkspecs/modules/qt_lib_linuxaccessibility_support_private.pri:
+/usr/lib64/qt5/mkspecs/modules/qt_lib_location.pri:
+/usr/lib64/qt5/mkspecs/modules/qt_lib_location_private.pri:
 /usr/lib64/qt5/mkspecs/modules/qt_lib_multimedia.pri:
 /usr/lib64/qt5/mkspecs/modules/qt_lib_multimedia_private.pri:
 /usr/lib64/qt5/mkspecs/modules/qt_lib_multimediagsttools_private.pri:
@@ -598,6 +907,8 @@ Makefile: MyIDE.pro /usr/lib64/qt5/mkspecs/linux-g++/qmake.conf /usr/lib64/qt5/m
 /usr/lib64/qt5/mkspecs/modules/qt_lib_multimediawidgets_private.pri:
 /usr/lib64/qt5/mkspecs/modules/qt_lib_network.pri:
 /usr/lib64/qt5/mkspecs/modules/qt_lib_network_private.pri:
+/usr/lib64/qt5/mkspecs/modules/qt_lib_networkauth.pri:
+/usr/lib64/qt5/mkspecs/modules/qt_lib_networkauth_private.pri:
 /usr/lib64/qt5/mkspecs/modules/qt_lib_nfc.pri:
 /usr/lib64/qt5/mkspecs/modules/qt_lib_nfc_private.pri:
 /usr/lib64/qt5/mkspecs/modules/qt_lib_opengl.pri:
@@ -606,6 +917,10 @@ Makefile: MyIDE.pro /usr/lib64/qt5/mkspecs/linux-g++/qmake.conf /usr/lib64/qt5/m
 /usr/lib64/qt5/mkspecs/modules/qt_lib_openglextensions_private.pri:
 /usr/lib64/qt5/mkspecs/modules/qt_lib_packetprotocol_private.pri:
 /usr/lib64/qt5/mkspecs/modules/qt_lib_platformcompositor_support_private.pri:
+/usr/lib64/qt5/mkspecs/modules/qt_lib_positioning.pri:
+/usr/lib64/qt5/mkspecs/modules/qt_lib_positioning_private.pri:
+/usr/lib64/qt5/mkspecs/modules/qt_lib_positioningquick.pri:
+/usr/lib64/qt5/mkspecs/modules/qt_lib_positioningquick_private.pri:
 /usr/lib64/qt5/mkspecs/modules/qt_lib_printsupport.pri:
 /usr/lib64/qt5/mkspecs/modules/qt_lib_printsupport_private.pri:
 /usr/lib64/qt5/mkspecs/modules/qt_lib_qml.pri:
@@ -621,40 +936,79 @@ Makefile: MyIDE.pro /usr/lib64/qt5/mkspecs/linux-g++/qmake.conf /usr/lib64/qt5/m
 /usr/lib64/qt5/mkspecs/modules/qt_lib_quickshapes_private.pri:
 /usr/lib64/qt5/mkspecs/modules/qt_lib_quickwidgets.pri:
 /usr/lib64/qt5/mkspecs/modules/qt_lib_quickwidgets_private.pri:
+/usr/lib64/qt5/mkspecs/modules/qt_lib_remoteobjects.pri:
+/usr/lib64/qt5/mkspecs/modules/qt_lib_remoteobjects_private.pri:
+/usr/lib64/qt5/mkspecs/modules/qt_lib_repparser.pri:
+/usr/lib64/qt5/mkspecs/modules/qt_lib_repparser_private.pri:
 /usr/lib64/qt5/mkspecs/modules/qt_lib_script.pri:
 /usr/lib64/qt5/mkspecs/modules/qt_lib_script_private.pri:
 /usr/lib64/qt5/mkspecs/modules/qt_lib_scripttools.pri:
 /usr/lib64/qt5/mkspecs/modules/qt_lib_scripttools_private.pri:
+/usr/lib64/qt5/mkspecs/modules/qt_lib_scxml.pri:
+/usr/lib64/qt5/mkspecs/modules/qt_lib_scxml_private.pri:
 /usr/lib64/qt5/mkspecs/modules/qt_lib_sensors.pri:
 /usr/lib64/qt5/mkspecs/modules/qt_lib_sensors_private.pri:
+/usr/lib64/qt5/mkspecs/modules/qt_lib_serialbus.pri:
+/usr/lib64/qt5/mkspecs/modules/qt_lib_serialbus_private.pri:
 /usr/lib64/qt5/mkspecs/modules/qt_lib_serialport.pri:
 /usr/lib64/qt5/mkspecs/modules/qt_lib_serialport_private.pri:
 /usr/lib64/qt5/mkspecs/modules/qt_lib_service_support_private.pri:
 /usr/lib64/qt5/mkspecs/modules/qt_lib_sql.pri:
 /usr/lib64/qt5/mkspecs/modules/qt_lib_sql_private.pri:
+/usr/lib64/qt5/mkspecs/modules/qt_lib_svg.pri:
+/usr/lib64/qt5/mkspecs/modules/qt_lib_svg_private.pri:
 /usr/lib64/qt5/mkspecs/modules/qt_lib_testlib.pri:
 /usr/lib64/qt5/mkspecs/modules/qt_lib_testlib_private.pri:
+/usr/lib64/qt5/mkspecs/modules/qt_lib_texttospeech.pri:
+/usr/lib64/qt5/mkspecs/modules/qt_lib_texttospeech_private.pri:
 /usr/lib64/qt5/mkspecs/modules/qt_lib_theme_support_private.pri:
 /usr/lib64/qt5/mkspecs/modules/qt_lib_uiplugin.pri:
 /usr/lib64/qt5/mkspecs/modules/qt_lib_uitools.pri:
 /usr/lib64/qt5/mkspecs/modules/qt_lib_uitools_private.pri:
+/usr/lib64/qt5/mkspecs/modules/qt_lib_virtualkeyboard.pri:
 /usr/lib64/qt5/mkspecs/modules/qt_lib_vulkan_support_private.pri:
 /usr/lib64/qt5/mkspecs/modules/qt_lib_waylandclient.pri:
 /usr/lib64/qt5/mkspecs/modules/qt_lib_waylandclient_private.pri:
 /usr/lib64/qt5/mkspecs/modules/qt_lib_waylandcompositor.pri:
 /usr/lib64/qt5/mkspecs/modules/qt_lib_waylandcompositor_private.pri:
+/usr/lib64/qt5/mkspecs/modules/qt_lib_webchannel.pri:
+/usr/lib64/qt5/mkspecs/modules/qt_lib_webchannel_private.pri:
+/usr/lib64/qt5/mkspecs/modules/qt_lib_webengine.pri:
+/usr/lib64/qt5/mkspecs/modules/qt_lib_webengine_private.pri:
+/usr/lib64/qt5/mkspecs/modules/qt_lib_webenginecore.pri:
+/usr/lib64/qt5/mkspecs/modules/qt_lib_webenginecore_private.pri:
+/usr/lib64/qt5/mkspecs/modules/qt_lib_webenginecoreheaders_private.pri:
+/usr/lib64/qt5/mkspecs/modules/qt_lib_webenginewidgets.pri:
+/usr/lib64/qt5/mkspecs/modules/qt_lib_webenginewidgets_private.pri:
+/usr/lib64/qt5/mkspecs/modules/qt_lib_webkit.pri:
+/usr/lib64/qt5/mkspecs/modules/qt_lib_webkit_private.pri:
+/usr/lib64/qt5/mkspecs/modules/qt_lib_webkitwidgets.pri:
+/usr/lib64/qt5/mkspecs/modules/qt_lib_webkitwidgets_private.pri:
+/usr/lib64/qt5/mkspecs/modules/qt_lib_websockets.pri:
+/usr/lib64/qt5/mkspecs/modules/qt_lib_websockets_private.pri:
+/usr/lib64/qt5/mkspecs/modules/qt_lib_webview.pri:
+/usr/lib64/qt5/mkspecs/modules/qt_lib_webview_private.pri:
 /usr/lib64/qt5/mkspecs/modules/qt_lib_widgets.pri:
 /usr/lib64/qt5/mkspecs/modules/qt_lib_widgets_private.pri:
+/usr/lib64/qt5/mkspecs/modules/qt_lib_x11extras.pri:
+/usr/lib64/qt5/mkspecs/modules/qt_lib_x11extras_private.pri:
 /usr/lib64/qt5/mkspecs/modules/qt_lib_xcb_qpa_lib_private.pri:
 /usr/lib64/qt5/mkspecs/modules/qt_lib_xml.pri:
 /usr/lib64/qt5/mkspecs/modules/qt_lib_xml_private.pri:
 /usr/lib64/qt5/mkspecs/modules/qt_lib_xmlpatterns.pri:
 /usr/lib64/qt5/mkspecs/modules/qt_lib_xmlpatterns_private.pri:
-/usr/lib64/qt5/mkspecs/modules/qt_Qt5Keychain.pri:
+/usr/lib64/qt5/mkspecs/modules/qt_phonon4qt5.pri:
+/usr/lib64/qt5/mkspecs/modules/qt_Prison.pri:
+/usr/lib64/qt5/mkspecs/modules/qt_QuickAddons.pri:
+/usr/lib64/qt5/mkspecs/modules/qt_Solid.pri:
+/usr/lib64/qt5/mkspecs/modules/qt_SonnetCore.pri:
+/usr/lib64/qt5/mkspecs/modules/qt_SonnetUi.pri:
+/usr/lib64/qt5/mkspecs/modules/qt_ThreadWeaver.pri:
 /usr/lib64/qt5/mkspecs/features/qt_functions.prf:
 /usr/lib64/qt5/mkspecs/features/qt_config.prf:
 /usr/lib64/qt5/mkspecs/linux-g++/qmake.conf:
 /usr/lib64/qt5/mkspecs/features/spec_post.prf:
+.qmake.stash:
 /usr/lib64/qt5/mkspecs/features/exclusive_builds.prf:
 /usr/lib64/qt5/mkspecs/features/toolchain.prf:
 /usr/lib64/qt5/mkspecs/features/default_pre.prf:
@@ -764,44 +1118,44 @@ compiler_moc_header_clean:
 moc_mytabbar.cpp: CustomCtrl/mytabbar.h \
 		moc_predefs.h \
 		/usr/lib64/qt5/bin/moc
-	/usr/lib64/qt5/bin/moc $(DEFINES) --include /home/netpipe/Desktop/MyIDE/moc_predefs.h -I/usr/lib64/qt5/mkspecs/linux-g++ -I/home/netpipe/Desktop/MyIDE -I/usr/include/qt5 -I/usr/include/qt5/QtWidgets -I/usr/include/qt5/QtGui -I/usr/include/qt5/QtCore -I/usr/include/c++/7 -I/usr/include/c++/7/x86_64-suse-linux -I/usr/include/c++/7/backward -I/usr/lib64/gcc/x86_64-suse-linux/7/include -I/usr/local/include -I/usr/lib64/gcc/x86_64-suse-linux/7/include-fixed -I/usr/x86_64-suse-linux/include -I/usr/include CustomCtrl/mytabbar.h -o moc_mytabbar.cpp
+	/usr/lib64/qt5/bin/moc $(DEFINES) --include /home/netpipe/qtprojects/ProIDE/MyIDE/moc_predefs.h -I/usr/lib64/qt5/mkspecs/linux-g++ -I/home/netpipe/qtprojects/ProIDE/MyIDE -I/usr/include/qt5 -I/usr/include/qt5/QtWidgets -I/usr/include/qt5/QtGui -I/usr/include/qt5/QtCore -I/usr/include/c++/7 -I/usr/include/c++/7/x86_64-suse-linux -I/usr/include/c++/7/backward -I/usr/lib64/gcc/x86_64-suse-linux/7/include -I/usr/local/include -I/usr/lib64/gcc/x86_64-suse-linux/7/include-fixed -I/usr/x86_64-suse-linux/include -I/usr/include CustomCtrl/mytabbar.h -o moc_mytabbar.cpp
 
 moc_mytabwidget.cpp: CustomCtrl/mytabwidget.h \
 		moc_predefs.h \
 		/usr/lib64/qt5/bin/moc
-	/usr/lib64/qt5/bin/moc $(DEFINES) --include /home/netpipe/Desktop/MyIDE/moc_predefs.h -I/usr/lib64/qt5/mkspecs/linux-g++ -I/home/netpipe/Desktop/MyIDE -I/usr/include/qt5 -I/usr/include/qt5/QtWidgets -I/usr/include/qt5/QtGui -I/usr/include/qt5/QtCore -I/usr/include/c++/7 -I/usr/include/c++/7/x86_64-suse-linux -I/usr/include/c++/7/backward -I/usr/lib64/gcc/x86_64-suse-linux/7/include -I/usr/local/include -I/usr/lib64/gcc/x86_64-suse-linux/7/include-fixed -I/usr/x86_64-suse-linux/include -I/usr/include CustomCtrl/mytabwidget.h -o moc_mytabwidget.cpp
+	/usr/lib64/qt5/bin/moc $(DEFINES) --include /home/netpipe/qtprojects/ProIDE/MyIDE/moc_predefs.h -I/usr/lib64/qt5/mkspecs/linux-g++ -I/home/netpipe/qtprojects/ProIDE/MyIDE -I/usr/include/qt5 -I/usr/include/qt5/QtWidgets -I/usr/include/qt5/QtGui -I/usr/include/qt5/QtCore -I/usr/include/c++/7 -I/usr/include/c++/7/x86_64-suse-linux -I/usr/include/c++/7/backward -I/usr/lib64/gcc/x86_64-suse-linux/7/include -I/usr/local/include -I/usr/lib64/gcc/x86_64-suse-linux/7/include-fixed -I/usr/x86_64-suse-linux/include -I/usr/include CustomCtrl/mytabwidget.h -o moc_mytabwidget.cpp
 
 moc_DockAreaTabBar.cpp: DockCtrl/DockAreaTabBar.h \
 		DockCtrl/ads_globals.h \
 		moc_predefs.h \
 		/usr/lib64/qt5/bin/moc
-	/usr/lib64/qt5/bin/moc $(DEFINES) --include /home/netpipe/Desktop/MyIDE/moc_predefs.h -I/usr/lib64/qt5/mkspecs/linux-g++ -I/home/netpipe/Desktop/MyIDE -I/usr/include/qt5 -I/usr/include/qt5/QtWidgets -I/usr/include/qt5/QtGui -I/usr/include/qt5/QtCore -I/usr/include/c++/7 -I/usr/include/c++/7/x86_64-suse-linux -I/usr/include/c++/7/backward -I/usr/lib64/gcc/x86_64-suse-linux/7/include -I/usr/local/include -I/usr/lib64/gcc/x86_64-suse-linux/7/include-fixed -I/usr/x86_64-suse-linux/include -I/usr/include DockCtrl/DockAreaTabBar.h -o moc_DockAreaTabBar.cpp
+	/usr/lib64/qt5/bin/moc $(DEFINES) --include /home/netpipe/qtprojects/ProIDE/MyIDE/moc_predefs.h -I/usr/lib64/qt5/mkspecs/linux-g++ -I/home/netpipe/qtprojects/ProIDE/MyIDE -I/usr/include/qt5 -I/usr/include/qt5/QtWidgets -I/usr/include/qt5/QtGui -I/usr/include/qt5/QtCore -I/usr/include/c++/7 -I/usr/include/c++/7/x86_64-suse-linux -I/usr/include/c++/7/backward -I/usr/lib64/gcc/x86_64-suse-linux/7/include -I/usr/local/include -I/usr/lib64/gcc/x86_64-suse-linux/7/include-fixed -I/usr/x86_64-suse-linux/include -I/usr/include DockCtrl/DockAreaTabBar.h -o moc_DockAreaTabBar.cpp
 
 moc_DockAreaTitleBar.cpp: DockCtrl/DockAreaTitleBar.h \
 		DockCtrl/ads_globals.h \
 		moc_predefs.h \
 		/usr/lib64/qt5/bin/moc
-	/usr/lib64/qt5/bin/moc $(DEFINES) --include /home/netpipe/Desktop/MyIDE/moc_predefs.h -I/usr/lib64/qt5/mkspecs/linux-g++ -I/home/netpipe/Desktop/MyIDE -I/usr/include/qt5 -I/usr/include/qt5/QtWidgets -I/usr/include/qt5/QtGui -I/usr/include/qt5/QtCore -I/usr/include/c++/7 -I/usr/include/c++/7/x86_64-suse-linux -I/usr/include/c++/7/backward -I/usr/lib64/gcc/x86_64-suse-linux/7/include -I/usr/local/include -I/usr/lib64/gcc/x86_64-suse-linux/7/include-fixed -I/usr/x86_64-suse-linux/include -I/usr/include DockCtrl/DockAreaTitleBar.h -o moc_DockAreaTitleBar.cpp
+	/usr/lib64/qt5/bin/moc $(DEFINES) --include /home/netpipe/qtprojects/ProIDE/MyIDE/moc_predefs.h -I/usr/lib64/qt5/mkspecs/linux-g++ -I/home/netpipe/qtprojects/ProIDE/MyIDE -I/usr/include/qt5 -I/usr/include/qt5/QtWidgets -I/usr/include/qt5/QtGui -I/usr/include/qt5/QtCore -I/usr/include/c++/7 -I/usr/include/c++/7/x86_64-suse-linux -I/usr/include/c++/7/backward -I/usr/lib64/gcc/x86_64-suse-linux/7/include -I/usr/local/include -I/usr/lib64/gcc/x86_64-suse-linux/7/include-fixed -I/usr/x86_64-suse-linux/include -I/usr/include DockCtrl/DockAreaTitleBar.h -o moc_DockAreaTitleBar.cpp
 
 moc_DockAreaTitleBar_p.cpp: DockCtrl/DockAreaTitleBar_p.h \
 		DockCtrl/ads_globals.h \
 		moc_predefs.h \
 		/usr/lib64/qt5/bin/moc
-	/usr/lib64/qt5/bin/moc $(DEFINES) --include /home/netpipe/Desktop/MyIDE/moc_predefs.h -I/usr/lib64/qt5/mkspecs/linux-g++ -I/home/netpipe/Desktop/MyIDE -I/usr/include/qt5 -I/usr/include/qt5/QtWidgets -I/usr/include/qt5/QtGui -I/usr/include/qt5/QtCore -I/usr/include/c++/7 -I/usr/include/c++/7/x86_64-suse-linux -I/usr/include/c++/7/backward -I/usr/lib64/gcc/x86_64-suse-linux/7/include -I/usr/local/include -I/usr/lib64/gcc/x86_64-suse-linux/7/include-fixed -I/usr/x86_64-suse-linux/include -I/usr/include DockCtrl/DockAreaTitleBar_p.h -o moc_DockAreaTitleBar_p.cpp
+	/usr/lib64/qt5/bin/moc $(DEFINES) --include /home/netpipe/qtprojects/ProIDE/MyIDE/moc_predefs.h -I/usr/lib64/qt5/mkspecs/linux-g++ -I/home/netpipe/qtprojects/ProIDE/MyIDE -I/usr/include/qt5 -I/usr/include/qt5/QtWidgets -I/usr/include/qt5/QtGui -I/usr/include/qt5/QtCore -I/usr/include/c++/7 -I/usr/include/c++/7/x86_64-suse-linux -I/usr/include/c++/7/backward -I/usr/lib64/gcc/x86_64-suse-linux/7/include -I/usr/local/include -I/usr/lib64/gcc/x86_64-suse-linux/7/include-fixed -I/usr/x86_64-suse-linux/include -I/usr/include DockCtrl/DockAreaTitleBar_p.h -o moc_DockAreaTitleBar_p.cpp
 
 moc_DockAreaWidget.cpp: DockCtrl/DockAreaWidget.h \
 		DockCtrl/ads_globals.h \
 		DockCtrl/DockWidget.h \
 		moc_predefs.h \
 		/usr/lib64/qt5/bin/moc
-	/usr/lib64/qt5/bin/moc $(DEFINES) --include /home/netpipe/Desktop/MyIDE/moc_predefs.h -I/usr/lib64/qt5/mkspecs/linux-g++ -I/home/netpipe/Desktop/MyIDE -I/usr/include/qt5 -I/usr/include/qt5/QtWidgets -I/usr/include/qt5/QtGui -I/usr/include/qt5/QtCore -I/usr/include/c++/7 -I/usr/include/c++/7/x86_64-suse-linux -I/usr/include/c++/7/backward -I/usr/lib64/gcc/x86_64-suse-linux/7/include -I/usr/local/include -I/usr/lib64/gcc/x86_64-suse-linux/7/include-fixed -I/usr/x86_64-suse-linux/include -I/usr/include DockCtrl/DockAreaWidget.h -o moc_DockAreaWidget.cpp
+	/usr/lib64/qt5/bin/moc $(DEFINES) --include /home/netpipe/qtprojects/ProIDE/MyIDE/moc_predefs.h -I/usr/lib64/qt5/mkspecs/linux-g++ -I/home/netpipe/qtprojects/ProIDE/MyIDE -I/usr/include/qt5 -I/usr/include/qt5/QtWidgets -I/usr/include/qt5/QtGui -I/usr/include/qt5/QtCore -I/usr/include/c++/7 -I/usr/include/c++/7/x86_64-suse-linux -I/usr/include/c++/7/backward -I/usr/lib64/gcc/x86_64-suse-linux/7/include -I/usr/local/include -I/usr/lib64/gcc/x86_64-suse-linux/7/include-fixed -I/usr/x86_64-suse-linux/include -I/usr/include DockCtrl/DockAreaWidget.h -o moc_DockAreaWidget.cpp
 
 moc_DockContainerWidget.cpp: DockCtrl/DockContainerWidget.h \
 		DockCtrl/ads_globals.h \
 		DockCtrl/DockWidget.h \
 		moc_predefs.h \
 		/usr/lib64/qt5/bin/moc
-	/usr/lib64/qt5/bin/moc $(DEFINES) --include /home/netpipe/Desktop/MyIDE/moc_predefs.h -I/usr/lib64/qt5/mkspecs/linux-g++ -I/home/netpipe/Desktop/MyIDE -I/usr/include/qt5 -I/usr/include/qt5/QtWidgets -I/usr/include/qt5/QtGui -I/usr/include/qt5/QtCore -I/usr/include/c++/7 -I/usr/include/c++/7/x86_64-suse-linux -I/usr/include/c++/7/backward -I/usr/lib64/gcc/x86_64-suse-linux/7/include -I/usr/local/include -I/usr/lib64/gcc/x86_64-suse-linux/7/include-fixed -I/usr/x86_64-suse-linux/include -I/usr/include DockCtrl/DockContainerWidget.h -o moc_DockContainerWidget.cpp
+	/usr/lib64/qt5/bin/moc $(DEFINES) --include /home/netpipe/qtprojects/ProIDE/MyIDE/moc_predefs.h -I/usr/lib64/qt5/mkspecs/linux-g++ -I/home/netpipe/qtprojects/ProIDE/MyIDE -I/usr/include/qt5 -I/usr/include/qt5/QtWidgets -I/usr/include/qt5/QtGui -I/usr/include/qt5/QtCore -I/usr/include/c++/7 -I/usr/include/c++/7/x86_64-suse-linux -I/usr/include/c++/7/backward -I/usr/lib64/gcc/x86_64-suse-linux/7/include -I/usr/local/include -I/usr/lib64/gcc/x86_64-suse-linux/7/include-fixed -I/usr/x86_64-suse-linux/include -I/usr/include DockCtrl/DockContainerWidget.h -o moc_DockContainerWidget.cpp
 
 moc_DockFocusController.cpp: DockCtrl/DockFocusController.h \
 		DockCtrl/ads_globals.h \
@@ -811,7 +1165,7 @@ moc_DockFocusController.cpp: DockCtrl/DockFocusController.h \
 		DockCtrl/FloatingDockContainer.h \
 		moc_predefs.h \
 		/usr/lib64/qt5/bin/moc
-	/usr/lib64/qt5/bin/moc $(DEFINES) --include /home/netpipe/Desktop/MyIDE/moc_predefs.h -I/usr/lib64/qt5/mkspecs/linux-g++ -I/home/netpipe/Desktop/MyIDE -I/usr/include/qt5 -I/usr/include/qt5/QtWidgets -I/usr/include/qt5/QtGui -I/usr/include/qt5/QtCore -I/usr/include/c++/7 -I/usr/include/c++/7/x86_64-suse-linux -I/usr/include/c++/7/backward -I/usr/lib64/gcc/x86_64-suse-linux/7/include -I/usr/local/include -I/usr/lib64/gcc/x86_64-suse-linux/7/include-fixed -I/usr/x86_64-suse-linux/include -I/usr/include DockCtrl/DockFocusController.h -o moc_DockFocusController.cpp
+	/usr/lib64/qt5/bin/moc $(DEFINES) --include /home/netpipe/qtprojects/ProIDE/MyIDE/moc_predefs.h -I/usr/lib64/qt5/mkspecs/linux-g++ -I/home/netpipe/qtprojects/ProIDE/MyIDE -I/usr/include/qt5 -I/usr/include/qt5/QtWidgets -I/usr/include/qt5/QtGui -I/usr/include/qt5/QtCore -I/usr/include/c++/7 -I/usr/include/c++/7/x86_64-suse-linux -I/usr/include/c++/7/backward -I/usr/lib64/gcc/x86_64-suse-linux/7/include -I/usr/local/include -I/usr/lib64/gcc/x86_64-suse-linux/7/include-fixed -I/usr/x86_64-suse-linux/include -I/usr/include DockCtrl/DockFocusController.h -o moc_DockFocusController.cpp
 
 moc_DockManager.cpp: DockCtrl/DockManager.h \
 		DockCtrl/ads_globals.h \
@@ -820,55 +1174,55 @@ moc_DockManager.cpp: DockCtrl/DockManager.h \
 		DockCtrl/FloatingDockContainer.h \
 		moc_predefs.h \
 		/usr/lib64/qt5/bin/moc
-	/usr/lib64/qt5/bin/moc $(DEFINES) --include /home/netpipe/Desktop/MyIDE/moc_predefs.h -I/usr/lib64/qt5/mkspecs/linux-g++ -I/home/netpipe/Desktop/MyIDE -I/usr/include/qt5 -I/usr/include/qt5/QtWidgets -I/usr/include/qt5/QtGui -I/usr/include/qt5/QtCore -I/usr/include/c++/7 -I/usr/include/c++/7/x86_64-suse-linux -I/usr/include/c++/7/backward -I/usr/lib64/gcc/x86_64-suse-linux/7/include -I/usr/local/include -I/usr/lib64/gcc/x86_64-suse-linux/7/include-fixed -I/usr/x86_64-suse-linux/include -I/usr/include DockCtrl/DockManager.h -o moc_DockManager.cpp
+	/usr/lib64/qt5/bin/moc $(DEFINES) --include /home/netpipe/qtprojects/ProIDE/MyIDE/moc_predefs.h -I/usr/lib64/qt5/mkspecs/linux-g++ -I/home/netpipe/qtprojects/ProIDE/MyIDE -I/usr/include/qt5 -I/usr/include/qt5/QtWidgets -I/usr/include/qt5/QtGui -I/usr/include/qt5/QtCore -I/usr/include/c++/7 -I/usr/include/c++/7/x86_64-suse-linux -I/usr/include/c++/7/backward -I/usr/lib64/gcc/x86_64-suse-linux/7/include -I/usr/local/include -I/usr/lib64/gcc/x86_64-suse-linux/7/include-fixed -I/usr/x86_64-suse-linux/include -I/usr/include DockCtrl/DockManager.h -o moc_DockManager.cpp
 
 moc_DockOverlay.cpp: DockCtrl/DockOverlay.h \
 		DockCtrl/ads_globals.h \
 		moc_predefs.h \
 		/usr/lib64/qt5/bin/moc
-	/usr/lib64/qt5/bin/moc $(DEFINES) --include /home/netpipe/Desktop/MyIDE/moc_predefs.h -I/usr/lib64/qt5/mkspecs/linux-g++ -I/home/netpipe/Desktop/MyIDE -I/usr/include/qt5 -I/usr/include/qt5/QtWidgets -I/usr/include/qt5/QtGui -I/usr/include/qt5/QtCore -I/usr/include/c++/7 -I/usr/include/c++/7/x86_64-suse-linux -I/usr/include/c++/7/backward -I/usr/lib64/gcc/x86_64-suse-linux/7/include -I/usr/local/include -I/usr/lib64/gcc/x86_64-suse-linux/7/include-fixed -I/usr/x86_64-suse-linux/include -I/usr/include DockCtrl/DockOverlay.h -o moc_DockOverlay.cpp
+	/usr/lib64/qt5/bin/moc $(DEFINES) --include /home/netpipe/qtprojects/ProIDE/MyIDE/moc_predefs.h -I/usr/lib64/qt5/mkspecs/linux-g++ -I/home/netpipe/qtprojects/ProIDE/MyIDE -I/usr/include/qt5 -I/usr/include/qt5/QtWidgets -I/usr/include/qt5/QtGui -I/usr/include/qt5/QtCore -I/usr/include/c++/7 -I/usr/include/c++/7/x86_64-suse-linux -I/usr/include/c++/7/backward -I/usr/lib64/gcc/x86_64-suse-linux/7/include -I/usr/local/include -I/usr/lib64/gcc/x86_64-suse-linux/7/include-fixed -I/usr/x86_64-suse-linux/include -I/usr/include DockCtrl/DockOverlay.h -o moc_DockOverlay.cpp
 
 moc_DockSplitter.cpp: DockCtrl/DockSplitter.h \
 		DockCtrl/ads_globals.h \
 		moc_predefs.h \
 		/usr/lib64/qt5/bin/moc
-	/usr/lib64/qt5/bin/moc $(DEFINES) --include /home/netpipe/Desktop/MyIDE/moc_predefs.h -I/usr/lib64/qt5/mkspecs/linux-g++ -I/home/netpipe/Desktop/MyIDE -I/usr/include/qt5 -I/usr/include/qt5/QtWidgets -I/usr/include/qt5/QtGui -I/usr/include/qt5/QtCore -I/usr/include/c++/7 -I/usr/include/c++/7/x86_64-suse-linux -I/usr/include/c++/7/backward -I/usr/lib64/gcc/x86_64-suse-linux/7/include -I/usr/local/include -I/usr/lib64/gcc/x86_64-suse-linux/7/include-fixed -I/usr/x86_64-suse-linux/include -I/usr/include DockCtrl/DockSplitter.h -o moc_DockSplitter.cpp
+	/usr/lib64/qt5/bin/moc $(DEFINES) --include /home/netpipe/qtprojects/ProIDE/MyIDE/moc_predefs.h -I/usr/lib64/qt5/mkspecs/linux-g++ -I/home/netpipe/qtprojects/ProIDE/MyIDE -I/usr/include/qt5 -I/usr/include/qt5/QtWidgets -I/usr/include/qt5/QtGui -I/usr/include/qt5/QtCore -I/usr/include/c++/7 -I/usr/include/c++/7/x86_64-suse-linux -I/usr/include/c++/7/backward -I/usr/lib64/gcc/x86_64-suse-linux/7/include -I/usr/local/include -I/usr/lib64/gcc/x86_64-suse-linux/7/include-fixed -I/usr/x86_64-suse-linux/include -I/usr/include DockCtrl/DockSplitter.h -o moc_DockSplitter.cpp
 
 moc_DockWidget.cpp: DockCtrl/DockWidget.h \
 		DockCtrl/ads_globals.h \
 		moc_predefs.h \
 		/usr/lib64/qt5/bin/moc
-	/usr/lib64/qt5/bin/moc $(DEFINES) --include /home/netpipe/Desktop/MyIDE/moc_predefs.h -I/usr/lib64/qt5/mkspecs/linux-g++ -I/home/netpipe/Desktop/MyIDE -I/usr/include/qt5 -I/usr/include/qt5/QtWidgets -I/usr/include/qt5/QtGui -I/usr/include/qt5/QtCore -I/usr/include/c++/7 -I/usr/include/c++/7/x86_64-suse-linux -I/usr/include/c++/7/backward -I/usr/lib64/gcc/x86_64-suse-linux/7/include -I/usr/local/include -I/usr/lib64/gcc/x86_64-suse-linux/7/include-fixed -I/usr/x86_64-suse-linux/include -I/usr/include DockCtrl/DockWidget.h -o moc_DockWidget.cpp
+	/usr/lib64/qt5/bin/moc $(DEFINES) --include /home/netpipe/qtprojects/ProIDE/MyIDE/moc_predefs.h -I/usr/lib64/qt5/mkspecs/linux-g++ -I/home/netpipe/qtprojects/ProIDE/MyIDE -I/usr/include/qt5 -I/usr/include/qt5/QtWidgets -I/usr/include/qt5/QtGui -I/usr/include/qt5/QtCore -I/usr/include/c++/7 -I/usr/include/c++/7/x86_64-suse-linux -I/usr/include/c++/7/backward -I/usr/lib64/gcc/x86_64-suse-linux/7/include -I/usr/local/include -I/usr/lib64/gcc/x86_64-suse-linux/7/include-fixed -I/usr/x86_64-suse-linux/include -I/usr/include DockCtrl/DockWidget.h -o moc_DockWidget.cpp
 
 moc_DockWidgetTab.cpp: DockCtrl/DockWidgetTab.h \
 		DockCtrl/ads_globals.h \
 		moc_predefs.h \
 		/usr/lib64/qt5/bin/moc
-	/usr/lib64/qt5/bin/moc $(DEFINES) --include /home/netpipe/Desktop/MyIDE/moc_predefs.h -I/usr/lib64/qt5/mkspecs/linux-g++ -I/home/netpipe/Desktop/MyIDE -I/usr/include/qt5 -I/usr/include/qt5/QtWidgets -I/usr/include/qt5/QtGui -I/usr/include/qt5/QtCore -I/usr/include/c++/7 -I/usr/include/c++/7/x86_64-suse-linux -I/usr/include/c++/7/backward -I/usr/lib64/gcc/x86_64-suse-linux/7/include -I/usr/local/include -I/usr/lib64/gcc/x86_64-suse-linux/7/include-fixed -I/usr/x86_64-suse-linux/include -I/usr/include DockCtrl/DockWidgetTab.h -o moc_DockWidgetTab.cpp
+	/usr/lib64/qt5/bin/moc $(DEFINES) --include /home/netpipe/qtprojects/ProIDE/MyIDE/moc_predefs.h -I/usr/lib64/qt5/mkspecs/linux-g++ -I/home/netpipe/qtprojects/ProIDE/MyIDE -I/usr/include/qt5 -I/usr/include/qt5/QtWidgets -I/usr/include/qt5/QtGui -I/usr/include/qt5/QtCore -I/usr/include/c++/7 -I/usr/include/c++/7/x86_64-suse-linux -I/usr/include/c++/7/backward -I/usr/lib64/gcc/x86_64-suse-linux/7/include -I/usr/local/include -I/usr/lib64/gcc/x86_64-suse-linux/7/include-fixed -I/usr/x86_64-suse-linux/include -I/usr/include DockCtrl/DockWidgetTab.h -o moc_DockWidgetTab.cpp
 
 moc_ElidingLabel.cpp: DockCtrl/ElidingLabel.h \
 		DockCtrl/ads_globals.h \
 		moc_predefs.h \
 		/usr/lib64/qt5/bin/moc
-	/usr/lib64/qt5/bin/moc $(DEFINES) --include /home/netpipe/Desktop/MyIDE/moc_predefs.h -I/usr/lib64/qt5/mkspecs/linux-g++ -I/home/netpipe/Desktop/MyIDE -I/usr/include/qt5 -I/usr/include/qt5/QtWidgets -I/usr/include/qt5/QtGui -I/usr/include/qt5/QtCore -I/usr/include/c++/7 -I/usr/include/c++/7/x86_64-suse-linux -I/usr/include/c++/7/backward -I/usr/lib64/gcc/x86_64-suse-linux/7/include -I/usr/local/include -I/usr/lib64/gcc/x86_64-suse-linux/7/include-fixed -I/usr/x86_64-suse-linux/include -I/usr/include DockCtrl/ElidingLabel.h -o moc_ElidingLabel.cpp
+	/usr/lib64/qt5/bin/moc $(DEFINES) --include /home/netpipe/qtprojects/ProIDE/MyIDE/moc_predefs.h -I/usr/lib64/qt5/mkspecs/linux-g++ -I/home/netpipe/qtprojects/ProIDE/MyIDE -I/usr/include/qt5 -I/usr/include/qt5/QtWidgets -I/usr/include/qt5/QtGui -I/usr/include/qt5/QtCore -I/usr/include/c++/7 -I/usr/include/c++/7/x86_64-suse-linux -I/usr/include/c++/7/backward -I/usr/lib64/gcc/x86_64-suse-linux/7/include -I/usr/local/include -I/usr/lib64/gcc/x86_64-suse-linux/7/include-fixed -I/usr/x86_64-suse-linux/include -I/usr/include DockCtrl/ElidingLabel.h -o moc_ElidingLabel.cpp
 
 moc_FloatingDockContainer.cpp: DockCtrl/FloatingDockContainer.h \
 		DockCtrl/ads_globals.h \
 		moc_predefs.h \
 		/usr/lib64/qt5/bin/moc
-	/usr/lib64/qt5/bin/moc $(DEFINES) --include /home/netpipe/Desktop/MyIDE/moc_predefs.h -I/usr/lib64/qt5/mkspecs/linux-g++ -I/home/netpipe/Desktop/MyIDE -I/usr/include/qt5 -I/usr/include/qt5/QtWidgets -I/usr/include/qt5/QtGui -I/usr/include/qt5/QtCore -I/usr/include/c++/7 -I/usr/include/c++/7/x86_64-suse-linux -I/usr/include/c++/7/backward -I/usr/lib64/gcc/x86_64-suse-linux/7/include -I/usr/local/include -I/usr/lib64/gcc/x86_64-suse-linux/7/include-fixed -I/usr/x86_64-suse-linux/include -I/usr/include DockCtrl/FloatingDockContainer.h -o moc_FloatingDockContainer.cpp
+	/usr/lib64/qt5/bin/moc $(DEFINES) --include /home/netpipe/qtprojects/ProIDE/MyIDE/moc_predefs.h -I/usr/lib64/qt5/mkspecs/linux-g++ -I/home/netpipe/qtprojects/ProIDE/MyIDE -I/usr/include/qt5 -I/usr/include/qt5/QtWidgets -I/usr/include/qt5/QtGui -I/usr/include/qt5/QtCore -I/usr/include/c++/7 -I/usr/include/c++/7/x86_64-suse-linux -I/usr/include/c++/7/backward -I/usr/lib64/gcc/x86_64-suse-linux/7/include -I/usr/local/include -I/usr/lib64/gcc/x86_64-suse-linux/7/include-fixed -I/usr/x86_64-suse-linux/include -I/usr/include DockCtrl/FloatingDockContainer.h -o moc_FloatingDockContainer.cpp
 
 moc_FloatingDragPreview.cpp: DockCtrl/FloatingDragPreview.h \
 		DockCtrl/FloatingDockContainer.h \
 		DockCtrl/ads_globals.h \
 		moc_predefs.h \
 		/usr/lib64/qt5/bin/moc
-	/usr/lib64/qt5/bin/moc $(DEFINES) --include /home/netpipe/Desktop/MyIDE/moc_predefs.h -I/usr/lib64/qt5/mkspecs/linux-g++ -I/home/netpipe/Desktop/MyIDE -I/usr/include/qt5 -I/usr/include/qt5/QtWidgets -I/usr/include/qt5/QtGui -I/usr/include/qt5/QtCore -I/usr/include/c++/7 -I/usr/include/c++/7/x86_64-suse-linux -I/usr/include/c++/7/backward -I/usr/lib64/gcc/x86_64-suse-linux/7/include -I/usr/local/include -I/usr/lib64/gcc/x86_64-suse-linux/7/include-fixed -I/usr/x86_64-suse-linux/include -I/usr/include DockCtrl/FloatingDragPreview.h -o moc_FloatingDragPreview.cpp
+	/usr/lib64/qt5/bin/moc $(DEFINES) --include /home/netpipe/qtprojects/ProIDE/MyIDE/moc_predefs.h -I/usr/lib64/qt5/mkspecs/linux-g++ -I/home/netpipe/qtprojects/ProIDE/MyIDE -I/usr/include/qt5 -I/usr/include/qt5/QtWidgets -I/usr/include/qt5/QtGui -I/usr/include/qt5/QtCore -I/usr/include/c++/7 -I/usr/include/c++/7/x86_64-suse-linux -I/usr/include/c++/7/backward -I/usr/lib64/gcc/x86_64-suse-linux/7/include -I/usr/local/include -I/usr/lib64/gcc/x86_64-suse-linux/7/include-fixed -I/usr/x86_64-suse-linux/include -I/usr/include DockCtrl/FloatingDragPreview.h -o moc_FloatingDragPreview.cpp
 
 moc_dockindock.cpp: DockCtrl/dockindock.h \
 		moc_predefs.h \
 		/usr/lib64/qt5/bin/moc
-	/usr/lib64/qt5/bin/moc $(DEFINES) --include /home/netpipe/Desktop/MyIDE/moc_predefs.h -I/usr/lib64/qt5/mkspecs/linux-g++ -I/home/netpipe/Desktop/MyIDE -I/usr/include/qt5 -I/usr/include/qt5/QtWidgets -I/usr/include/qt5/QtGui -I/usr/include/qt5/QtCore -I/usr/include/c++/7 -I/usr/include/c++/7/x86_64-suse-linux -I/usr/include/c++/7/backward -I/usr/lib64/gcc/x86_64-suse-linux/7/include -I/usr/local/include -I/usr/lib64/gcc/x86_64-suse-linux/7/include-fixed -I/usr/x86_64-suse-linux/include -I/usr/include DockCtrl/dockindock.h -o moc_dockindock.cpp
+	/usr/lib64/qt5/bin/moc $(DEFINES) --include /home/netpipe/qtprojects/ProIDE/MyIDE/moc_predefs.h -I/usr/lib64/qt5/mkspecs/linux-g++ -I/home/netpipe/qtprojects/ProIDE/MyIDE -I/usr/include/qt5 -I/usr/include/qt5/QtWidgets -I/usr/include/qt5/QtGui -I/usr/include/qt5/QtCore -I/usr/include/c++/7 -I/usr/include/c++/7/x86_64-suse-linux -I/usr/include/c++/7/backward -I/usr/lib64/gcc/x86_64-suse-linux/7/include -I/usr/local/include -I/usr/lib64/gcc/x86_64-suse-linux/7/include-fixed -I/usr/x86_64-suse-linux/include -I/usr/include DockCtrl/dockindock.h -o moc_dockindock.cpp
 
 moc_dockindockmanager.cpp: DockCtrl/dockindockmanager.h \
 		DockCtrl/DockManager.h \
@@ -878,27 +1232,27 @@ moc_dockindockmanager.cpp: DockCtrl/dockindockmanager.h \
 		DockCtrl/FloatingDockContainer.h \
 		moc_predefs.h \
 		/usr/lib64/qt5/bin/moc
-	/usr/lib64/qt5/bin/moc $(DEFINES) --include /home/netpipe/Desktop/MyIDE/moc_predefs.h -I/usr/lib64/qt5/mkspecs/linux-g++ -I/home/netpipe/Desktop/MyIDE -I/usr/include/qt5 -I/usr/include/qt5/QtWidgets -I/usr/include/qt5/QtGui -I/usr/include/qt5/QtCore -I/usr/include/c++/7 -I/usr/include/c++/7/x86_64-suse-linux -I/usr/include/c++/7/backward -I/usr/lib64/gcc/x86_64-suse-linux/7/include -I/usr/local/include -I/usr/lib64/gcc/x86_64-suse-linux/7/include-fixed -I/usr/x86_64-suse-linux/include -I/usr/include DockCtrl/dockindockmanager.h -o moc_dockindockmanager.cpp
+	/usr/lib64/qt5/bin/moc $(DEFINES) --include /home/netpipe/qtprojects/ProIDE/MyIDE/moc_predefs.h -I/usr/lib64/qt5/mkspecs/linux-g++ -I/home/netpipe/qtprojects/ProIDE/MyIDE -I/usr/include/qt5 -I/usr/include/qt5/QtWidgets -I/usr/include/qt5/QtGui -I/usr/include/qt5/QtCore -I/usr/include/c++/7 -I/usr/include/c++/7/x86_64-suse-linux -I/usr/include/c++/7/backward -I/usr/lib64/gcc/x86_64-suse-linux/7/include -I/usr/local/include -I/usr/lib64/gcc/x86_64-suse-linux/7/include-fixed -I/usr/x86_64-suse-linux/include -I/usr/include DockCtrl/dockindockmanager.h -o moc_dockindockmanager.cpp
 
 moc_FloatingWidgetTitleBar.cpp: DockCtrl/linux/FloatingWidgetTitleBar.h \
 		moc_predefs.h \
 		/usr/lib64/qt5/bin/moc
-	/usr/lib64/qt5/bin/moc $(DEFINES) --include /home/netpipe/Desktop/MyIDE/moc_predefs.h -I/usr/lib64/qt5/mkspecs/linux-g++ -I/home/netpipe/Desktop/MyIDE -I/usr/include/qt5 -I/usr/include/qt5/QtWidgets -I/usr/include/qt5/QtGui -I/usr/include/qt5/QtCore -I/usr/include/c++/7 -I/usr/include/c++/7/x86_64-suse-linux -I/usr/include/c++/7/backward -I/usr/lib64/gcc/x86_64-suse-linux/7/include -I/usr/local/include -I/usr/lib64/gcc/x86_64-suse-linux/7/include-fixed -I/usr/x86_64-suse-linux/include -I/usr/include DockCtrl/linux/FloatingWidgetTitleBar.h -o moc_FloatingWidgetTitleBar.cpp
+	/usr/lib64/qt5/bin/moc $(DEFINES) --include /home/netpipe/qtprojects/ProIDE/MyIDE/moc_predefs.h -I/usr/lib64/qt5/mkspecs/linux-g++ -I/home/netpipe/qtprojects/ProIDE/MyIDE -I/usr/include/qt5 -I/usr/include/qt5/QtWidgets -I/usr/include/qt5/QtGui -I/usr/include/qt5/QtCore -I/usr/include/c++/7 -I/usr/include/c++/7/x86_64-suse-linux -I/usr/include/c++/7/backward -I/usr/lib64/gcc/x86_64-suse-linux/7/include -I/usr/local/include -I/usr/lib64/gcc/x86_64-suse-linux/7/include-fixed -I/usr/x86_64-suse-linux/include -I/usr/include DockCtrl/linux/FloatingWidgetTitleBar.h -o moc_FloatingWidgetTitleBar.cpp
 
 moc_perspectiveactions.cpp: DockCtrl/perspectiveactions.h \
 		moc_predefs.h \
 		/usr/lib64/qt5/bin/moc
-	/usr/lib64/qt5/bin/moc $(DEFINES) --include /home/netpipe/Desktop/MyIDE/moc_predefs.h -I/usr/lib64/qt5/mkspecs/linux-g++ -I/home/netpipe/Desktop/MyIDE -I/usr/include/qt5 -I/usr/include/qt5/QtWidgets -I/usr/include/qt5/QtGui -I/usr/include/qt5/QtCore -I/usr/include/c++/7 -I/usr/include/c++/7/x86_64-suse-linux -I/usr/include/c++/7/backward -I/usr/lib64/gcc/x86_64-suse-linux/7/include -I/usr/local/include -I/usr/lib64/gcc/x86_64-suse-linux/7/include-fixed -I/usr/x86_64-suse-linux/include -I/usr/include DockCtrl/perspectiveactions.h -o moc_perspectiveactions.cpp
+	/usr/lib64/qt5/bin/moc $(DEFINES) --include /home/netpipe/qtprojects/ProIDE/MyIDE/moc_predefs.h -I/usr/lib64/qt5/mkspecs/linux-g++ -I/home/netpipe/qtprojects/ProIDE/MyIDE -I/usr/include/qt5 -I/usr/include/qt5/QtWidgets -I/usr/include/qt5/QtGui -I/usr/include/qt5/QtCore -I/usr/include/c++/7 -I/usr/include/c++/7/x86_64-suse-linux -I/usr/include/c++/7/backward -I/usr/lib64/gcc/x86_64-suse-linux/7/include -I/usr/local/include -I/usr/lib64/gcc/x86_64-suse-linux/7/include-fixed -I/usr/x86_64-suse-linux/include -I/usr/include DockCtrl/perspectiveactions.h -o moc_perspectiveactions.cpp
 
 moc_perspectives.cpp: DockCtrl/perspectives.h \
 		moc_predefs.h \
 		/usr/lib64/qt5/bin/moc
-	/usr/lib64/qt5/bin/moc $(DEFINES) --include /home/netpipe/Desktop/MyIDE/moc_predefs.h -I/usr/lib64/qt5/mkspecs/linux-g++ -I/home/netpipe/Desktop/MyIDE -I/usr/include/qt5 -I/usr/include/qt5/QtWidgets -I/usr/include/qt5/QtGui -I/usr/include/qt5/QtCore -I/usr/include/c++/7 -I/usr/include/c++/7/x86_64-suse-linux -I/usr/include/c++/7/backward -I/usr/lib64/gcc/x86_64-suse-linux/7/include -I/usr/local/include -I/usr/lib64/gcc/x86_64-suse-linux/7/include-fixed -I/usr/x86_64-suse-linux/include -I/usr/include DockCtrl/perspectives.h -o moc_perspectives.cpp
+	/usr/lib64/qt5/bin/moc $(DEFINES) --include /home/netpipe/qtprojects/ProIDE/MyIDE/moc_predefs.h -I/usr/lib64/qt5/mkspecs/linux-g++ -I/home/netpipe/qtprojects/ProIDE/MyIDE -I/usr/include/qt5 -I/usr/include/qt5/QtWidgets -I/usr/include/qt5/QtGui -I/usr/include/qt5/QtCore -I/usr/include/c++/7 -I/usr/include/c++/7/x86_64-suse-linux -I/usr/include/c++/7/backward -I/usr/lib64/gcc/x86_64-suse-linux/7/include -I/usr/local/include -I/usr/lib64/gcc/x86_64-suse-linux/7/include-fixed -I/usr/x86_64-suse-linux/include -I/usr/include DockCtrl/perspectives.h -o moc_perspectives.cpp
 
 moc_highlighter.cpp: highlighter.h \
 		moc_predefs.h \
 		/usr/lib64/qt5/bin/moc
-	/usr/lib64/qt5/bin/moc $(DEFINES) --include /home/netpipe/Desktop/MyIDE/moc_predefs.h -I/usr/lib64/qt5/mkspecs/linux-g++ -I/home/netpipe/Desktop/MyIDE -I/usr/include/qt5 -I/usr/include/qt5/QtWidgets -I/usr/include/qt5/QtGui -I/usr/include/qt5/QtCore -I/usr/include/c++/7 -I/usr/include/c++/7/x86_64-suse-linux -I/usr/include/c++/7/backward -I/usr/lib64/gcc/x86_64-suse-linux/7/include -I/usr/local/include -I/usr/lib64/gcc/x86_64-suse-linux/7/include-fixed -I/usr/x86_64-suse-linux/include -I/usr/include highlighter.h -o moc_highlighter.cpp
+	/usr/lib64/qt5/bin/moc $(DEFINES) --include /home/netpipe/qtprojects/ProIDE/MyIDE/moc_predefs.h -I/usr/lib64/qt5/mkspecs/linux-g++ -I/home/netpipe/qtprojects/ProIDE/MyIDE -I/usr/include/qt5 -I/usr/include/qt5/QtWidgets -I/usr/include/qt5/QtGui -I/usr/include/qt5/QtCore -I/usr/include/c++/7 -I/usr/include/c++/7/x86_64-suse-linux -I/usr/include/c++/7/backward -I/usr/lib64/gcc/x86_64-suse-linux/7/include -I/usr/local/include -I/usr/lib64/gcc/x86_64-suse-linux/7/include-fixed -I/usr/x86_64-suse-linux/include -I/usr/include highlighter.h -o moc_highlighter.cpp
 
 moc_mainwindow.cpp: mainwindow.h \
 		qhlwidget.h \
@@ -911,17 +1265,17 @@ moc_mainwindow.cpp: mainwindow.h \
 		DockCtrl/FloatingDockContainer.h \
 		moc_predefs.h \
 		/usr/lib64/qt5/bin/moc
-	/usr/lib64/qt5/bin/moc $(DEFINES) --include /home/netpipe/Desktop/MyIDE/moc_predefs.h -I/usr/lib64/qt5/mkspecs/linux-g++ -I/home/netpipe/Desktop/MyIDE -I/usr/include/qt5 -I/usr/include/qt5/QtWidgets -I/usr/include/qt5/QtGui -I/usr/include/qt5/QtCore -I/usr/include/c++/7 -I/usr/include/c++/7/x86_64-suse-linux -I/usr/include/c++/7/backward -I/usr/lib64/gcc/x86_64-suse-linux/7/include -I/usr/local/include -I/usr/lib64/gcc/x86_64-suse-linux/7/include-fixed -I/usr/x86_64-suse-linux/include -I/usr/include mainwindow.h -o moc_mainwindow.cpp
+	/usr/lib64/qt5/bin/moc $(DEFINES) --include /home/netpipe/qtprojects/ProIDE/MyIDE/moc_predefs.h -I/usr/lib64/qt5/mkspecs/linux-g++ -I/home/netpipe/qtprojects/ProIDE/MyIDE -I/usr/include/qt5 -I/usr/include/qt5/QtWidgets -I/usr/include/qt5/QtGui -I/usr/include/qt5/QtCore -I/usr/include/c++/7 -I/usr/include/c++/7/x86_64-suse-linux -I/usr/include/c++/7/backward -I/usr/lib64/gcc/x86_64-suse-linux/7/include -I/usr/local/include -I/usr/lib64/gcc/x86_64-suse-linux/7/include-fixed -I/usr/x86_64-suse-linux/include -I/usr/include mainwindow.h -o moc_mainwindow.cpp
 
 moc_qaboutform.cpp: qaboutform.h \
 		moc_predefs.h \
 		/usr/lib64/qt5/bin/moc
-	/usr/lib64/qt5/bin/moc $(DEFINES) --include /home/netpipe/Desktop/MyIDE/moc_predefs.h -I/usr/lib64/qt5/mkspecs/linux-g++ -I/home/netpipe/Desktop/MyIDE -I/usr/include/qt5 -I/usr/include/qt5/QtWidgets -I/usr/include/qt5/QtGui -I/usr/include/qt5/QtCore -I/usr/include/c++/7 -I/usr/include/c++/7/x86_64-suse-linux -I/usr/include/c++/7/backward -I/usr/lib64/gcc/x86_64-suse-linux/7/include -I/usr/local/include -I/usr/lib64/gcc/x86_64-suse-linux/7/include-fixed -I/usr/x86_64-suse-linux/include -I/usr/include qaboutform.h -o moc_qaboutform.cpp
+	/usr/lib64/qt5/bin/moc $(DEFINES) --include /home/netpipe/qtprojects/ProIDE/MyIDE/moc_predefs.h -I/usr/lib64/qt5/mkspecs/linux-g++ -I/home/netpipe/qtprojects/ProIDE/MyIDE -I/usr/include/qt5 -I/usr/include/qt5/QtWidgets -I/usr/include/qt5/QtGui -I/usr/include/qt5/QtCore -I/usr/include/c++/7 -I/usr/include/c++/7/x86_64-suse-linux -I/usr/include/c++/7/backward -I/usr/lib64/gcc/x86_64-suse-linux/7/include -I/usr/local/include -I/usr/lib64/gcc/x86_64-suse-linux/7/include-fixed -I/usr/x86_64-suse-linux/include -I/usr/include qaboutform.h -o moc_qaboutform.cpp
 
 moc_qhlwidget.cpp: qhlwidget.h \
 		moc_predefs.h \
 		/usr/lib64/qt5/bin/moc
-	/usr/lib64/qt5/bin/moc $(DEFINES) --include /home/netpipe/Desktop/MyIDE/moc_predefs.h -I/usr/lib64/qt5/mkspecs/linux-g++ -I/home/netpipe/Desktop/MyIDE -I/usr/include/qt5 -I/usr/include/qt5/QtWidgets -I/usr/include/qt5/QtGui -I/usr/include/qt5/QtCore -I/usr/include/c++/7 -I/usr/include/c++/7/x86_64-suse-linux -I/usr/include/c++/7/backward -I/usr/lib64/gcc/x86_64-suse-linux/7/include -I/usr/local/include -I/usr/lib64/gcc/x86_64-suse-linux/7/include-fixed -I/usr/x86_64-suse-linux/include -I/usr/include qhlwidget.h -o moc_qhlwidget.cpp
+	/usr/lib64/qt5/bin/moc $(DEFINES) --include /home/netpipe/qtprojects/ProIDE/MyIDE/moc_predefs.h -I/usr/lib64/qt5/mkspecs/linux-g++ -I/home/netpipe/qtprojects/ProIDE/MyIDE -I/usr/include/qt5 -I/usr/include/qt5/QtWidgets -I/usr/include/qt5/QtGui -I/usr/include/qt5/QtCore -I/usr/include/c++/7 -I/usr/include/c++/7/x86_64-suse-linux -I/usr/include/c++/7/backward -I/usr/lib64/gcc/x86_64-suse-linux/7/include -I/usr/local/include -I/usr/lib64/gcc/x86_64-suse-linux/7/include-fixed -I/usr/x86_64-suse-linux/include -I/usr/include qhlwidget.h -o moc_qhlwidget.cpp
 
 compiler_moc_objc_header_make_all:
 compiler_moc_objc_header_clean:

@@ -66,13 +66,13 @@ MainWindow::MainWindow(QWidget *parent) :
 
     splitter = new QSplitter(mdiArea);
 
-    ui->stackedWidget = new QStackedWidget(this);
-    ui->stackedWidget->addWidget(mdiArea);
-    ui->stackedWidget->addWidget(splitter);
+    stackedWidget = new QStackedWidget(this);
+    stackedWidget->addWidget(mdiArea);
+    stackedWidget->addWidget(splitter);
 
  //   ui->stackedWidget->setCurrentIndex(1);
    // ui->tab_3->focusWidget(ui->stackedWidget);
-    setCentralWidget(ui->stackedWidget);
+    setCentralWidget(stackedWidget);
 
     getStyleList();
 
@@ -89,7 +89,7 @@ MainWindow::MainWindow(QWidget *parent) :
     setWindowTitle(tr("ProIDE 1.0"));
     setUnifiedTitleAndToolBarOnMac(true);
 
-    ui->stackedWidget->setCurrentWidget(mdiArea);
+    stackedWidget->setCurrentWidget(mdiArea);
 
     gMainWindow = this;
 
@@ -840,14 +840,14 @@ void MainWindow::switchSplitter(int type)
             splitter->setOrientation(Qt::Vertical);
         }
 
-        ui->stackedWidget->setCurrentWidget(splitter);
+        stackedWidget->setCurrentWidget(splitter);
     }
     else
     {
         foreach (QMdiSubWindow *window, subWindows)
             window->showMaximized();
 
-        ui->stackedWidget->setCurrentWidget(mdiArea);
+        stackedWidget->setCurrentWidget(mdiArea);
     }
 }
 

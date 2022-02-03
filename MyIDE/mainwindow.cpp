@@ -276,25 +276,25 @@ void MainWindow::createStatusBar()
 
 void MainWindow::readSettings()
 {
-//    QString a = QCoreApplication::organizationName();
-//    QString b = QCoreApplication::applicationName();
+    QString a = QCoreApplication::organizationName();
+    QString b = QCoreApplication::applicationName();
 
-//    QSettings settings(QCoreApplication::organizationName(), QCoreApplication::applicationName());
-//    const QByteArray geometry = settings.value("geometry", QByteArray()).toByteArray();
-//    if (geometry.isEmpty()) {
-//        const QRect availableGeometry = screen()->availableGeometry();
-//        resize(availableGeometry.width() / 3, availableGeometry.height() / 2);
-//        move((availableGeometry.width() - width()) / 2,
-//             (availableGeometry.height() - height()) / 2);
-//    } else {
-//        restoreGeometry(geometry);
-//    }
+    QSettings settings(QCoreApplication::organizationName(), QCoreApplication::applicationName());
+    const QByteArray geometry = settings.value("geometry", QByteArray()).toByteArray();
+    if (geometry.isEmpty()) {
+        const QRect availableGeometry = QApplication::desktop()->availableGeometry();
+        resize(availableGeometry.width() / 3, availableGeometry.height() / 2);
+        move((availableGeometry.width() - width()) / 2,
+             (availableGeometry.height() - height()) / 2);
+    } else {
+        restoreGeometry(geometry);
+    }
 }
 
 void MainWindow::writeSettings()
 {
-//    QSettings settings(QCoreApplication::organizationName(), QCoreApplication::applicationName());
-//    settings.setValue("geometry", saveGeometry());
+    QSettings settings(QCoreApplication::organizationName(), QCoreApplication::applicationName());
+    settings.setValue("geometry", saveGeometry());
 }
 
 bool MainWindow::maybeSave()
