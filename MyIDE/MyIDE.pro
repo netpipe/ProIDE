@@ -27,6 +27,11 @@ windows {
 }
 
 SOURCES += \
+    CustomCtrl/QCodeEditor.cpp \
+    CustomCtrl/QLineNumberArea.cpp \
+    CustomCtrl/QSourceHighlite/languagedata.cpp \
+    CustomCtrl/QSourceHighlite/qsourcehighliter.cpp \
+    CustomCtrl/QSourceHighlite/qsourcehighliterthemes.cpp \
     CustomCtrl/mytabbar.cpp \
     CustomCtrl/mytabwidget.cpp \
     DockCtrl/DockAreaTabBar.cpp \
@@ -51,6 +56,8 @@ SOURCES += \
     DockCtrl/linux/FloatingWidgetTitleBar.cpp \
     DockCtrl/perspectiveactions.cpp \
     DockCtrl/perspectives.cpp \
+    compileDock/asmparser.cpp \
+    compileDock/compiler.cpp \
     highlighter.cpp \
     main.cpp \
     mainwindow.cpp \
@@ -59,6 +66,11 @@ SOURCES += \
     qhlwidget.cpp
 
 HEADERS += \
+    CustomCtrl/QCodeEditor.h \
+    CustomCtrl/QLineNumberArea.h \
+    CustomCtrl/QSourceHighlite/languagedata.h \
+    CustomCtrl/QSourceHighlite/qsourcehighliter.h \
+    CustomCtrl/QSourceHighlite/qsourcehighliterthemes.h \
     CustomCtrl/mytabbar.h \
     CustomCtrl/mytabwidget.h \
     DockCtrl/DockAreaTabBar.h \
@@ -84,6 +96,8 @@ HEADERS += \
     DockCtrl/linux/FloatingWidgetTitleBar.h \
     DockCtrl/perspectiveactions.h \
     DockCtrl/perspectives.h \
+    compileDock/asmparser.h \
+    compileDock/compiler.h \
     highlighter.h \
     mainwindow.h \
     qaboutform.h \

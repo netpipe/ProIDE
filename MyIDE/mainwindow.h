@@ -53,9 +53,10 @@
 
 #include <QMainWindow>
 #include "qhlwidget.h"
-#include "highlighter.h"
+#include "compileDock/highlighter.h"
 #include "qaboutform.h"
 #include "DockCtrl/DockManager.h"
+#include "CustomCtrl/QCodeEditor.h"
 
 #include <memory>
 
@@ -95,6 +96,8 @@ protected:
 
     int  getFileListItemIndex(QString filename);
 
+    QString getActivateFilePath();
+
     void closeEvent(QCloseEvent *event)         override;
     void dragEnterEvent(QDragEnterEvent *event) override;
     void dropEvent(QDropEvent *event)           override;
@@ -109,6 +112,7 @@ private slots:
     void about();
     void applyTheme(int index);
     void fileListWidgetItemClicked(QListWidgetItem * item);
+    void onBuildCompile();
     void updateMenus();
 
 #ifndef QT_NO_CLIPBOARD
@@ -153,6 +157,7 @@ private:
     QActionGroup *  themeGroup;
     QListWidget *   fileListWidget;
     QHlWidget *     hlWidget;
+    QCodeEditor *   compiledEdiorWidget;
 
     QAboutForm *    aboutForm;
 

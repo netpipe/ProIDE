@@ -1,6 +1,8 @@
 #include <QtWidgets>
 #include "mainwindow.h"
 #include "qappinfo.h"
+#include "compileDock/compiler.h"
+#include "compileDock/asmparser.h"
 #include "DockCtrl/dockindock.h"
 #include "DockCtrl/dockindockmanager.h"
 #include "DockCtrl/perspectives.h"
@@ -250,6 +252,17 @@ void MainWindow::createActions()
 
 #endif // !QT_NO_CLIPBOARD
 
+    QMenu *buildMenu = menuBar()->addMenu(tr("&Build"));
+    QToolBar *buildToolBar = addToolBar(tr("Build"));
+
+    const QIcon compileIcon = QIcon::fromTheme("edit-paste", QIcon(":/Resource/compile.png"));
+    QAction *compileAct = new QAction(compileIcon, tr("&Compile"), this);
+    compileAct->setStatusTip(tr("Compile current source file"));
+    compileAct->setShortcut(QKeySequence(tr("F7", "Compile")));
+    connect(compileAct, &QAction::triggered, this, &MainWindow::onBuildCompile);
+    buildMenu->addAction(compileAct);
+    buildToolBar->addAction(compileAct);
+
     QMenu *viewMenu = menuBar()->addMenu(tr("&View"));
 
     int stylecount = styleNameList.count();
@@ -490,6 +503,11 @@ void MainWindow::createDockWindows()
     hlWidget = new QHlWidget(dock);
     dock->setWidget(hlWidget);
     addDockWidget(Qt::LeftDockWidgetArea, dock);
+
+    dock = new QDockWidget(tr("Compiled Assembly Editor"), this);
+    compiledEdiorWidget = new QCodeEditor(dock);
+    dock->setWidget(compiledEdiorWidget);
+    addDockWidget(Qt::BottomDockWidgetArea, dock);
 }
 
 void MainWindow::fileListWidgetItemClicked(QListWidgetItem * item)
@@ -551,6 +569,8 @@ void MainWindow::openFileAt(QString fileName, int tabIndex)
     }
 
     QString fName = QFileInfo(fileName).fileName();
+
+    setCurrentFile(fileName);
 
     QTextStream in(&file);
     in.setAutoDetectUnicode(true);
@@ -836,5 +856,38 @@ void MainWindow::restoreDockingState(const QString &stateFileName)
             QMessageBox::critical(this, "Restore state failed",
                                   "Error while reading docking state file.");
         }
+    }
+}
+
+QString MainWindow::getActivateFilePath()
+{
+    return curFile;
+}
+
+void MainWindow::onBuildCompile()
+{
+    const QString source = getTabTextEdit()->toPlainText();
+    const auto compilerName = "g++";
+    const bool intelSyntax = false;
+    const QString args = "";
+    const QStringList argsList = [&args]() -> QStringList
+    {
+            if (!args.isEmpty()) {
+                return args.split(QLatin1Char(' '));
+            }
+            return {};
+    }();
+
+    const Compiler compiler(std::move(compilerName));
+    const QString currentFile = getActivateFilePath();
+
+    std::pair<QString, bool> out = compiler.compileToAsm(source, argsList, intelSyntax, currentFile);
+
+    if (out.second) {
+        QString demangled = AsmParser::demangle(std::move(out.first));
+        const QString cleanAsm = AsmParser().process(demangled);
+        compiledEdiorWidget->setPlainText(cleanAsm);
+    } else {
+        compiledEdiorWidget->setPlainText(QStringLiteral("<Compilation Failed>\n") + out.first);
     }
 }
