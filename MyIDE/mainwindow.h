@@ -53,7 +53,7 @@
 
 #include <QMainWindow>
 #include "qhlwidget.h"
-#include "compileDock/highlighter.h"
+#include "highlighter.h"
 #include "qaboutform.h"
 #include "DockCtrl/DockManager.h"
 #include "CustomCtrl/QCodeEditor.h"
